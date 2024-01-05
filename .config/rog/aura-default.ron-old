@@ -1,0 +1,14 @@
+(
+    name: "aura-default",
+    aura: (
+        effects: [
+            DoomFlicker((
+                led: SingleZone,
+                start_colour: (200, 40, 5),
+                max_percentage: 80,
+                min_percentage: 40,
+            )),
+        ],
+        zoned: true,
+    ),
+)
