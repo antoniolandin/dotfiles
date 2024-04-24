@@ -18,6 +18,10 @@ source $ZSH/oh-my-zsh.sh
 # Path
 export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin:/home/antonio/.local/share/cargo/bin
 
+# Variables de entorno
+export CLASE=$HOME/OneDrive/cursos/curso-2023-2024/cuatrimestre-2/
+export DOT=$HOME/Repos/dotfiles/
+
 # Starship
 eval "$(starship init zsh)"
 
@@ -38,12 +42,11 @@ alias peaclock="peaclock --config-dir ~/.config/peaclock"
 alias vim="nvim"
 alias pdf="termpdf 2>/dev/null"
 alias horario="termpdf /home/antonio/OneDrive/cursos/curso-2023-2024/horarios/horario-segundo-cuatrimestre.pdf 2>/dev/null"
+alias calendario="zathura ~/OneDrive/cursos/curso-2023-2024/horarios/calendario.pdf 2>/dev/null"
 alias img="kitty +kitten icat"
-
-# Usar los colores de pywal
-# (cat ~/.cache/wal/sequences &)
-# source ~/.cache/wal/colors-tty.sh
-
+alias doraemon="mpv -ao=pulse ~/Videos/VIAJE\ AL\ MISMO\ PLANETA.mp4"
+alias mhr="img ~/Pictures/memes/mangel.jpeg"
+alias chess="cli-chess"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

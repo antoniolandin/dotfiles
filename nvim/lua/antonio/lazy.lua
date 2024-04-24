@@ -56,9 +56,5 @@ lspconfig.lua_ls.setup({
 local Rule = require('nvim-autopairs.rule')
 local npairs = require('nvim-autopairs')
 npairs.add_rule(
-    Rule("$", "$",{"tex", "latex","md", "markdown"})
-)
-
-npairs.add_rule(
-    Rule("|", "|",{"tex", "latex","md", "markdown"})
+    Rule("$", "$",{"tex","latex","md","markdown"})
 )

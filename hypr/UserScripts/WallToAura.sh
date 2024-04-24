@@ -1,6 +1,6 @@
 #!/bin/bash
-#Author: Antonio
-#Description: Change asus aura colors to the pywal colors
+# Author: Antonio
+# Description: Change asus aura colors to the pywal colors
 
 color=$(sed -n '4p' ~/.cache/wal/colors)
 

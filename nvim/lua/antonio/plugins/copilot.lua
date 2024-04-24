@@ -1,7 +1,7 @@
 return {
     "github/copilot.vim",
-     filetypes = {
+    filetypes = {
         markdown = true,
         help = true,
-      },
+    },
 }

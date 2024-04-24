@@ -3,14 +3,14 @@ format = '$all'
 palette = "pywal"
 [palettes.pywal]
 color0="#000000"
-color1="#BDA16E"
-color2="#64759C"
-color3="#7488B0"
-color4="#6A9DCD"
-color5="#9399AF"
-color6="#DEC6AE"
-color7="#c6cddc"
-color8="#8a8f9a"
+color1="#981C71"
+color2="#096B94"
+color3="#614D93"
+color4="#C94AA7"
+color5="#EA58B4"
+color6="#29ACCC"
+color7="#f0c2e1"
+color8="#a8879d"
 
 [username]
 format = "[$user](color1)"
