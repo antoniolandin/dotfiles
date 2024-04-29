@@ -4,6 +4,10 @@ export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 
+# Variables de entorno
+export CLASE=$HOME/OneDrive/cursos/curso-2023-2024/cuatrimestre-2/
+export DOT=$HOME/Repos/dotfiles/
+
 # Fix paths
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker 
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
@@ -24,4 +28,5 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
 export MYSQL_HISTFILE="$XDG_DATA_HOME"/mysql_history
-export VIMINIT="set nocp | source ${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
+# export VIMINIT="set nocp | source ${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv 
