@@ -9,6 +9,7 @@ return {
     "benfowler/telescope-luasnip.nvim",
   },
     config = function()
+        -- Config
         require("luasnip").config.setup({
             load_ft_func = require("luasnip.extras.filetype_functions").extend_load_ft({
 	            markdown = {"latex", "tex"}

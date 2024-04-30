@@ -4,9 +4,14 @@ export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 
+# Path
+export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin:/home/antonio/.local/share/cargo/bin
+
 # Variables de entorno
+export ZSH="$XDG_CONFIG_HOME/oh-my-zsh"
 export CLASE=$HOME/OneDrive/cursos/curso-2023-2024/cuatrimestre-2/
 export DOT=$HOME/Repos/dotfiles/
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 
 # Fix paths
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker 
