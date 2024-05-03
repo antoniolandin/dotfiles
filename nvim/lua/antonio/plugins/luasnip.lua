@@ -28,11 +28,28 @@ return {
         local dynamicn = ls.dynamic_node
 
         ls.add_snippets("markdown", {
-            snip("splt", {
-                text({"$$", "\\begin{split}", "\t& "}),
-                insert(1),
-                text({"\t", "\\end{split}", "$$"}),
-            })
+            snip(
+                {
+                    trig = "splt",
+                    snippetType = "autosnippet"
+                },
+                {
+                    text({"$$", "\\begin{split}", "\t& "}),
+                    insert(1),
+                    text({"", "\\end{split}", "$$"}),
+                }
+            ),
+            snip(
+                {
+                    trig = "mth",
+                    snippetType = "autosnippet"
+                },
+                {
+                    text({"$$", ""}),
+                    insert(1),
+                    text({"", "$$"})
+                }
+            )
         })
     end
 }
