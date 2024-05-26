@@ -9,7 +9,7 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin:/home/antonio/.local/share/c
 
 # Variables de entorno
 export ZSH="$XDG_CONFIG_HOME/oh-my-zsh"
-export CLASE=$HOME/OneDrive/cursos/curso-2023-2024/cuatrimestre-2/
+export CLASE=$HOME/SynologyDrive/cursos/curso-2023-2024/cuatrimestre-2/
 export DOT=$HOME/Repos/dotfiles/
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 

@@ -49,6 +49,28 @@ return {
                     insert(1),
                     text({"", "$$"})
                 }
+            ),
+            snip(
+                {
+                    trig = "cases",
+                    snippetType = "autosnippet"
+                },
+                {
+                    text({"\\begin{cases}", "\t"}),
+                    insert(1),
+                    text({"", "\\end{cases}"})
+                }
+            ),
+            snip(
+                {
+                    trig = "pmatrix",
+                    snippetType = "autosnippet"
+                },
+                {
+                    text({"\\begin{pmatrix}", "\t"}),
+                    insert(1),
+                    text({"", "\\end{pmatrix}"})
+                }
             )
         })
     end

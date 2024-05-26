@@ -20,7 +20,7 @@ return {
     workspaces = {
       {
         name = "personal",
-        path = "~/OneDrive/notas",
+        path = "~/Repos/notas",
       },
     },
 
