@@ -1,0 +1,81 @@
+format = '$all'
+
+palette = "pywal"
+[palettes.pywal]
+color0="#000000"
+color1="#5A3F5E"
+color2="#283A89"
+color3="#324A9E"
+color4="#5062B3"
+color5="#A26787"
+color6="#68A3E5"
+color7="#d5cee4"
+color8="#95909f"
+
+[username]
+format = "[$user](color1)"
+
+[hostname]
+ssh_only = true
+format = "[$hostname](color1)"
+disabled = false
+
+[custom.docker]
+command = "echo '  '"
+files = ["Dockerfile", 'docker-compose.yml', "docker-compose.yaml"]
+when = """ comand -v docker &> /dev/null; exit (echo $?); """
+format = " [$output](color7)"
+
+[scala]
+symbol = " "
+
+[character]
+success_symbol = " [$shell❯](color7)"
+error_symbol = " [$shell✖](color7)"
+
+[directory]
+disabled = false
+read_only = ""
+truncation_length = 3
+truncate_to_repo = true
+format = "[$read_only](color4)[$path](color4) "
+home_symbol = ""
+
+[cmd_duration]
+format = "[ 祥$duration](color3) "
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]](color3) )'
+
+[git_branch]
+format = 'on [$symbol$branch(:$remote_branch)](color7) '
+
+[package]
+symbol =" "
+display_private = true
+version_format = "v${raw} "
+format = "[$symbol$version](color4)"
+
+[conda]
+symbol = " "
+
+#=== languages ===
+
+[nodejs]
+format = "via [$symbol($version) ](color7)"
+
+[python]
+symbol = " "
+format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )](color7)'
+
+[c]
+format = 'via [$symbol($version(-$name) )](color7)'
+
+[gradle]
+symbol = " "
+format = 'via [$symbol($version) ](color7)'
+
+[custom.tex]
+detect_extensions = ["tex"]
+symbol = " "
+format = 'via [$symbol($version) ](color7)'
