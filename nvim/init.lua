@@ -1,3 +1,2 @@
-require("antonio.core")
-require("antonio.lazy")
+require("core")
 

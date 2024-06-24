@@ -3,14 +3,16 @@ format = '$all'
 palette = "pywal"
 [palettes.pywal]
 color0="#000000"
-color1="#5A3F5E"
-color2="#283A89"
-color3="#324A9E"
-color4="#5062B3"
-color5="#A26787"
-color6="#68A3E5"
-color7="#d5cee4"
-color8="#95909f"
+color1="#334477"
+color2="#CA594C"
+color3="#F89573"
+color4="#2C3F83"
+color5="#374A87"
+color6="#59619C"
+color7="#bdb0ca"
+color8="#847b8d"
+color9="#334477"
+color10="#CA594C"
 
 [username]
 format = "[$user](color1)"
@@ -30,8 +32,8 @@ format = " [$output](color7)"
 symbol = " "
 
 [character]
-success_symbol = " [$shell❯](color7)"
-error_symbol = " [$shell✖](color7)"
+success_symbol = " [$shell❯](#7aa2f7)"
+error_symbol = " [$shell✖](color9)"
 
 [directory]
 disabled = false
@@ -42,7 +44,7 @@ format = "[$read_only](color4)[$path](color4) "
 home_symbol = ""
 
 [cmd_duration]
-format = "[ 祥$duration](color3) "
+format = "[$duration](color3) "
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]](color3) )'
@@ -60,7 +62,6 @@ format = "[$symbol$version](color4)"
 symbol = " "
 
 #=== languages ===
-
 [nodejs]
 format = "via [$symbol($version) ](color7)"
 
@@ -73,6 +74,18 @@ format = 'via [$symbol($version(-$name) )](color7)'
 
 [gradle]
 symbol = " "
+format = 'via [$symbol($version) ](color7)'
+
+[php]
+symbol = "󰌟 "
+format = 'via [$symbol($version) ](color7)'
+
+[perl]
+symbol = " "
+format = 'via [$symbol($version) ](color7)'
+
+[lua]
+symbol = " "
 format = 'via [$symbol($version) ](color7)'
 
 [custom.tex]
