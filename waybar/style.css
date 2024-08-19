@@ -1,1 +1,129 @@
-/home/antonio/.config/waybar/style/[Dark] Obsidian Edge.css
+* {
+  min-height: 0;
+  font-family:
+    JetBrains Mono NL,
+    JetBrainsMonoNerd Font;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+window#waybar {
+  transition-property: background-color;
+  transition-duration: 0.5s;
+  background-color: #1a1b26;
+}
+
+window#waybar.hidden {
+  opacity: 0.5;
+}
+
+#workspaces {
+  background: #1e1e1e;
+  margin: 2px 1px 3px 1px;
+  padding: 0px 0px;
+  margin: 5px 5px;
+  border-radius: 15px;
+  border: 0px;
+  font-style: normal;
+  opacity: 0.8;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+#workspaces button {
+  padding: 1px 1px;
+  margin: 3px 3px;
+  border-radius: 15px;
+  border: 0px;
+  color: #fff;
+  background-color: #414868;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+#workspaces button.active {
+  color: #000;
+  background: #e3e3e3;
+  border-radius: 15px;
+  min-width: 40px;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+#workspaces button.urgent {
+  background-color: #ff441f;
+}
+
+#clock,
+#pulseaudio,
+#battery,
+#cpu,
+#tray,
+#memory,
+#window {
+  padding: 0px 8px;
+  margin: 6px 3px;
+  color: #e3e3e3;
+  border-radius: 20px;
+  background-color: #24283b;
+}
+#custom-logo {
+  padding: 0px 10px;
+  color: #565f89;
+}
+
+#tray {
+  font-size: 10px;
+}
+
+#custom-sep {
+  padding: 0px;
+  color: #585b70;
+}
+
+#custom-spotify.playing {
+  color: #a6e3a1;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+}
+#cpu {
+  color: #73daca;
+}
+
+#memory {
+  color: #bb9af7;
+}
+
+#clock {
+  color: #b4f9f8;
+}
+
+#clock.date {
+  color: #cfc9c2;
+}
+
+#window {
+  color: #cfc9c2;
+}
+
+#pulseaudio {
+  color: #cfc9c2;
+}
+
+#pulseaudio.muted {
+  color: #ff5b45;
+}
+
+#battery {
+  color: #cfc9c2;
+}
+
+#custom-power {
+  color: #565f89;
+}
+
+tooltip {
+  border-radius: 8px;
+}
