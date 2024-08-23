@@ -7,9 +7,10 @@ export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 # Path
 export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:/home/antonio/.local/share/cargo/bin:$(go env GOBIN):$(go env GOPATH)/bin"
 
-# Variables de entorno
-export CLASE=$HOME/SynologyDrive/cursos/curso-2023-2024/cuatrimestre-2/
-export DOT=$HOME/Repos/dotfiles/
+# Aliases para rutas
+export UNI=$HOME/SynologyDrive/Universidad/cursos/curso-2024-2025/cuatrimestre-1
+export DOT=$HOME/Repos/dotfiles
+export CONF=$HOME/.config
 
 # Fix paths
 export ZSH="$XDG_CONFIG_HOME/oh-my-zsh"

@@ -20,7 +20,7 @@ return {
     workspaces = {
       {
         name = "clase",
-        path = "~/Repos/notas",
+        path = "~/SynologyDrive/Notas",
       }
     },
     -- Optional, customize how note IDs are generated given an optional title.
