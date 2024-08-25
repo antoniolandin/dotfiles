@@ -5,7 +5,7 @@ return {
   config = function()
     require("copilot").setup({
             filetypes = {
-                markdown = true,
+                markdown = true
             },
             suggestion = {
                 enable = true,

@@ -14,6 +14,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 --- Replace word under cursor ---
 vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
+--- Rebind go to last file ---
+vim.keymap.set("n", "<leader><leader>", "<C-^>")
+
 --- Obsidian ---
 vim.keymap.set("n", "<leader>os", [[<Cmd>ObsidianSearch<CR>]])
 vim.keymap.set("n", "<leader>oq", [[<Cmd>ObsidianQuickSwitch<CR>]])
