@@ -24,6 +24,14 @@ vim.keymap.set("n", "<leader>op", [[<Cmd>ObsidianPasteImg<CR>]])
 vim.keymap.set("n", "<leader>oo", [[<CMD>ObsidianOpen<CR>]])
 vim.keymap.set("n", "<leader>on", [[:ObsidianNew<CR>]])
 
+--- Compiler/overseer ---
+vim.api.nvim_set_keymap('n', '<leader>mo', "<cmd>CompilerOpen<cr>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<leader>mr', "<cmd>CompilerRedo<cr>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<leader>mh', "<cmd>CompilerToggleResults<cr>", { noremap = true, silent = true })
+
+
 --- Unbind arrow keys ---
 for _, mode in pairs({ 'n', 'i', 'v', 'x' }) do
     for _, key in pairs({ '<Up>', '<Down>', '<Left>', '<Right>' }) do

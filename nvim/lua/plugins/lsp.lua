@@ -21,7 +21,8 @@ return {
                 ensure_installed = {
                     "lua_ls",
                     "pylsp",
-                    "bashls"
+                    "bashls",
+                    "clangd"
                 },
                 automatic_installation = true,
             })
@@ -79,7 +80,7 @@ return {
 
                 -- Create a command `:Format` local to the LSP buffer
                 vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-                    vim.lsp.buf.format()
+                    vim.lsp.buf.format({formatting_options={tabSize=4}})
                 end, { desc = "Format current buffer with LSP" })
 
                 lsp_map("<leader>ft", "<cmd>Format<cr>", bufnr, "Format")
@@ -153,7 +154,11 @@ return {
             -- Clangd
             require("lspconfig")["clangd"].setup({
                 on_attach = on_attach,
-                capabilities = capabilities
+                capabilities = capabilities,
+                cmd = {
+                    "clangd",
+                    "--fallback-style=webkit",
+                },
             })
         end,
     },
