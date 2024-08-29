@@ -80,7 +80,7 @@ return {
 
                 -- Create a command `:Format` local to the LSP buffer
                 vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-                    vim.lsp.buf.format({formatting_options={tabSize=4}})
+                    vim.lsp.buf.format({ formatting_options = { tabSize = 4 } })
                 end, { desc = "Format current buffer with LSP" })
 
                 lsp_map("<leader>ft", "<cmd>Format<cr>", bufnr, "Format")
@@ -92,6 +92,7 @@ return {
             -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+            capabilities.offsetEncoding = { "utf-16" }
 
             -- Lua
             require("lspconfig")["lua_ls"].setup({
