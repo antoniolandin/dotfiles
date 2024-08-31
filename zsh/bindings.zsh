@@ -1,11 +1,18 @@
-bindkey '^H' backward-kill-word
-bindkey '^I' complete-word  # tab | complete
+# Autocomplete
+bindkey '^I' complete-word  # tab | complete command
 bindkey '^[[Z' autosuggest-accept   # Shift + tab | accept autosuggest
 
 # Remap sudo plugin
-bindkey -M emacs '^a' sudo-command-line
-bindkey -M vicmd '^a' sudo-command-line
-bindkey -M viins '^a' sudo-command-line
+bindkey -r '^S'
+bindkey -M emacs '^S' sudo-command-line
+bindkey -M vicmd '^S' sudo-command-line
+bindkey -M viins '^S' sudo-command-line
+
+# Unbind arrow keys
+bindkey -r '^[[A'
+bindkey -r '^[[B'
+bindkey -r '^[[C'
+bindkey -r '^[[D'
 
 # Unbind ctrl + r
-bindkey -r "^R"
+bindkey -r '^R'

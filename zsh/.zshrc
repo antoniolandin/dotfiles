@@ -1,6 +1,6 @@
 ## /* ---- 🌟 Zsh configuration 🌟 ---- */ ##
 
-# lista de plugins
+# plugin list 
 plugins=( 
     git
     archlinux
@@ -10,31 +10,25 @@ plugins=(
     sudo
     colored-man-pages
     vi-mode
+    kitty
 )
-
-# oh-my-zsh 
-source $ZSH/oh-my-zsh.sh
 
 # starship
 eval "$(starship init zsh)"
 
-# bindeos
-source $ZDOTDIR/bindings.zsh
+# load files
+source $ZSH/oh-my-zsh.sh # oh-my-zsh
+source $ZDOTDIR/alias.zsh # aliases
+source $ZDOTDIR/bindings.zsh # key bindings
 
-# blias
-source $ZDOTDIR/alias.zsh
+# remove delay when pressing ESC (for vi mode)
+export KEYTIMEOUT=1
 
-# follow the XDG Base Directory Specification
+# set the history file
 HISTFILE="$XDG_STATE_HOME"/zsh/history
-# completion files: Use XDG dirs
+
+# Completion files: Use XDG dirs
 [ -d "$XDG_CACHE_HOME"/zsh ] || mkdir -p "$XDG_CACHE_HOME"/zsh
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-$ZSH_VERSION
 
-# vim mode
-bindkey -v
-export KEYTIMEOUT=1
-
-# nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm

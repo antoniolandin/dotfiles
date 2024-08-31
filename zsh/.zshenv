@@ -14,6 +14,7 @@ export CONF=$HOME/.config
 
 # fix paths
 export ZSH="$XDG_CONFIG_HOME/oh-my-zsh"
+export ZSH_COMPDUMP=$XDG_CACHE_HOME/.zcompdump-$HOST
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker 
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
