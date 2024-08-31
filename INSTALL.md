@@ -1,46 +1,46 @@
-# Actualizar sistema operativo
+# Update operating system 
 ```bash
 sudo pacman -Syu
 ```
 
-# Instalar todas las dependencias
+# Install all dependencies
 ```bash
 sudo pacman -S stow zsh tree-sitter-cli ripgrep fzf nerdfonts tldr p7zip
 ```
 
-# Crear los enlaces simbólicos de los dotfiles
+# Create the symbolic links of the dotfiles
 ```bash
 stow --ignore="INSTALL.md" --dir=$HOME/Repos --target=$HOME/.config dotfiles
 ```
 
-# Hacer zsh la consola default
+# Make zsh the default shell
 ```bash
 chsh -s $(which zsh)
 ```
 
-# Poner en el archivo .zprofile la ruta de configuración de zsh
+# Specify the ZDOTDIR in the .zprofile
 ```bash
 echo "export ZDOTDIR=".config/zsh"" > ~/.zprofile
 ```
 
-# Hacer source del .zshenv
+# Source the .zshenv
 ```bash
 source ~/.config/zsh/.zshenv
 ```
 
-# Instalar oh-my-zsh
+# Install oh-my-zsh
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
-# Instalar zsh-autosuggestions y zsh-syntax-highlighting
+# Install zsh-autosuggestions and zsh-syntax-highlighting
 ```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 ```
 
-# Instalar yay
+# Install yay
 ```bash
 sudo pacman -S --needed base-devel git
 git clone https://aur.archlinux.org/yay.git
@@ -48,12 +48,12 @@ cd yay
 makepkg -si
 ```
 
-# Instalar SynologyDrive
+# Install synology-drive
 ```bash
 yay -S synology-drive 
 ```
 
-# Instalar term.pdf
+# Install termpdf
 ```bash
 mkdir ~/.config/venv
 cd ~/.config/venv
