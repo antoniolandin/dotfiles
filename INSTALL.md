@@ -1,19 +1,19 @@
-# crear los enlaces simbólicos de los dotfiles
+# Crear los enlaces simbólicos de los dotfiles
 ```bash
 stow --ignore="INSTALL.md" --dir=$HOME/Repos --target=$HOME/.config dotfiles
 ```
 
-# actualizar sistema operativo
+# Actualizar sistema operativo
 ```bash
 sudo pacman -Syu
 ```
 
-# instalar zsh
+# Instalar zsh
 ```bash
 sudo pacman -S zsh
 ```
 
-# hacer zsh la consola default
+# Hacer zsh la consola default
 ```bash
 chsh -s $(which zsh)
 ```
@@ -23,7 +23,7 @@ chsh -s $(which zsh)
 echo "export ZDOTDIR=".config/zsh"" > ~/.zprofile
 ```
 
-# copiar las carpetas de dotfiles a .config
+# Copiar las carpetas de dotfiles a .config
 ```bash
 cp -r ~/dotfiles/zsh ~/.config
 cp -r ~/dotfiles/nvim ~/.config
@@ -32,44 +32,44 @@ cp -r ~/dotfiles/kitty ~/.config
 cp -r ~/dotfiles/starship.toml ~/.config
 ```
 
-# hacer source del .zshenv
+# Hacer source del .zshenv
 ```bash
 source ~/.config/zsh/.zshenv
 ```
 
-# instalar oh-my-zsh
+# Instalar oh-my-zsh
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
-# instalar zsh-autosuggestions y zsh-syntax-highlighting
+# Instalar zsh-autosuggestions y zsh-syntax-highlighting
 ```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 ```
 
-# instalar treesitter-cli
+# Instalar treesitter-cli
 ```bash
 sudo pacman -S tree-sitter-cli
 ```
 
-# instalar ripgrep
+# Instalar ripgrep
 ```bash
 sudo pacman -S ripgrep
 ```
 
-# instalar fzf
+# Instalar fzf
 ```bash
 sudo pacman -S fzf
 ```
 
-# instalar todas las nerdfonts
+# Instalar todas las nerdfonts
 ```bash
 sudo pacman -S nerdfonts
 ```
 
-# instalar yay
+# Instalar yay
 ```bash
 sudo pacman -S --needed base-devel git
 git clone https://aur.archlinux.org/yay.git
@@ -77,17 +77,17 @@ cd yay
 makepkg -si
 ```
 
-# instalar SynologyDrive
+# Instalar SynologyDrive
 ```bash
 yay -S synology-drive 
 ```
 
-# instalar utilidades varias
+# Instalar utilidades varias
 ```bash
 sudo pacman -S tldr p7zip
 ```
 
-# instalar term.pdf
+# Instalar term.pdf
 ```bash
 mkdir ~/.config/venv
 cd ~/.config/venv
