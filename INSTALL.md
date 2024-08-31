@@ -61,7 +61,8 @@ python -m venv termpdf
 source ~/.config/venv/termpdf/bin/activate
 
 cd ~/Repos
-git clone https://github.com/dsanson/termpdf.py
+git clone https://github.com/antoniolandin/termpdf.py
 cd termpdf.py
 pip install -r requirements.txt
+chmod +x termpdf.py
 ```
