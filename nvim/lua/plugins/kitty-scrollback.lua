@@ -1,4 +1,4 @@
-return  {
+return {
     'mikesmithgh/kitty-scrollback.nvim',
     enabled = true,
     lazy = true,
@@ -9,9 +9,9 @@ return  {
     event = { 'User KittyScrollbackLaunch' },
     opts = {
         {
-        status_window = {
-            enabled = false
+            status_window = {
+                enabled = false
             },
         }
     }
- }
+}
