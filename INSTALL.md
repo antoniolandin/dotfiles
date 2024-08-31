@@ -1,3 +1,8 @@
+# crear los enlaces simbólicos de los dotfiles
+```bash
+stow --ignore="INSTALL.md" --dir=$HOME/Repos --target=$HOME/.config dotfiles
+```
+
 # actualizar sistema operativo
 ```bash
 sudo pacman -Syu
@@ -12,10 +17,12 @@ sudo pacman -S zsh
 ```bash
 chsh -s $(which zsh)
 ```
+
 # Poner en el archivo .zprofile la ruta de configuración de zsh
 ```bash
 echo "export ZDOTDIR=".config/zsh"" > ~/.zprofile
 ```
+
 # copiar las carpetas de dotfiles a .config
 ```bash
 cp -r ~/dotfiles/zsh ~/.config
@@ -24,6 +31,7 @@ cp -r ~/dotfiles/git ~/.config
 cp -r ~/dotfiles/kitty ~/.config
 cp -r ~/dotfiles/starship.toml ~/.config
 ```
+
 # hacer source del .zshenv
 ```bash
 source ~/.config/zsh/.zshenv
