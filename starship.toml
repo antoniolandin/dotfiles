@@ -70,7 +70,7 @@ symbol = " "
 format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )](color7)'
 
 [c]
-format = 'via [$symbol($version(-$name) )](color7)'
+format = 'via [$symbol($version) ](color7)'
 
 [gradle]
 symbol = " "
