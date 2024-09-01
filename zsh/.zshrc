@@ -3,7 +3,6 @@
 # plugin list 
 plugins=( 
     git
-    archlinux
     zsh-autosuggestions
     zsh-syntax-highlighting
     fzf
