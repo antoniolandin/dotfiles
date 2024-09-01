@@ -4,7 +4,7 @@ alias la="ls -a"
 alias ll="ls -al"
 
 # University alias
-alias horario="termpdf /home/antonio/SynologyDrive/Universidad/cursos/curso-2024-2025/horarios/horario-primer-cuatrimestre.pdf"
+alias horario="$HOME/Repos/termpdf.py/termpdf.py /home/antonio/SynologyDrive/Universidad/cursos/curso-2024-2025/horarios/horario-primer-cuatrimestre.pdf 2>/dev/null"
 alias calendario="zathura ~/SynologyDrive/Universidad/cursos/curso-2024-2025/horarios/calendario.pdf"
 
 # Easier commands names
