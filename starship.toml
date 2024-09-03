@@ -71,6 +71,7 @@ format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )](color7)'
 
 [c]
 format = 'via [$symbol($version) ](color7)'
+detect_extensions = ["c"]
 
 [gradle]
 symbol = " "
@@ -87,6 +88,11 @@ format = 'via [$symbol($version) ](color7)'
 [lua]
 symbol = " "
 format = 'via [$symbol($version) ](color7)'
+
+[custom.cpp]
+symbol = " "
+format = 'via [$symbol ](color7)'
+detect_extensions = ["cpp", "hpp"]
 
 [custom.tex]
 detect_extensions = ["tex"]
