@@ -1,105 +1,109 @@
 format = '$all'
 
-palette = "flow"
+palette = "flow" 
 
-[palettes.pywal]
-color0="#000000"
-color1="#334477"
-color2="#CA594C"
-color3="#F89573"
-color4="#2C3F83"
-color5="#374A87"
-color6="#59619C"
-color7="#bdb0ca"
-color8="#847b8d"
-color9="#334477"
-color10="#CA594C"
+[palettes.flow]
+cyan="#75F0E6"
+purple="#A875F0"
+light_blue="#75BDF0"
+blue="#7580F0"
+red="#F07580"
+teal="#75F0A8"
+green="#80F075"
+fluo="#FF007C"
+yellow="#F0E575"
+orange="#F0A875"
 
-[palletes.flow]
-color0="#000000"
-color1="#75F0E6"
+grey_0="#141A1F"
+grey_1="#1B2228"
+grey_2="#3D4F5C"
+grey_3="#52697A"
+grey_4="#94A9B8"
+grey_5="#B2C1CC"
+grey_6="#D1DAE0"
 
 [username]
-format = "[$user](color1)"
+format = "[$user]($style)"
 
 [hostname]
 ssh_only = true
-format = "[$hostname](color1)"
+format = "[$hostname]($style)"
 disabled = false
 
 [custom.docker]
 command = "echo '  '"
 files = ["Dockerfile", 'docker-compose.yml', "docker-compose.yaml"]
 when = """ comand -v docker &> /dev/null; exit (echo $?); """
-format = " [$output](color7)"
+format = " [$output]($style)"
 
-[scala]
-symbol = " "
 
 [character]
-success_symbol = " [$shell❯](#7aa2f7)"
-error_symbol = " [$shell✖](color9)"
+success_symbol = " [$shell❯](green)"
+error_symbol = " [$shell✖](red)"
 
 [directory]
 disabled = false
 read_only = ""
 truncation_length = 3
 truncate_to_repo = true
-format = "[$read_only](color4)[$path](color4) "
+format = "[$read_only$path ](teal)"
 home_symbol = ""
 
 [cmd_duration]
-format = "[$duration](color3) "
+format = "[$duration]($style) "
+
+[scala]
+symbol = " "
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]](color3) )'
+format = '([\[$all_status$ahead_behind\]](fluo) )'
 
 [git_branch]
-format = 'on [$symbol$branch(:$remote_branch)](color7) '
+format = '[on ](grey_6)[$symbol$branch(:$remote_branch)](purple) '
 
 [package]
 symbol =" "
 display_private = true
 version_format = "v${raw} "
-format = "[$symbol$version](color4)"
+format = "[$symbol$version]($style)"
 
 [conda]
 symbol = " "
 
 #=== languages ===
 [nodejs]
-format = "via [$symbol($version) ](color7)"
+format = "[via ](grey_6)[$symbol($version) ](blue)"
 
 [python]
 symbol = " "
-format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )](color7)'
+format = '[via ](grey_6)[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )](blue)'
 
 [c]
-format = 'via [$symbol($version) ](color7)'
+format = '[via ](grey_6)[$symbol($version) ](blue)'
 detect_extensions = ["c"]
 
 [gradle]
 symbol = " "
-format = 'via [$symbol($version) ](color7)'
+format = '[via ](grey_6)[$symbol($version) ](blue)'
 
 [php]
 symbol = "󰌟 "
-format = 'via [$symbol($version) ](color7)'
+format = '[via ](grey_6)[$symbol($version) ](blue)'
 
 [perl]
 symbol = " "
-format = 'via [$symbol($version) ](color7)'
+format = '[via ](grey_6)[$symbol($version) ](blue)'
 
 [lua]
 symbol = " "
-format = 'via [$symbol($version) ](color7)'
+format = '[via ](grey_6)[$symbol($version) ](blue)'
 
 [custom.cpp]
 symbol = " "
-format = 'via [$symbol ](color7)'
+format = '[via ](grey_6)[$symbol ](blue)'
 detect_extensions = ["cpp", "hpp"]
 
 [custom.tex]
 detect_extensions = ["tex"]
 symbol = " "
-format = 'via [$symbol($version) ](color7)'
+format = '[via ](grey_6)[$symbol($version) ](blue)'
