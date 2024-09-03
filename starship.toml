@@ -1,6 +1,7 @@
 format = '$all'
 
-palette = "pywal"
+palette = "flow"
+
 [palettes.pywal]
 color0="#000000"
 color1="#334477"
@@ -13,6 +14,10 @@ color7="#bdb0ca"
 color8="#847b8d"
 color9="#334477"
 color10="#CA594C"
+
+[palletes.flow]
+color0="#000000"
+color1="#75F0E6"
 
 [username]
 format = "[$user](color1)"

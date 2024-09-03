@@ -37,3 +37,5 @@ export MYSQL_HISTFILE="$XDG_DATA_HOME"/mysql_history
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv 
 export GOPATH="$XDG_DATA_HOME"/go
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
