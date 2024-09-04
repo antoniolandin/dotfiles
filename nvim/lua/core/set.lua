@@ -13,7 +13,7 @@ vim.opt.scrolloff = 8
 vim.o.conceallevel = 1
 
 --- set colorscheme ---
-vim.cmd('colorscheme evangelion')
+vim.cmd('colorscheme flow')
 
 
 
