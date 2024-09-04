@@ -22,7 +22,8 @@ return {
                     "lua_ls",
                     "pylsp",
                     "bashls",
-                    "clangd"
+                    "clangd",
+                    "jsonls"
                 },
                 automatic_installation = true,
             })
@@ -159,6 +160,15 @@ return {
                 cmd = {
                     "clangd",
                     "--fallback-style=webkit",
+                },
+            })
+
+            -- Jsonls
+            require("lspconfig")["jsonls"].setup({
+                on_attach = on_attach,
+                capabilities = capabilities,
+                init_options = {
+                    provideFormatter = true,
                 },
             })
         end,
