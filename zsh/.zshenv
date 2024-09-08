@@ -9,7 +9,7 @@ export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:/home/antonio/.local/share/
 
 # aliases para rutas
 export UNI=$HOME/SynologyDrive/Universidad/cursos/curso-2024-2025/cuatrimestre-1
-export DOT=$HOME/Repos/dotfiles
+export DOT=$HOME/repos/dotfiles
 export CONF=$HOME/.config
 
 # fix paths
