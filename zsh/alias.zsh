@@ -1,5 +1,5 @@
 # Replace the default ls command with exa
-alias ls="exa --icons --grid --colour=auto --sort=type --group-directories-first --header --modified --created --git --binary --group"
+alias ls="eza --icons --grid --colour=auto --sort=type --group-directories-first --header --modified --created --git --binary --group"
 alias la="ls -a"
 alias ll="ls -al"
 
