@@ -18,5 +18,5 @@ return {
                 --       dismiss = "<M-C-Tab>",
             }
         }
-    }
+    },
 }
