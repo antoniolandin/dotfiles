@@ -19,9 +19,14 @@ return {
         priority = 1000,
         opts = {},
         config = function()
-            require("flow").setup({
+            require("flow").setup {
+                dark_theme = true,
                 transparent = true,
-            })
+                high_contrast = false,
+                fluo_color = "pink",
+                mode = "base",
+                aggressive_spell = false,
+            }
         end,
     },
     {
