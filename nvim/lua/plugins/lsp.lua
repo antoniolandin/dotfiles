@@ -62,7 +62,12 @@ return {
                     prefix = "",
                 },
             }
+
             vim.diagnostic.config(config)
+
+            -- Keymaps for diagnostics
+            vim.keymap.set("n", "ge", vim.diagnostic.goto_next)
+            vim.keymap.set("n", "gE", vim.diagnostic.goto_prev)
 
             -- This function gets run when an LSP connects to a particular buffer.
             local on_attach = function(client, bufnr)
@@ -78,10 +83,6 @@ return {
                 lsp_map("gI", vim.lsp.buf.implementation, bufnr, "Goto Implementation")
                 lsp_map("K", vim.lsp.buf.hover, bufnr, "Hover Documentation")
                 lsp_map("gD", vim.lsp.buf.declaration, bufnr, "Goto Declaration")
-
-                -- go to nextt/previous error/warning --
-                lsp_map("ge", vim.lsp.diagnostic.goto_next, bufnr, "Next Diagnostic")
-                lsp_map("gE", vim.lsp.diagnostic.goto_prev, bufnr, "Previous Diagnostic")
 
                 -- Create a command `:Format` local to the LSP buffer
                 vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
