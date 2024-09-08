@@ -164,8 +164,19 @@ return {
                 capabilities = capabilities,
                 cmd = {
                     "clangd",
+                    "--background-index",
+                    "-j=12",
+                    "--clang-tidy",
                     "--fallback-style=webkit",
-                },
+                    "--clang-tidy-checks=*",
+                    "--all-scopes-completion",
+                    "--cross-file-rename",
+                    "--completion-style=detailed",
+                    "--header-insertion-decorators",
+                    "--suggest-missing-includes",
+                    "--header-insertion=iwyu",
+                    "--pch-storage=memory",
+                }
             })
 
             -- Jsonls
