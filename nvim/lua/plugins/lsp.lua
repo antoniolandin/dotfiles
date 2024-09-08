@@ -79,6 +79,10 @@ return {
                 lsp_map("K", vim.lsp.buf.hover, bufnr, "Hover Documentation")
                 lsp_map("gD", vim.lsp.buf.declaration, bufnr, "Goto Declaration")
 
+                -- go to nextt/previous error/warning --
+                lsp_map("ge", vim.lsp.diagnostic.goto_next, bufnr, "Next Diagnostic")
+                lsp_map("gE", vim.lsp.diagnostic.goto_prev, bufnr, "Previous Diagnostic")
+
                 -- Create a command `:Format` local to the LSP buffer
                 vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
                     vim.lsp.buf.format({ formatting_options = { tabSize = 4 } })
