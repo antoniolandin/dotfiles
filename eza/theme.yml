@@ -1,0 +1,17 @@
+filenames:
+  # Just change the icon glyph
+  repos: {icon: {glyph:  }}
+  desktop: {icon: {glyph:  }}
+  documents: {icon: {glyph:  }}
+  videos: {icon: {glyph:  }}
+  pictures: {icon: {glyph: 󰉏 }}
+  downloads: {icon: {glyph: 󰉍 }}
+
+
+extensions:
+  # Change the filename color and icon
+  # rs: {filename: {foreground: Red}, icon: {glyph: 🦀}}
+
+
+  # Change the icon glyph and color
+  # nix: {icon: {glyph: ❄, style: {foreground: White}}}
