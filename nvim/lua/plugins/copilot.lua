@@ -5,7 +5,8 @@ return {
     opts = {
         filetypes = {
             markdown = true,
-            text = false
+            text = false,
+            yaml = true,
         },
         suggestion = {
             enable = true,
