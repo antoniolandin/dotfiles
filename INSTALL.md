@@ -3,9 +3,38 @@
 sudo pacman -Syu
 ```
 
-# Install all dependencies
+# Install dependencies
 ```bash
-sudo pacman -S stow zsh tree-sitter-cli ripgrep fzf nerdfonts tldr p7zip
+sudo pacman -S stow zsh tree-sitter-cli ripgrep fzf nerdfonts tldr p7zip unzip go
+```
+
+# Install yay
+```bash
+sudo pacman -S --needed base-devel git
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+
+# Install synology-drive
+```bash
+yay -S synology-drive 
+```
+
+# Install volta
+```bash
+curl https://get.volta.sh | bash
+```
+
+# Install node and npm
+```bash
+volta install node
+volta instasll npm
+```
+
+# Install starship
+```bash
+curl -sS https://starship.rs/install.sh | sh
 ```
 
 # Create the symbolic links of the dotfiles
@@ -30,7 +59,7 @@ source ~/.config/zsh/.zshenv
 
 # Install oh-my-zsh
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
 # Install zsh-autosuggestions and zsh-syntax-highlighting
@@ -38,19 +67,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-```
-
-# Install yay
-```bash
-sudo pacman -S --needed base-devel git
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-```
-
-# Install synology-drive
-```bash
-yay -S synology-drive 
 ```
 
 # Install termpdf
