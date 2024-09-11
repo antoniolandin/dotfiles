@@ -83,8 +83,7 @@ mkdir ~/.config/venv
 cd ~/.config/venv
 python -m venv termpdf
 source ~/.config/venv/termpdf/bin/activate
-cd ~/repos
-git clone https://github.com/antoniolandin/termpdf.py ~/reops/termpdf.py
+git clone https://github.com/antoniolandin/termpdf.py ~/repos/termpdf.py
 cd ~/repos/termpdf.py
 pip install -r requirements.txt
 chmod +x termpdf.py
