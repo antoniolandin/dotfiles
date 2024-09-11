@@ -14,9 +14,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
---- Replace word under cursor ---
-vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
 --- Rebind go to last file ---
 vim.keymap.set("n", "<leader><leader>", "<C-^>")
 
@@ -37,7 +34,7 @@ vim.keymap.set("n", "<leader>on", [[:ObsidianNew<CR>]])
 --- Compiler/overseer ---
 vim.api.nvim_set_keymap('n', '<leader>mo', "<cmd>CompilerOpen<cr>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>mr', "<cmd>CompilerRedo<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>mh', "<cmd>CompilerToggleResults<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>q', "<cmd>CompilerToggleResults<cr>", { noremap = true, silent = true })
 
 --- Spider ---
 vim.keymap.set(
