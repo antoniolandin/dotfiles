@@ -5,7 +5,7 @@ sudo pacman -Syu
 
 # Install dependencies
 ```bash
-sudo pacman -S stow zsh tree-sitter-cli ripgrep fzf nerdfonts tldr p7zip unzip go
+sudo pacman -S stow zsh tree-sitter-cli ripgrep fzf ttf-firacode-nerd tldr p7zip unzip go neovim python-neovim 
 ```
 
 # Install yay
@@ -37,6 +37,26 @@ volta instasll npm
 curl -sS https://starship.rs/install.sh | sh
 ```
 
+# Install oh-my-zsh
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+rm ~/.zshrc
+```
+
+# Install zsh-autosuggestions and zsh-syntax-highlighting
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+```
+
+# Clone this repository
+```bash
+mkdir ~/repos/dotfiles
+git clone https://github.com/antoniolandin/dotfiles ~/repos/dotfiles
+cd ~/repos/dotfiles
+```
+
 # Create the symbolic links of the dotfiles
 ```bash
 stow --ignore="INSTALL.md" --dir=$HOME/Repos --target=$HOME/.config dotfiles
@@ -57,27 +77,15 @@ echo "export ZDOTDIR=".config/zsh"" > ~/.zprofile
 source ~/.config/zsh/.zshenv
 ```
 
-# Install oh-my-zsh
-```bash
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
-
-# Install zsh-autosuggestions and zsh-syntax-highlighting
-```bash
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-```
-
 # Install termpdf
 ```bash
 mkdir ~/.config/venv
 cd ~/.config/venv
 python -m venv termpdf
 source ~/.config/venv/termpdf/bin/activate
-cd ~/Repos
-git clone https://github.com/antoniolandin/termpdf.py
-cd termpdf.py
+cd ~/repos
+git clone https://github.com/antoniolandin/termpdf.py ~/reops/termpdf.py
+cd ~/repos/termpdf.py
 pip install -r requirements.txt
 chmod +x termpdf.py
 deactivate
