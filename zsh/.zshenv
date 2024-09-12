@@ -8,7 +8,7 @@ export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:/home/antonio/.local/share/cargo/bin:$(go env GOBIN):$(go env GOPATH)/bin:$VOLTA_HOME/bin"
 
 # aliases para rutas
-export UNI=$HOME/SynologyDrive/Universidad/cursos/curso-2024-2025/cuatrimestre-1
+export UNI=$HOME/drive/universidad/cursos/curso-2024-2025/cuatrimestre-1
 export DOT=$HOME/repos/dotfiles
 export CONF=$HOME/.config
 

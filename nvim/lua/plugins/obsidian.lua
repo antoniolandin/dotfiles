@@ -19,8 +19,8 @@ return {
   opts = {
     workspaces = {
       {
-        name = "clase",
-        path = "~/SynologyDrive/Notas",
+        name = "universidad",
+        path = "~/drive/notas",
       }
     },
     -- Optional, customize how note IDs are generated given an optional title.
