@@ -5,7 +5,7 @@ sudo pacman -Syu
 
 # Install dependencies
 ```bash
-sudo pacman -S stow zsh tree-sitter-cli ripgrep fzf ttf-firacode-nerd tldr p7zip unzip go neovim python-neovim 
+sudo pacman -S stow zsh tree-sitter-cli ripgrep fzf ttf-firacode-nerd tldr p7zip unzip go neovim python-neovim zathura-pdf-mupdf lazygit 
 ```
 
 # Install yay
