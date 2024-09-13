@@ -1,9 +1,10 @@
 # Dotfiles
-![image](https://github.com/user-attachments/assets/c6084538-db72-4085-9ff3-1b7661271563)
+![manjaro-i3wm-showcase](https://github.com/user-attachments/assets/3dbd547e-8539-48bf-b391-819430d3cc20)
+
 
 ## Overview
 
-- Distro: Manjaro (plasma)
+- Distro: Manjaro i3
 - Terminal: kitty
 - Shell: zsh
 - Editor: nvim
