@@ -59,7 +59,7 @@ cd ~/repos/dotfiles
 
 # Create the symbolic links of the dotfiles
 ```bash
-stow --ignore="INSTALL.md" --dir=$HOME/Repos --target=$HOME/.config dotfiles
+stow --ignore="INSTALL.md" --dir=$HOME/repos --target=$HOME/.config dotfiles
 ```
 
 # Make zsh the default shell
