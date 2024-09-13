@@ -47,7 +47,7 @@ read_only = ""
 truncation_length = 3
 truncate_to_repo = true
 format = "[$read_only$path ](teal)"
-home_symbol = ""
+home_symbol = " "
 
 [cmd_duration]
 format = "[$duration]($style) "
