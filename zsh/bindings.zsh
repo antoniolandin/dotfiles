@@ -1,14 +1,11 @@
+# remove vi bindings
+bindkey -e
+
 # Autocomplete
 bindkey '^I' complete-word  # tab | complete command
 
-# Remap sudo plugin
-bindkey -r '^S'
-bindkey -M emacs '^S' sudo-command-line
-bindkey -M vicmd '^S' sudo-command-line
-bindkey -M viins '^S' sudo-command-line
+# Accept autosuggestions
+bindkey '^[[Z' autosuggest-accept
 
-# Unbind arrow keys
-bindkey -r '^[[A'
-bindkey -r '^[[B'
-bindkey -r '^[[C'
-bindkey -r '^[[D'
+# Remap sudo plugin
+bindkey '^S' sudo-command-line
