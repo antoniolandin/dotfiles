@@ -1,5 +1,4 @@
 format = '$all'
-
 palette = "flow" 
 
 [palettes.flow]
@@ -36,7 +35,6 @@ files = ["Dockerfile", 'docker-compose.yml', "docker-compose.yaml"]
 when = """ comand -v docker &> /dev/null; exit (echo $?); """
 format = " [$output]($style)"
 
-
 [character]
 success_symbol = " [$shell❯](green)"
 error_symbol = " [$shell✖](red)"
@@ -51,9 +49,6 @@ home_symbol = " "
 
 [cmd_duration]
 format = "[$duration]($style) "
-
-[scala]
-symbol = " "
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]](fluo) )'
@@ -71,6 +66,9 @@ format = "[$symbol$version]($style)"
 symbol = " "
 
 #=== languages ===
+[scala]
+symbol = " "
+
 [nodejs]
 format = "[via ](grey_6)[$symbol($version) ](blue)"
 
