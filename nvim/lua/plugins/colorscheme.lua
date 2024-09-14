@@ -20,11 +20,9 @@ return {
         opts = {},
         config = function()
             require("flow").setup {
-                dark_theme = true,
                 transparent = true,
-                high_contrast = false,
+                mode = "bright",
                 fluo_color = "pink",
-                mode = "base",
                 aggressive_spell = false,
             }
         end,
