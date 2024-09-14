@@ -1,2 +1,2 @@
-./zsh/.zcompdump-*
-./zsh/.zlogin
+zsh/.zlogin
+zsh/.zcompdump*
