@@ -195,8 +195,8 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
-# assign [class="Pale moon"] $ws2
+# assign [class="kitty"] $ws1
+# assign [class="librewolf"] $ws2
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
 
@@ -228,7 +228,6 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-for_window [class="kitty"] border none
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -288,20 +287,19 @@ bindsym $mod+b exec --no-startup-id blurlock
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
 exec --no-startup-id pulseaudio
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+# exec --no-startup-id start_conky_maia
 
 # tray
 exec --no-startup-id pa-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id pamac-tray
-# exec --no-startup-id clipit
 exec --no-startup-id synology-drive
+# exec --no-startup-id clipit
 
 # polybar
 exec_always "$HOME/.config/polybar/launch.sh &"
