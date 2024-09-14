@@ -5,7 +5,6 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 
 # path
-export PATH="$PATH:$HOME/.local/bin:$HOME/.cargo/bin:/home/antonio/.local/share/cargo/bin:$(go env GOBIN):$(go env GOPATH)/bin:$VOLTA_HOME/bin"
 
 # aliases para rutas
 export UNI=$HOME/drive/universidad/cursos/curso-2024-2025/cuatrimestre-1
@@ -34,3 +33,4 @@ export MYSQL_HISTFILE="$XDG_DATA_HOME"/mysql_history
 export GOPATH="$XDG_DATA_HOME"/go
 export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
 export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
