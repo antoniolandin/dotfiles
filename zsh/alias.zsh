@@ -13,7 +13,7 @@ alias img="kitty +kitten icat"
 
 # New commands
 alias note="nvim $(date +%d-%m-%Y-%H:%M:%S.txt)"
-alias benchmark="time zsh -i -c exit"
+alias zbench="hyperfine 'zsh -cli exit'"
 
 # Fix commands
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"

@@ -1,6 +1,5 @@
 # Autocomplete
 bindkey '^I' complete-word  # tab | complete command
-bindkey '^[[Z' autosuggest-accept   # Shift + tab | accept autosuggest
 
 # Remap sudo plugin
 bindkey -r '^S'
@@ -13,6 +12,3 @@ bindkey -r '^[[A'
 bindkey -r '^[[B'
 bindkey -r '^[[C'
 bindkey -r '^[[D'
-
-# Unbind ctrl + r
-bindkey -r '^R'
