@@ -3,6 +3,10 @@ zmodule ohmyzsh/ohmyzsh --root plugins/colored-man-pages
 
 zmodule Aloxaf/fzf-tab
 
+zmodule environment
+zmodule input
+zmodule fzf
+
 zmodule zsh-users/zsh-completions --fpath src
 zmodule completion
 zmodule zsh-users/zsh-syntax-highlighting
