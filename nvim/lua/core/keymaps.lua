@@ -2,7 +2,8 @@
 vim.g.mapleader = " "
 
 --- Go to file explorer ---
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", "<cmd>Oil<CR>")
+-- vim.keymap.set("n", "<leader>pv", "<cmd>Ex<CR>")
 
 --- Move selected line / block of text in visual mode ---
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
