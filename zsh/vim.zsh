@@ -2,9 +2,6 @@
 bindkey -v
 export KEYTIMEOUT=1
 
-# Use vim keybindings
-bindkey -a '^[[3~' delete-char
-
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||

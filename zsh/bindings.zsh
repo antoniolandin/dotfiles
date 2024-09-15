@@ -1,5 +1,5 @@
 # remove vi bindings
-bindkey -e
+# bindkey -e
 
 # Autocomplete
 bindkey '^I' complete-word  # tab | complete command
