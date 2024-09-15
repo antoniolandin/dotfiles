@@ -38,6 +38,10 @@ format = " [$output]($style)"
 [character]
 success_symbol = " [$shell❯](green)"
 error_symbol = " [$shell✖](red)"
+vimcmd_symbol = " [$shell❯](light_blue)"
+vimcmd_replace_one_symbol = " [$shell❯](purple)"
+vimcmd_replace_symbol = " [$shell❯](purple)"
+vimcmd_visual_symbol = " [$shell❯](purple)"
 
 [directory]
 disabled = false
