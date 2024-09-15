@@ -5,7 +5,7 @@ sudo pacman -Syu
 
 # Install dependencies
 ```bash
-sudo pacman -S stow zsh tree-sitter-cli ripgrep fzf ttf-firacode-nerd tldr p7zip unzip go neovim python-neovim zathura-pdf-mupdf lazygit 
+sudo pacman -S stow zsh tree-sitter-cli ripgrep fzf ttf-firacode-nerd tldr p7zip unzip go neovim python-neovim zathura-pdf-mupdf lazy git eza 
 ```
 
 # Install yay
@@ -37,17 +37,9 @@ volta instasll npm
 curl -sS https://starship.rs/install.sh | sh
 ```
 
-# Install oh-my-zsh
+# Install zoxide
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-rm ~/.zshrc
-```
-
-# Install zsh-autosuggestions and zsh-syntax-highlighting
-```bash
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 ```
 
 # Clone this repository
@@ -65,16 +57,6 @@ stow --ignore="INSTALL.md" --dir=$HOME/repos --target=$HOME/.config dotfiles
 # Make zsh the default shell
 ```bash
 chsh -s $(which zsh)
-```
-
-# Specify the ZDOTDIR in the .zprofile
-```bash
-echo "export ZDOTDIR=".config/zsh"" > ~/.zprofile
-```
-
-# Source the .zshenv
-```bash
-source ~/.config/zsh/.zshenv
 ```
 
 # Install termpdf
