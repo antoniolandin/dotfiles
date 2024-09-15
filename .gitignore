@@ -1,2 +1,3 @@
 zsh/.zlogin
 zsh/.zcompdump*
+nvim/lazy-lock.json
