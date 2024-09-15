@@ -4,7 +4,7 @@ alias cd="z"
 
 # University alias
 alias horario="$HOME/repos/termpdf.py/termpdf.py $HOME/drive/universidad/cursos/curso-2024-2025/horarios/horario-primer-cuatrimestre.pdf 2>/dev/null"
-alias calendario="zathura $HOME/drive/universidad/cursos/curso-2024-2025/horarios/calendario.pdf"
+alias calendario="zathura $HOME/drive/universidad/cursos/curso-2024-2025/horarios/calendario.pdf 2>/dev/null"
 
 # Easier commands names
 alias pdf="$HOME/repos/termpdf.py/termpdf.py 2>/dev/null"
