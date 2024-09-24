@@ -36,5 +36,13 @@ return {
                 transparent = true,
             })
         end,
+    },
+    {
+        "ray-x/aurora",
+        lazy = false,
+        priority = 1000,
+        init = function()
+            vim.g.aurora_transparent = true
+        end,
     }
 }
