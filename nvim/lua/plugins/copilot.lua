@@ -9,8 +9,7 @@ return {
             yaml = true,
         },
         suggestion = {
-            enable = true,
-            auto_trigger = true,
+            enable = false,
             keymap = {
                 accept = "<S-Tab>",
                 --       accept_word = false,
