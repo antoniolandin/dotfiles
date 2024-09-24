@@ -73,7 +73,7 @@ return {
             local on_attach = function(client, bufnr)
                 local lsp_map = require("helpers.keys").lsp_map
 
-                lsp_map("<leader>r", vim.lsp.buf.rename, bufnr, "Rename symbol")
+                lsp_map("<leader>lr", vim.lsp.buf.rename, bufnr, "Rename symbol")
                 lsp_map("<leader>la", vim.lsp.buf.code_action, bufnr, "Code action")
                 lsp_map("<leader>ld", vim.lsp.buf.type_definition, bufnr, "Type definition")
                 lsp_map("<leader>ls", require("telescope.builtin").lsp_document_symbols, bufnr, "Document symbols")

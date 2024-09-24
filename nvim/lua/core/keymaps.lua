@@ -2,7 +2,7 @@
 vim.g.mapleader = " "
 
 --- exit vim ---
-vim.keymap.set("n", "<esc><esc>", "<cmd>q<CR>")
+-- vim.keymap.set("n", "<esc><esc>", "<cmd>q<CR>")
 
 --- Go to file explorer ---
 vim.keymap.set("n", "<leader>pv", "<cmd>Oil<CR>")
@@ -17,6 +17,9 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
+--- Replace word under cursor ---
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 --- Rebind go to last file ---
 vim.keymap.set("n", "<leader><leader>", "<C-^>")
@@ -85,5 +88,5 @@ vim.keymap.set('n', '<leader><leader>k', require('smart-splits').swap_buf_up)
 vim.keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right)
 
 -- create new splits
-vim.keymap.set('n', '<leader>-', "<cmd>split<CR>")
-vim.keymap.set('n', '<leader>i', "<cmd>vsplit<CR>")
+vim.keymap.set('n', '<C-->', "<cmd>split<CR>")
+vim.keymap.set('n', '<C-i>', "<cmd>vsplit<CR>")
