@@ -13,3 +13,6 @@ fi
 
 # Copy to clipboard
 xclip -selection clipboard -t image/png -i "$IMG_PATH"
+
+# Notify
+notify-send "Screenshot saved" -i "$IMG_PATH"
