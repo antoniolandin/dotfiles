@@ -2,8 +2,8 @@
 stty -ixon
 
 # set the correct repeat rate for the keyboard
-# xset r rate 190 35
-
+xset r rate 190 35
+ 
 # load configuration files
 source "$ZDOTDIR/zimfw.zsh"
 source "$ZDOTDIR/history.zsh" # history settings
