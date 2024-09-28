@@ -23,6 +23,9 @@ return {
         path = "~/drive/notas",
       }
     },
+    ui = {
+        enabled = false,
+    },
     -- Optional, customize how note IDs are generated given an optional title.
     ---@param title string|?
     ---@return string
