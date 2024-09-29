@@ -9,14 +9,11 @@ return {
             yaml = true,
         },
         suggestion = {
-            enable = true,
+            enable = false,
             auto_trigger = true,
             keymap = {
                 accept = "<S-Tab>",
-                --       accept_word = false,
-                --       accept_line = false,
                 next = "<C-Tab>",
-                --       dismiss = "<M-C-Tab>",
             }
         }
     },
