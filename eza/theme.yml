@@ -6,6 +6,8 @@ filenames:
   videos: {icon: {glyph:  }}
   pictures: {icon: {glyph: 󰉏 }}
   downloads: {icon: {glyph: 󰉍 }}
+  drive: {icon: {glyph: 󰅟 }}
+  music: {icon: {glyph: 󱍙 }}
 
 
 extensions:

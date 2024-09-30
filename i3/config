@@ -5,8 +5,6 @@
 set $mod Mod4
 set $Alt Mod1
 
-# Set repeat speed
-# exec_always --no-startup-id xset r rate 190 35
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -17,11 +15,6 @@ default_floating_border none
 
 # Hide borders
 hide_edge_borders none
-
-# change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 1
-bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -37,10 +30,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
-
-# launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
+bindsym $mod+d exec --no-startup-id dmenu_run 
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -48,28 +38,26 @@ bindsym $mod+z exec --no-startup-id morc_menu
 
 #exec --no-startup-id volumeicon
 #bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-bindsym $mod+Ctrl+m exec pavucontrol
+bindsym $mod+Ctrl+m exec --no-startup-id pavucontrol
 
 ################################################################################################
 
 # Start Applications
-bindsym $mod+$Alt+l exec 'librewolf'
-bindsym $mod+$Alt+f exec 'firefox'
-bindsym $mod+$Alt+s exec 'spotify'
-bindsym $mod+$Alt+t exec 'thunar'
-bindsym $mod+$Alt+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
-bindsym $mod+$Alt+b exec 'blueman-manager'
-bindsym $mod+$Alt+o exec 'obsidian'
+bindsym $mod+$Alt+l exec --no-startup-id 'librewolf'
+bindsym $mod+$Alt+f exec --no-startup-id 'firefox'
+bindsym $mod+$Alt+s exec --no-startup-id 'spotify'
+bindsym $mod+$Alt+t exec --no-startup-id 'thunar'
+bindsym $mod+$Alt+b exec --no-startup-id 'blueman-manager'
+bindsym $mod+$Alt+o exec --no-startup-id 'obsidian'
 
 # Restart picom
-bindsym $mod+t exec --no-startup-id pkill picom
-bindsym $mod+Ctrl+t exec --no-startup-id picom -b
+bindsym $mod+shift+p exec --no-startup-id "$HOME/.config/i3/scripts/restart_picom.sh"
 
 # Screenshots
 bindsym $mod+Print --release exec --no-startup-id "$HOME/.config/i3/scripts/screenshot.sh"
 bindsym $mod+Shift+s --release exec --no-startup-id "$HOME/.config/i3/scripts/screenshot.sh -s"
 
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
+bindsym $mod+Shift+d --release exec --no-startup-id "killall dunst; exec notify-send 'restart dunst'"
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # Pulse Audio controls
@@ -272,8 +260,7 @@ mode "resize" {
 bindsym $mod+b exec --no-startup-id blurlock
 
 # Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pulseaudio
 # exec --no-startup-id xautolock -time 10 -locker blurlock
@@ -284,12 +271,19 @@ exec_always --no-startup-id fix_xcursor
 exec --no-startup-id pa-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
-exec --no-startup-id pamac-tray
 exec --no-startup-id synology-drive
-# exec --no-startup-id clipit
+
+# picom
+exec --no-startup-id picom -b
+
+# Set repeat speed
+exec_always --no-startup-id xset r rate 190 35
+
+# wallpaper
+exec_always --no-startup-id feh --bg-fill $HOME/drive/pictures/wallpapers/arch.png
 
 # polybar
-exec_always "$HOME/.config/polybar/launch.sh &"
+exec_always --no-startup-id "$HOME/.config/polybar/launch.sh &"
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
