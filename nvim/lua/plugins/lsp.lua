@@ -131,7 +131,7 @@ return {
                         plugins = {
                             flake8 = {
                                 enabled = true,
-                                maxLineLength = 88, -- Black's line length
+                                maxLineLength = 100, -- Black's line length
                             },
                             -- Disable plugins overlapping with flake8
                             pycodestyle = {

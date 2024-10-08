@@ -7,9 +7,10 @@ return {
             markdown = true,
             text = false,
             yaml = true,
+            ["*"] = false,
         },
         suggestion = {
-            enable = false,
+            enable = true,
             auto_trigger = true,
             keymap = {
                 accept = "<S-Tab>",
