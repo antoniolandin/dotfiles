@@ -39,9 +39,9 @@ vim.keymap.set("n", "<leader>oo", [[<CMD>ObsidianOpen<CR>]])
 vim.keymap.set("n", "<leader>on", [[:ObsidianNew<CR>]])
 
 --- Compiler/overseer ---
-vim.api.nvim_set_keymap('n', '<leader>mo', "<cmd>CompilerOpen<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>mr', "<cmd>CompilerRedo<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>q', "<cmd>CompilerToggleResults<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>co', "<cmd>CompilerOpen<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>cr', "<cmd>CompilerRedo<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ct', "<cmd>CompilerToggleResults<cr>", { noremap = true, silent = true })
 
 --- Spider ---
 vim.keymap.set(
@@ -90,3 +90,8 @@ vim.keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right)
 -- create new splits
 vim.keymap.set('n', '<C-->', "<cmd>split<CR>")
 vim.keymap.set('n', '<C-i>', "<cmd>vsplit<CR>")
+
+
+--- Leetcode ---
+vim.keymap.set('n', "<C-'>", "<cmd>Leet test<CR>")
+vim.keymap.set('n', "<C-CR>", "<cmd>Leet submit<CR>")
