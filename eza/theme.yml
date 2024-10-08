@@ -1,13 +1,13 @@
 filenames:
   # Just change the icon glyph
-  repos: {icon: {glyph:  }}
-  desktop: {icon: {glyph:  }}
-  documents: {icon: {glyph:  }}
-  videos: {icon: {glyph:  }}
-  pictures: {icon: {glyph: 󰉏 }}
-  downloads: {icon: {glyph: 󰉍 }}
-  drive: {icon: {glyph: 󰅟 }}
-  music: {icon: {glyph: 󱍙 }}
+  Repos: {icon: {glyph:  }}
+  Desktop: {icon: {glyph:  }}
+  Documents: {icon: {glyph:  }}
+  Videos: {icon: {glyph:  }}
+  Pictures: {icon: {glyph: 󰉏 }}
+  Downloads: {icon: {glyph: 󰉍 }}
+  Drive: {icon: {glyph: 󰅟 }}
+  Music: {icon: {glyph: 󱍙 }}
 
 
 extensions:

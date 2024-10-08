@@ -20,7 +20,7 @@ return {
     workspaces = {
       {
         name = "universidad",
-        path = "~/drive/notas",
+        path = "~/Drive/notas",
       }
     },
     ui = {
