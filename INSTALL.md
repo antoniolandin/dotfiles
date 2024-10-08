@@ -5,7 +5,7 @@ sudo pacman -Syu
 
 # Install dependencies
 ```bash
-sudo pacman -S stow zsh tree-sitter-cli ripgrep fzf ttf-firacode-nerd tldr p7zip unzip go neovim python-neovim zathura-pdf-mupdf git eza less python-pipx lazygit
+sudo pacman -S stow zsh tree-sitter-cli ripgrep fzf ttf-firacode-nerd tldr p7zip unzip go neovim python-neovim zathura-pdf-mupdf git eza less python-pipx lazygit maim jq imagemagick brightnessctl
 ```
 
 # Install yay
@@ -61,10 +61,10 @@ chsh -s $(which zsh)
 
 # Install termpdf
 ```bash
-mkdir ~/.config/venv
-cd ~/.config/venv
+mkdir ~/.virtualenvs
+cd ~/.virtualenvs
 python -m venv termpdf
-source ~/.config/venv/termpdf/bin/activate
+source ~/.virtualenvs/termpdf/bin/activate
 git clone https://github.com/antoniolandin/termpdf.py ~/repos/termpdf.py
 cd ~/repos/termpdf.py
 pip install -r requirements.txt

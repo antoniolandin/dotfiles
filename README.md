@@ -4,7 +4,8 @@
 
 ## Overview
 
-- Distro: Manjaro i3
+- Distro: Arch Linux
+- WM: i3
 - Terminal: kitty
 - Shell: zsh
 - Editor: nvim
