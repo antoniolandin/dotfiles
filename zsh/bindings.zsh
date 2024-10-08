@@ -14,3 +14,4 @@ bindkey '^[[Z' autosuggest-accept
 
 # Remap sudo plugin
 bindkey '^S' sudo-command-line
+bindkey -M vicmd '^S' sudo-command-line
