@@ -11,3 +11,6 @@ source "$ZDOTDIR/vim.zsh" # vim mode settings
 source "$ZDOTDIR/alias.zsh" # aliases
 source "$ZDOTDIR/bindings.zsh" # key bindings
 source "$ZDOTDIR/integration.zsh" # shell integration
+
+# source all scripts in the script folders
+source <(cat $ZDOTDIR/scripts/*)
