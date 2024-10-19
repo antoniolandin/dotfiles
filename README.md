@@ -13,4 +13,6 @@
 
 ## Install
 
-To install ![follow this steps](INSTALL.md)
+```bash
+curl -sSfL https://raw.githubusercontent.com/antoniolandin/dotfiles/refs/heads/main/install.sh | sh
+```
