@@ -113,7 +113,9 @@ fi
 
 # install dotfiles
 function dotfiles() {
-	if [ -d "$HOME/Repos/dotfiles" ]; then
+    cd $HOME
+
+	if [ -d $HOME/Repos/dotfiles ]; then
 		rm -rf $HOME/Repos/dotfiles
 	fi
     
