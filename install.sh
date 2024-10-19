@@ -173,9 +173,9 @@ else
 fi
 
 # set ZDOTDIR enviroment variable
-rm $HOME/.profile
-echo 'export ZDOTDIR="$HOME/.config/zsh"' > $HOME/.profile
-source $HOME/.profile
+rm $HOME/.zprofile
+echo 'export ZDOTDIR="$HOME/.config/zsh"' > $HOME/.zprofile
+source $HOME/.zprofile
 
 # install volta
 if command -v volta &>/dev/null; then
