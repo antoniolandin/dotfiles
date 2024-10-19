@@ -13,13 +13,12 @@ cd ~
 rm -rf ~/yay
 
 # install dependencies
-sudo pacman -S kitty stow zsh tree-sitter-cli ripgrep fzf ttf-firacode-nerd tldr p7zip unzip go neovim python-neovim zathura zathura-pdf-mupdf git eza less python-pipx lazygit maim jq imagemagick brightnessctl python-dbus
+sudo pacman -S kitty stow zsh tree-sitter-cli ripgrep fzf ttf-firacode-nerd tldr p7zip unzip go neovim python-neovim zathura zathura-pdf-mupdf git eza less python-pipx lazygit maim jq imagemagick brightnessctl python-dbus polybar zoxide
 yay -S pulseaudio-control synology-drive
 
 # install tools with curl
 curl https://get.volta.sh | bash
 curl -sS https://starship.rs/install.sh | sh
-curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 
 # install node and npm
 volta install node
