@@ -13,7 +13,7 @@ cd $HOME
 rm -rf $HOME/yay
 
 # install dependencies
-sudo pacman -S kitty stow zsh tree-sitter-cli ripgrep fzf ttf-firacode-nerd tldr p7zip unzip go neovim python-neovim zathura zathura-pdf-mupdf git eza less python-pipx lazygit maim jq imagemagick brightnessctl python-dbus polybar zoxide
+sudo pacman -S kitty stow zsh tree-sitter-cli ripgrep fzf ttf-firacode-nerd tldr p7zip unzip go neovim python-neovim zathura zathura-pdf-mupdf git eza less python-pipx lazygit maim jq imagemagick brightnessctl python-dbus polybar zoxide xclip
 yay -S pulseaudio-control synology-drive
 
 # install tools with curl
