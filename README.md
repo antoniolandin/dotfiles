@@ -9,7 +9,7 @@
 - Terminal: kitty
 - Shell: zsh
 - Editor: nvim
-- Laptop: Asus ROG Strix G513RM
+- Laptop: ThinkPad T470
 
 ## Install
 
