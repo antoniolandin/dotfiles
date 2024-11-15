@@ -35,6 +35,8 @@ PACKAGES=(
     "xclip"
     "github-cli"
     "firefox"
+    "picom"
+    "blueman"
 )
 
 # install packages 
@@ -177,6 +179,9 @@ rm $HOME/.zprofile
 echo 'export ZDOTDIR="$HOME/.config/zsh"' > $HOME/.zprofile
 source $HOME/.zprofile
 
+# enter zsh
+source $HOME/.config/zsh/.zshrc
+
 # install volta
 if command -v volta &>/dev/null; then
     echo "volta already installed"
@@ -198,6 +203,5 @@ else
     volta install npm
 fi
 
-# restart zsh
+# go to home
 cd $HOME
-zsh
