@@ -37,6 +37,8 @@ PACKAGES=(
     "firefox"
     "picom"
     "blueman"
+    "thunar"
+    "hyperfine"
 )
 
 # install packages 
