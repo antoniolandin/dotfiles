@@ -45,10 +45,11 @@ bindsym $mod+Ctrl+m exec --no-startup-id pavucontrol
 # Start Applications
 bindsym $mod+$Alt+l exec --no-startup-id 'librewolf'
 bindsym $mod+$Alt+f exec --no-startup-id 'firefox'
-bindsym $mod+$Alt+s exec --no-startup-id 'spotify'
+bindsym $mod+$Alt+s exec --no-startup-id 'spotify-launcher'
 bindsym $mod+$Alt+t exec --no-startup-id 'thunar'
 bindsym $mod+$Alt+b exec --no-startup-id 'blueman-manager'
 bindsym $mod+$Alt+o exec --no-startup-id 'obsidian'
+bindsym $mod+$Alt+w exec --no-startup-id 'whatsie'
 
 # Restart picom
 bindsym $mod+shift+p exec --no-startup-id "$HOME/.config/i3/scripts/restart_picom.sh"
