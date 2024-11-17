@@ -14,3 +14,11 @@ source "$ZDOTDIR/integration.zsh" # shell integration
 
 # source all scripts in the script folders
 source <(cat $ZDOTDIR/scripts/*)
+
+# pnpm
+export PNPM_HOME="/home/antonio/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
