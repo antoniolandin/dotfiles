@@ -23,7 +23,8 @@ return {
                     "pylsp",
                     "bashls",
                     "clangd",
-                    "jsonls"
+                    "jsonls",
+                    "ts_ls"
                 },
                 automatic_installation = true,
             })
@@ -184,6 +185,11 @@ return {
                 init_options = {
                     provideFormatter = true,
                 },
+            })
+
+            require("lspconfig")["ts_ls"].setup({
+                on_attach = on_attach,
+                capabilities = capabilities,
             })
         end,
     },

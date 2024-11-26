@@ -12,7 +12,7 @@ return {
     vim.g.vimtex_mappings_disable = { ["n"] = { "K" } } -- disable `K` as it conflicts with LSP hover
     vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
 
-    vim.g.vimtex_view_method = "zathura" -- <== macos specific, you can use zathura or sumatra or something else.
+    vim.g.vimtex_view_method = "" -- <== macos specific, you can use zathura or sumatra or something else.
     vim.g.vimtex_view_skim_sync = 1
     vim.g.vimtex_view_skim_activate = 1
     vim.g.vimtex_view_skim_reading_bar = 1

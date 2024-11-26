@@ -21,7 +21,6 @@ return {
         config = function()
             require("flow").setup {
                 transparent = true,
-                mode = "bright",
                 fluo_color = "pink",
                 aggressive_spell = false,
             }
