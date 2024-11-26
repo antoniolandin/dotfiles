@@ -91,7 +91,6 @@ vim.keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right)
 vim.keymap.set('n', '<C-->', "<cmd>split<CR>")
 vim.keymap.set('n', '<C-i>', "<cmd>vsplit<CR>")
 
-
 --- Leetcode ---
 vim.keymap.set('n', "<C-'>", "<cmd>Leet test<CR>")
 vim.keymap.set('n', "<C-CR>", "<cmd>Leet submit<CR>")
