@@ -1,6 +1,6 @@
 #!/bin/sh
 
-vpn="$(nmcli -t -f name,type connection show --order name --active 2>/dev/null | grep vpn | head -1 | cut -d ':' -f 1)"
+vpn="$(nmcli -t -f name,type connection show --order name --active 2>/dev/null | grep wireguard | head -1 | cut -d ':' -f 1)"
 
 ICON_CONNECTED=" "
 ICON_CONNECTING="ﱱ "
