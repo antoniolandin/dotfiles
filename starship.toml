@@ -109,3 +109,6 @@ detect_extensions = ["cpp", "hpp"]
 detect_extensions = ["tex"]
 symbol = " "
 format = '[via ](grey_6)[$symbol($version) ](blue)'
+
+[rust]
+symbol = " "
