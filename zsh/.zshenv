@@ -8,7 +8,9 @@ export XDG_STATE_HOME=$HOME/.local/state
 export PATH=$VOLTA_HOME/bin:$PATH
 # export PATH="$HOME/.config/miniforge3/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:$HOME/.local/share/go/bin"
+export PATH="$HOME/.local/share/go/bin:$PATH"
+export PATH="$HOME/Drive/scripts:$PATH"
+export PATH="$HOME/.local/share/cargo/bin:$PATH"
 
 # aliases para rutas
 export UNI=$HOME/Drive/universidad/cursos/curso-2024-2025/cuatrimestre-1
