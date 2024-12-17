@@ -134,7 +134,7 @@ function dotfiles() {
 	mkdir -p $HOME/Repos/dotfiles
     git clone https://github.com/antoniolandin/dotfiles $HOME/Repos/dotfiles
     cd $HOME/Repos/dotfiles
-    stow --ignore="INSTALL.md" --dir=$HOME/Repos --target=$HOME/.config dotfiles
+    stow --dir=$HOME/Repos --target=$HOME/.config dotfiles
 }
 
 # update dotfiles
