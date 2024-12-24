@@ -29,12 +29,6 @@ ssh_only = true
 format = "[$hostname]($style)"
 disabled = false
 
-[custom.docker]
-command = "echo '  '"
-files = ["Dockerfile", 'docker-compose.yml', "docker-compose.yaml"]
-when = """ comand -v docker &> /dev/null; exit (echo $?); """
-format = " [$output]($style)"
-
 [character]
 success_symbol = " [$shell❯](green)"
 error_symbol = " [$shell✖](red)"
@@ -112,3 +106,8 @@ format = '[via ](grey_6)[$symbol($version) ](blue)'
 
 [rust]
 symbol = " "
+
+[custom.docker]
+files = ["Dockerfile", 'docker-compose.yml', "docker-compose.yaml"]
+symbol = " "
+format = '[via ](grey_6)[$symbol($version) ](blue)'
