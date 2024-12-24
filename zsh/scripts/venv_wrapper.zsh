@@ -9,7 +9,7 @@ export VENV_HOME="$XDG_DATA_HOME/virtualenvs"
 [[ -d $VENV_HOME ]] || mkdir $VENV_HOME
 
 lsvenv() {
-  ls -1 $VENV_HOME
+  exec /bin/ls -1 $VENV_HOME
 }
 
 venv() {
