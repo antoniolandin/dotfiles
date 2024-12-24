@@ -12,6 +12,7 @@ export PATH="$HOME/.local/share/go/bin:$PATH"
 export PATH="$HOME/Drive/scripts:$PATH"
 export PATH="$HOME/.local/share/cargo/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/3.3.0/bin:$PATH"
+export PATH="$PATH:$HOME/.rvm/bin"
 
 # aliases para rutas
 export UNI=$HOME/Drive/universidad/cursos/curso-2024-2025/cuatrimestre-1
