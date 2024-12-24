@@ -252,6 +252,7 @@ for_window [class="(?i)obsidian"] floating enable
 for_window [class="(?i)blueman-manager"] floating enable
 for_window [class="(?i)pavucontrol"] floating enable
 for_window [class="(?i)proton-vpn-gtk-appA"] floating enable
+for_window [class="(?i)wireshark"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
