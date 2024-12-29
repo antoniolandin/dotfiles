@@ -33,7 +33,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # Start Applications
 bindsym $mod+$Alt+l exec --no-startup-id 'librewolf'
 bindsym $mod+$Alt+f exec --no-startup-id 'firefox'
-bindsym $mod+$Alt+s exec --no-startup-id 'spotify-launcher'
+bindsym $mod+$Alt+s exec --no-startup-id 'spotify'
 bindsym $mod+$Alt+t exec --no-startup-id 'thunar'
 bindsym $mod+$Alt+b exec --no-startup-id 'blueman-manager'
 bindsym $mod+$Alt+o exec --no-startup-id 'obsidian'
@@ -253,6 +253,7 @@ for_window [class="(?i)blueman-manager"] floating enable
 for_window [class="(?i)pavucontrol"] floating enable
 for_window [class="(?i)proton-vpn-gtk-appA"] floating enable
 for_window [class="(?i)wireshark"] floating enable
+for_window [class="(?i)steam"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
