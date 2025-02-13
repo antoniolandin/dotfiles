@@ -3,7 +3,7 @@ alias ls="eza --icons --grid --colour=auto --sort=type --group-directories-first
 alias cd="z"
 
 # University alias
-alias horario="$HOME/Repos/termpdf.py/termpdf.py $HOME/Drive/universidad/cursos/curso-2024-2025/horarios/horario-primer-cuatrimestre.pdf 2>/dev/null"
+alias horario="$HOME/Repos/fancy-cat/zig-out/bin/fancy-cat $HOME/Drive/universidad/cursos/curso-2024-2025/horarios/horario-segundo-cuatrimestre.pdf 2>/dev/null"
 alias calendario="zathura $HOME/Drive/universidad/cursos/curso-2024-2025/horarios/calendario.pdf 2>/dev/null"
 
 # Easier commands names
