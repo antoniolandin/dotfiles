@@ -18,4 +18,3 @@ if [ -f "/home/antonio/.config/miniforge3/etc/profile.d/mamba.sh" ]; then
     . "/home/antonio/.config/miniforge3/etc/profile.d/mamba.sh"
 fi
 # <<< conda initialize <<<
-
