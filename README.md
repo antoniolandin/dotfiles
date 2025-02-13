@@ -1,5 +1,5 @@
 # Dotfiles
-![manjaro-i3wm-showcase](https://github.com/user-attachments/assets/3dbd547e-8539-48bf-b391-819430d3cc20)
+![image](https://github.com/user-attachments/assets/0d91c44a-9bca-47ff-bf63-e1c3f7d01d5a)
 
 
 ## Overview
