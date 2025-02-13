@@ -13,6 +13,7 @@ export PATH="$HOME/Drive/scripts:$PATH"
 export PATH="$HOME/.local/share/cargo/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/3.3.0/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PYENV_ROOT/bin:$PATH"
 
 # aliases para rutas
 export UNI=$HOME/Drive/universidad/cursos/curso-2024-2025/cuatrimestre-1
@@ -57,3 +58,7 @@ export MYSQL_HISTFILE=$XDG_DATA_HOME/mysql_history
 export GOPATH=$XDG_DATA_HOME/go
 export GOMODCACHE=$XDG_CACHE_HOME/go/mod
 export VOLTA_HOME=$XDG_DATA_HOME/volta
+export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
+export NLTK_DATA=$XDG_DATA_HOME/nltk
+export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
+
