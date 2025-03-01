@@ -39,7 +39,7 @@ bindsym $mod+$Alt+b exec --no-startup-id 'blueman-manager'
 bindsym $mod+$Alt+o exec --no-startup-id 'obsidian'
 bindsym $mod+$Alt+w exec --no-startup-id 'whatsie'
 bindsym $mod+$Alt+p exec --no-startup-id 'proton-pass'
-bindsym $mod+x exec --no-startup-id 'xlock'
+bindsym $mod+x exec --no-startup-id 'xsecurelock'
 
 #####################
 ### Restart Binds ###
@@ -276,7 +276,7 @@ exec --no-startup-id picom -b
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id autorandr --change
-exec_always --no-startup-id feh --bg-fill $HOME/Pictures/wallpapers/ghost-in-the-machine.jpg
+exec_always --no-startup-id feh --bg-fill $HOME/Pictures/wallpapers/led-zeppelin.png
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh &"
 
 # tray
