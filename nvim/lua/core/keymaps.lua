@@ -1,12 +1,19 @@
 --- set leader key ---
 vim.g.mapleader = " "
 
---- exit vim ---
--- vim.keymap.set("n", "<esc><esc>", "<cmd>q<CR>")
+--- Unbind Tab ---
+vim.keymap.set('n', '<Tab>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('i', '<Tab>', '<Nop>', { noremap = true, silent = true })
+
+--- Unbind arrow keys ---
+for _, mode in pairs({ 'n', 'i', 'v', 'x' }) do
+    for _, key in pairs({ '<Up>', '<Down>', '<Left>', '<Right>' }) do
+        vim.keymap.set(mode, key, '<nop>')
+    end
+end
 
 --- Go to file explorer ---
 vim.keymap.set("n", "<leader>pv", "<cmd>Oil<CR>")
--- vim.keymap.set("n", "<leader>pv", "<cmd>Ex<CR>")
 
 --- Move selected line / block of text in visual mode ---
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -23,13 +30,6 @@ vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 --- Rebind go to last file ---
 vim.keymap.set("n", "<leader><leader>", "<C-^>")
-
---- Unbind arrow keys ---
-for _, mode in pairs({ 'n', 'i', 'v', 'x' }) do
-    for _, key in pairs({ '<Up>', '<Down>', '<Left>', '<Right>' }) do
-        vim.keymap.set(mode, key, '<nop>')
-    end
-end
 
 --- Obsidian ---
 vim.keymap.set("n", "<leader>os", [[<Cmd>ObsidianSearch<CR>]])
@@ -68,6 +68,7 @@ vim.keymap.set("n", "<leader>tc", "<cmd>TtCamel<CR>")
 vim.keymap.set("n", "<leader>ts", "<cmd>TtSnake<CR>")
 
 --- Kitty ---
+
 -- resize window
 vim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
 vim.keymap.set('n', '<A-j>', require('smart-splits').resize_down)
