@@ -39,6 +39,7 @@ PACKAGES=(
     "blueman"
     "thunar"
     "hyperfine"
+    "firewalld"
 )
 
 # install packages 
@@ -204,6 +205,10 @@ if command -v npm &>/dev/null; then
 else
     volta install npm
 fi
+
+# enable firewalld
+sudo systemctl enable firewalld.service
+sudo systemctl start firewalld.service
 
 # go to home
 cd $HOME
