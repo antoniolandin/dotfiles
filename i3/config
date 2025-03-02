@@ -28,7 +28,7 @@ floating_modifier $mod
 bindsym $mod+Return exec kitty
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_run 
+bindsym $mod+d exec --no-startup-id $HOME/.config/rofi/scripts/launcher_t1
 
 # Start Applications
 bindsym $mod+$Alt+l exec --no-startup-id 'librewolf'
