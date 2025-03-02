@@ -14,6 +14,7 @@ export PATH="$HOME/.local/share/cargo/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/3.3.0/bin:$PATH"
 export PATH="$HOME/.rvm/bin:$PATH"
 export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH=$HOME/.config/rofi/scripts:$PATH
 
 # aliases para rutas
 export UNI=$HOME/Drive/universidad/cursos/curso-2024-2025/cuatrimestre-1
