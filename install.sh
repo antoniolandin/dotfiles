@@ -92,7 +92,7 @@ fi
 # creater directories
 mkdir -p $HOME/.local/share/virtualenvs
 mkdir -p $HOME/.local/state/zsh
-mkdir -p $HOME/Desktop $HOME/Pictures $HOME/Music $HOME/Videos $HOME/Downloads $HOME/Documents $HOME/Drive $HOME/Repos
+mkdir -p $HOME/Desktop $HOME/Videos $HOME/Downloads $HOME/Documents $HOME/Drive $HOME/Repos
 touch $HOME/.local/state/zsh/history
 
 # install termpdf
