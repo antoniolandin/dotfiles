@@ -8,12 +8,11 @@ filenames:
   Downloads: {icon: {glyph: 󰉍 }}
   Drive: {icon: {glyph: 󰅟 }}
   Music: {icon: {glyph: 󱍙 }}
-
+  scripts: {icon: {glyph:  }}
 
 extensions:
   # Change the filename color and icon
-  # rs: {filename: {foreground: Red}, icon: {glyph: 🦀}}
-
+  # rs: {filename: {foreground: Red}, icon: {glyph: 󰉏 }}
 
   # Change the icon glyph and color
   # nix: {icon: {glyph: ❄, style: {foreground: White}}}
