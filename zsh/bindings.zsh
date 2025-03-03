@@ -8,10 +8,12 @@ bindkey '^I' complete-word  # tab | complete command
 bindkey '^O' clear-screen
 bindkey -M vicmd '^O' clear-screen
 
-
 # Accept autosuggestions
 bindkey '^[[Z' autosuggest-accept
 
 # Remap sudo plugin
 bindkey '^S' sudo-command-line
 bindkey -M vicmd '^S' sudo-command-line
+
+# Open yazi
+bindkey -s "^y" "yazi\n"
