@@ -40,6 +40,7 @@ PACKAGES=(
     "thunar"
     "hyperfine"
     "firewalld"
+    "rofi"
 )
 
 # install packages 
