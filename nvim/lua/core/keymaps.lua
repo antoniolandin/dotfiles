@@ -3,7 +3,6 @@ vim.g.mapleader = " "
 
 --- Unbind Tab ---
 vim.keymap.set('n', '<Tab>', '<Nop>', { noremap = true, silent = true })
-vim.keymap.set('i', '<Tab>', '<Nop>', { noremap = true, silent = true })
 
 --- Unbind arrow keys ---
 for _, mode in pairs({ 'n', 'i', 'v', 'x' }) do
