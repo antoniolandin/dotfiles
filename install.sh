@@ -137,7 +137,8 @@ fi
 function dotfiles() {
 	mkdir -p $HOME/Repos/dotfiles
     git clone https://github.com/antoniolandin/dotfiles $HOME/Repos/dotfiles
-    stow --dir=$HOME/Repos --target=$HOME/.config --force dotfiles
+    stow --dir=$HOME/Repos --target=$HOME/.config --adopt dotfiles
+    git --reset hard
 }
 
 # update dotfiles
