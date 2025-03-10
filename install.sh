@@ -135,24 +135,9 @@ fi
 
 # install dotfiles
 function dotfiles() {
-    cd $HOME
-
-	if [ -d $HOME/Repos/dotfiles ]; then
-		rm -rf $HOME/Repos/dotfiles
-	fi
-    
-    if [ -d $HOME/Repos/.config/i3 ]; then
-        rm -rf $HOME/.config/i3
-    fi
-
-    if [ -d $HOME/Repos/.config/kitty ]; then
-        rm -rf $HOME/.config/kitty
-    fi
-
 	mkdir -p $HOME/Repos/dotfiles
     git clone https://github.com/antoniolandin/dotfiles $HOME/Repos/dotfiles
-    cd $HOME/Repos/dotfiles
-    stow --dir=$HOME/Repos --target=$HOME/.config dotfiles
+    stow --dir=$HOME/Repos --target=$HOME/.config --force dotfiles
 }
 
 # update dotfiles
