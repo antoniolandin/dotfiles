@@ -1,22 +1,4 @@
-# set XDG Base Directories
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_STATE_HOME=$HOME/.local/state
-
-# path
-export PATH=$VOLTA_HOME/bin:$PATH
-# export PATH="$HOME/.config/miniforge3/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.local/share/go/bin:$PATH"
-export PATH="$HOME/Drive/scripts:$PATH"
-export PATH="$HOME/.local/share/cargo/bin:$PATH"
-export PATH="$HOME/.local/share/gem/ruby/3.3.0/bin:$PATH"
-export PATH="$HOME/.rvm/bin:$PATH"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PATH=$HOME/.config/rofi/scripts:$PATH
-
-# aliases para rutas
+# aliases
 export UNI=$HOME/Drive/universidad/cursos/curso-2024-2025/cuatrimestre-1
 export DOT=$HOME/Repos/dotfiles
 export CONF=$HOME/.config
@@ -31,6 +13,24 @@ export LC_CTYPE=es_ES.UTF-8
 export LC_ALL=es_ES.UTF-8
 export LANG=es_ES.UTF-8
 
+# XDG BASE DIRECTORY
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_STATE_HOME=$HOME/.local/state
+
+# set path
+export PATH=$VOLTA_HOME/bin:$PATH
+export PATH="$PATH:/home/antonio/.local/bin"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/share/go/bin:$PATH"
+export PATH="$HOME/Drive/scripts:$PATH"
+export PATH="$HOME/.local/share/cargo/bin:$PATH"
+export PATH="$HOME/.local/share/gem/ruby/3.3.0/bin:$PATH"
+export PATH="$HOME/.rvm/bin:$PATH"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH=$HOME/.config/rofi/scripts:$PATH
+
 # fix paths
 export VOLTA_HOME="$HOME/.local/share/volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
@@ -39,7 +39,6 @@ export RXVT_SOCKET=$XDG_RUNTIME_DIR/urxvtd
 export W3M_DIR=$XDG_DATA_HOME/w3m
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export ZSH=$XDG_CONFIG_HOME/oh-my-zsh
-export ZSH_COMPDUMP=$XDG_CACHE_HOME/.zcompdump-$HOST
 export DOCKER_CONFIG=$XDG_CONFIG_HOME/docker 
 export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export CARGO_HOME=$XDG_DATA_HOME/cargo
