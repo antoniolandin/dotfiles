@@ -41,6 +41,7 @@ PACKAGES=(
     "hyperfine"
     "firewalld"
     "rofi"
+    "man"
 )
 
 # install packages 
