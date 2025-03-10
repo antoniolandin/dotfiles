@@ -84,15 +84,17 @@ for PACKAGE_NAME in "${YAY_PACKAGES[@]}"; do
 done
 
 # create librewolf desktop file
-echo "[Desktop Entry]
-Type=Application
-Name=LibreWolf
-Exec=librewolf %u
-Icon=librewolf
-Comment=Private web browser
-Terminal=false
-Categories=Network;WebBrowser;
-MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;x-scheme-handler/http;x-scheme-handler/https;" > ~/.local/share/applications/librewolf.desktop
+if [! -f $HOME/.local/share/applications/librewolf.desktop ]; then
+    echo "[Desktop Entry]
+    Type=Application
+    Name=LibreWolf
+    Exec=librewolf %u
+    Icon=librewolf
+    Comment=Private web browser
+    Terminal=false
+    Categories=Network;WebBrowser;
+    MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;x-scheme-handler/http;x-scheme-handler/https;" > $HOME/.local/share/applications/librewolf.desktop
+fi
 
 # make librewolf the default browser
 xdg-mime default librewolf.desktop x-scheme-handler/http
@@ -181,9 +183,8 @@ else
 fi
 
 # set ZDOTDIR enviroment variable
-rm $HOME/.zprofile
-echo 'export ZDOTDIR="$HOME/.config/zsh"' > $HOME/.zprofile
-source $HOME/.zprofile
+echo 'export ZDOTDIR="$HOME/.config/zsh"' > $HOME/.profile
+source $HOME/.profile
 
 # enter zsh
 source $HOME/.config/zsh/.zshrc
