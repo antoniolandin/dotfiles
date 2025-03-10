@@ -82,14 +82,29 @@ for PACKAGE_NAME in "${YAY_PACKAGES[@]}"; do
     fi
 done
 
+# create librewolf desktop file
+echo "[Desktop Entry]
+Type=Application
+Name=LibreWolf
+Exec=librewolf %u
+Icon=librewolf
+Comment=Private web browser
+Terminal=false
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;x-scheme-handler/http;x-scheme-handler/https;" > ~/.local/share/applications/librewolf.desktop
+
+# make librewolf the default browser
+xdg-mime default librewolf.desktop x-scheme-handler/http
+xdg-mime default librewolf.desktop x-scheme-handler/https
+
 # install starship
 if command -v starship &>/dev/null; then
     echo "starship already installed"
 else
-    curl -sS https://starship.rs/install.sh | sh
+    sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
 fi
 
-# creater directories
+# create directories and files
 mkdir -p $HOME/.local/share/virtualenvs
 mkdir -p $HOME/.local/state/zsh
 mkdir -p $HOME/Desktop $HOME/Videos $HOME/Downloads $HOME/Documents $HOME/Drive $HOME/Repos
