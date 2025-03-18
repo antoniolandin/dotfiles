@@ -1,7 +1,9 @@
 return {
-    "norcalli/nvim-colorizer.lua",
+    'brenoprata10/nvim-highlight-colors',
     config = function()
         vim.o.termguicolors = true
-        require("colorizer").setup()
+        require('nvim-highlight-colors').setup({
+	        enable_ansi = true,
+        })
     end,
 }
