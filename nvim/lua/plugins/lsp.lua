@@ -10,9 +10,9 @@ return {
                 tag = "legacy",
                 event = "LspAttach",
             },
-            "folke/neodev.nvim",
             "RRethy/vim-illuminate",
             "hrsh7th/cmp-nvim-lsp",
+            "stevearc/conform.nvim",
         },
         config = function()
             -- Set up Mason before anything else
@@ -31,9 +31,6 @@ return {
 
             -- Quick access via keymap
             require("helpers.keys").map("n", "<leader>M", "<cmd>Mason<cr>", "Show Mason")
-
-            -- Neodev setup before LSP config
-            require("neodev").setup()
 
             -- Turn on LSP status information
             require("fidget").setup()
@@ -85,16 +82,46 @@ return {
                 lsp_map("K", vim.lsp.buf.hover, bufnr, "Hover Documentation")
                 lsp_map("gD", vim.lsp.buf.declaration, bufnr, "Goto Declaration")
 
-                -- Create a command `:Format` local to the LSP buffer
-                vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-                    vim.lsp.buf.format({ formatting_options = { tabSize = 4 } })
-                end, { desc = "Format current buffer with LSP" })
-
-                lsp_map("<leader>ft", "<cmd>Format<cr>", bufnr, "Format")
-
-                -- Attach and configure vim-illuminate
                 require("illuminate").on_attach(client)
             end
+
+            -- formatter options
+            require("conform").setup({
+                formatters_by_ft = {
+                    lua = { "stylua" },
+                    -- Conform will run multiple formatters sequentially
+                    python = { "isort", "black" },
+                    -- You can customize some of the format options for the filetype (:help conform.format)
+                    rust = { "rustfmt", lsp_format = "fallback" },
+                    -- Conform will run the first available formatter
+                    javascript = { "prettierd", "prettier", stop_after_first = true },
+                },
+            })
+
+
+            -- format on save
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                pattern = "*",
+                callback = function(args)
+                    require("conform").format({ bufnr = args.buf })
+                end,
+            })
+
+            -- create format command
+            vim.api.nvim_create_user_command("Format", function(args)
+                local range = nil
+                if args.count ~= -1 then
+                    local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+                    range = {
+                        start = { args.line1, 0 },
+                        ["end"] = { args.line2, end_line:len() },
+                    }
+                end
+                require("conform").format({ async = true, lsp_format = "fallback", range = range })
+            end, { range = true })
+
+            -- bind format command
+            vim.api.nvim_set_keymap('n', '<leader>ft', "<cmd>Format<cr>", { noremap = true, silent = true })
 
             -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
             local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -130,24 +157,30 @@ return {
                 settings = {
                     pylsp = {
                         plugins = {
+                            -- flake8 options
                             flake8 = {
                                 enabled = true,
-                                maxLineLength = 100, -- Black's line length
+                                ignore = { "F401", "E133", "E203", "W503" },
+                                maxLineLength = 150
                             },
+
                             -- Disable plugins overlapping with flake8
-                            pycodestyle = {
-                                enabled = false,
-                            },
-                            mccabe = {
-                                enabled = false,
-                            },
-                            pyflakes = {
-                                enabled = false,
-                            },
-                            -- Use Black as the formatter
-                            autopep8 = {
-                                enabled = false,
-                            },
+                            yapf = { enabled = false },
+                            pycodestyle = { enabled = false },
+                            mccabe = { enabled = false },
+                            pyflakes = { enabled = false },
+
+                            -- Use black as the formatter
+                            autopep8 = { enabled = false },
+
+                            -- type checker
+                            pylsp_mypy = { enabled = true },
+
+                            -- auto-completion options
+                            jedi_completion = { fuzzy = true },
+
+                            -- import sorting
+                            pyls_isort = { enabled = true },
                         },
                     },
                 },
