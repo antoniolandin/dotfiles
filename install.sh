@@ -63,6 +63,8 @@ PACKAGES=(
     "firewalld"
     "rofi"
     "man"
+    "bluez"
+    "bluez-utils"
 )
 
 echo -e "${YELLOW}[*]${NC} Installing multiple packages"
