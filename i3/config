@@ -57,7 +57,7 @@ bindsym $mod+Shift+r restart
 ####################
 
 # Screenshots
-bindsym $mod+Print --release exec --no-startup-id "$HOME/.config/i3/scripts/screenshot.sh"
+bindsym $mod+Shift+f --release exec --no-startup-id "$HOME/.config/i3/scripts/screenshot.sh"
 bindsym $mod+Shift+s --release exec --no-startup-id "$HOME/.config/i3/scripts/screenshot.sh -s"
 
 # Pulse Audio controls
@@ -276,7 +276,7 @@ exec --no-startup-id picom -b
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec --no-startup-id autorandr --change
-exec_always --no-startup-id feh --bg-fill $HOME/Pictures/wallpapers/led-zeppelin.png
+exec_always --no-startup-id feh --bg-fill $HOME/Pictures/wallpapers/argonaut.png
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh &"
 
 # tray
