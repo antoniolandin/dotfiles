@@ -13,6 +13,7 @@ return {
             "RRethy/vim-illuminate",
             "hrsh7th/cmp-nvim-lsp",
             "stevearc/conform.nvim",
+            "m-demare/hlargs.nvim"
         },
         config = function()
             -- Set up Mason before anything else
@@ -20,7 +21,7 @@ return {
             require("mason-lspconfig").setup({
                 ensure_installed = {
                     "lua_ls",
-                    "pylsp",
+                    "ruff",
                     "bashls",
                     "clangd",
                     "jsonls",
@@ -34,6 +35,11 @@ return {
 
             -- Turn on LSP status information
             require("fidget").setup()
+
+            -- Turn on hlargs
+            require('hlargs').setup({
+                color = '#d9d28c',
+            })
 
             -- Set up cool signs for diagnostics
             local signs = { Error = " ", Warn = " ", Hint = "󰌵 ", Info = " " }
@@ -150,40 +156,13 @@ return {
                 },
             })
 
-            -- Python
-            require("lspconfig")["pylsp"].setup({
-                on_attach = on_attach,
-                capabilities = capabilities,
-                settings = {
-                    pylsp = {
-                        plugins = {
-                            -- flake8 options
-                            flake8 = {
-                                enabled = true,
-                                ignore = { "F401", "E133", "E203", "W503" },
-                                maxLineLength = 150
-                            },
-
-                            -- Disable plugins overlapping with flake8
-                            yapf = { enabled = false },
-                            pycodestyle = { enabled = false },
-                            mccabe = { enabled = false },
-                            pyflakes = { enabled = false },
-
-                            -- Use black as the formatter
-                            autopep8 = { enabled = false },
-
-                            -- type checker
-                            pylsp_mypy = { enabled = true },
-
-                            -- auto-completion options
-                            jedi_completion = { fuzzy = true },
-
-                            -- import sorting
-                            pyls_isort = { enabled = true },
-                        },
-                    },
-                },
+            require('lspconfig')["ruff"].setup({
+                init_options = {
+                    settings = {
+                        -- Ruff language server settings go here
+                        organizeImports = true
+                    }
+                }
             })
 
             -- Bash
