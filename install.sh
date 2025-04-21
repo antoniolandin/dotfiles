@@ -65,6 +65,7 @@ PACKAGES=(
     "man"
     "bluez"
     "bluez-utils"
+    "dunst"
 )
 
 echo -e "${YELLOW}[*]${NC} Installing multiple packages"
