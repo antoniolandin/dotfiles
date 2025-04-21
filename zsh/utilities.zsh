@@ -1,5 +1,6 @@
 extractPorts () {
-    ports="$(cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
+    ports=$(cat $1 | pcregrep -o1 --buffer-size 1000000 '(\d{1,5})\/open\/' | sed -E ':a;N;$!ba;s/\n/,/g')
+
     ip_address="$(cat $1 | grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' | sort -u | head -n 1)"
     echo -e "\n[*] Extracting information...\n" > extractPorts.tmp
     echo -e "\t[*] IP Address: $ip_address" >> extractPorts.tmp
