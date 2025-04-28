@@ -16,6 +16,7 @@ alias note="nvim $(date +%d-%m-%Y-%H:%M:%S.txt)"
 alias zbench="hyperfine 'zsh -cli exit'"
 alias la="ls -a"
 alias ll="ls -al"
+alias kssh="kitten ssh"
 
 # Fix commands
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
