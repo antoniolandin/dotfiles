@@ -100,6 +100,7 @@ YAY_PACKAGES=(
     "synology-drive"
     "librewolf-bin"
     "fancy-cat"
+    "i3wsr-git"
 )
 
 echo -e "${YELLOW}[*]${NC} Installing multiple AUR packages"
