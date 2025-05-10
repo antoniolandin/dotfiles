@@ -25,7 +25,8 @@ return {
                     "bashls",
                     "clangd",
                     "jsonls",
-                    "ts_ls"
+                    "ts_ls",
+                    "eslint"
                 },
                 automatic_installation = true,
             })
@@ -203,6 +204,12 @@ return {
                 on_attach = on_attach,
                 capabilities = capabilities,
             })
+
+            require("lspconfig")["eslint"].setup({
+                on_attach = on_attach,
+                capabilities = capabilities,
+            })
+
         end,
     },
 }
