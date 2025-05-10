@@ -1,0 +1,24 @@
+[icons]
+"firefox" = " "
+"librewolf" = " "
+"kitty" = " "
+"Spotify" = " "
+"WebCord" = " "
+"obsidian" = " "
+"Gimp" = " "
+"WhatsApp" = "🗩"
+"dolphin" = "󱢴 "
+"Tor Browser" = " "
+
+[aliases.class]
+"Gimp*" = "Gimp"
+
+[aliases.instance]
+"web\\.whatsapp\\.com" = "Whatsapp"
+
+[general]
+display_property = "class"
+empty_label = " "
+
+[options]
+no_names = true
