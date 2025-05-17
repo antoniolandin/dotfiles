@@ -222,9 +222,9 @@ bindsym $mod+Ctrl+h move workspace to output left
 bindsym $mod+Ctrl+l move workspace to output right 
 
 # move focused container to workspace
-bindsym $mod+$alt+1 exec "i3-msg move workspace to output DP2-2"
-bindsym $mod+$alt+2 exec "i3-msg move workspace to output DP2-3"
-bindsym $mod+$alt+3 exec "i3-msg move workspace to output eDP1"
+bindsym $mod+$alt+1 move workspace to output DP2-2
+bindsym $mod+$alt+2 move workspace to output DP2-3
+bindsym $mod+$alt+3 move workspace to output eDP1
 
 ###############
 ### Windows ###
@@ -270,7 +270,7 @@ for_window [class="(?i)simple64-gui"] floating enable
 for_window [urgent=latest] focus
 
 # assign spotify to workspace 4
-for_window [class="Spotify"] move to workspace $ws4
+for_window [class="Spotify"] move to workspace number $ws4
 
 ##############################
 ### Autostart applications ###
