@@ -9,6 +9,9 @@
 "WhatsApp" = "🗩"
 "dolphin" = "󱢴 "
 "Tor Browser" = " "
+"PolyMC" = "󰍳 "
+"Zathura" = "󰈦"
+"libreoffice-writer" = " "
 
 [aliases.class]
 "Gimp*" = "Gimp"
