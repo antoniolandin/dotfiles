@@ -1,0 +1,9 @@
+# Compiler settings
+$pdflatex=q/xelatex -synctex=1 %O %S/;
+
+# Output directory
+$out_dir = 'build';
+ensure_path($out_dir);
+
+# Cleanup rules (optional)
+$clean_full_ext = '%R.synctex.gz %R.bbl %R.blg %R.fls %R.run.xml %R.fdb_latexmk';
