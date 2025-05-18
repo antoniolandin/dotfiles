@@ -13,6 +13,9 @@ export LC_CTYPE=es_ES.UTF-8
 export LC_ALL=es_ES.UTF-8
 export LANG=es_ES.UTF-8
 
+# plugin settings
+export AUTOSWITCH_MESSAGE_FORMAT="Switching virtualenv: $(tput setaf 5)%venv_name$(tput sgr0) $(tput setaf 2)[󰌠 %py_version]$(tput sgr0)"
+
 # XDG BASE DIRECTORY
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_CACHE_HOME=$HOME/.cache
