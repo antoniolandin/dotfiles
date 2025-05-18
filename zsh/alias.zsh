@@ -9,7 +9,6 @@ alias examen="pdf ~/Drive/universidad/cursos/curso-2024-2025/horarios/examenes-s
 
 # Easier commands names
 # alias pdf="$HOME/Repos/termpdf.py/termpdf.py 2>/dev/null"
-alias pdf="$HOME/Repos/fancy-cat/zig-out/bin/fancy-cat"
 alias img="kitty +kitten icat"
 
 # New commands
