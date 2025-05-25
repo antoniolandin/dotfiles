@@ -3,9 +3,9 @@ alias ls="eza --icons --grid --colour=auto --sort=type --group-directories-first
 alias cd="z"
 
 # University alias
-alias horario="$HOME/Repos/fancy-cat/zig-out/bin/fancy-cat $HOME/Drive/universidad/cursos/curso-2024-2025/horarios/horario-segundo-cuatrimestre.pdf 2>/dev/null"
-alias calendario="zathura $HOME/Drive/universidad/cursos/curso-2024-2025/horarios/calendario.pdf 2>/dev/null"
-alias examen="pdf ~/Drive/universidad/cursos/curso-2024-2025/horarios/examenes-segundo-cuatrimestre.pdf 2>/dev/null"
+alias horario="tdf -f true $HOME/Drive/universidad/cursos/curso-2024-2025/horarios/horario-segundo-cuatrimestre.pdf 2>/dev/null"
+alias calendario="tdf -f true $HOME/Drive/universidad/cursos/curso-2024-2025/horarios/calendario.pdf 2>/dev/null"
+alias examen="tdf -f true ~/Drive/universidad/cursos/curso-2024-2025/horarios/examenes-segundo-cuatrimestre.pdf 2>/dev/null"
 
 # Easier commands names
 # alias pdf="$HOME/Repos/termpdf.py/termpdf.py 2>/dev/null"
