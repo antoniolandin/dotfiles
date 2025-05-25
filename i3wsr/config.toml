@@ -12,6 +12,8 @@
 "PolyMC" = "󰍳 "
 "Zathura" = "󰈦"
 "libreoffice-writer" = " "
+"libreoffice-impress" = " "
+"libreoffice-calc" = " "
 
 [aliases.class]
 "Gimp*" = "Gimp"
