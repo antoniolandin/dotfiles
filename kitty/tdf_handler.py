@@ -1,6 +1,5 @@
 from kittens.tui.handler import result_handler
 import os
-import time
 
 
 def main(args):
