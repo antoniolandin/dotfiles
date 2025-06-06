@@ -36,7 +36,7 @@ bindsym $mod+x exec --no-startup-id 'xsecurelock'
 # Start Applications
 bindsym $mod+$Alt+l exec --no-startup-id 'librewolf'
 bindsym $mod+$Alt+f exec --no-startup-id 'firefox'
-bindsym $mod+$Alt+s exec --no-startup-id 'spotify'
+bindsym $mod+$Alt+s exec --no-startup-id 'spotify-launcher'
 bindsym $mod+$Alt+t exec --no-startup-id 'thunar'
 bindsym $mod+$Alt+b exec --no-startup-id 'blueman-manager'
 bindsym $mod+$Alt+o exec --no-startup-id 'obsidian'
@@ -222,8 +222,8 @@ bindsym $mod+Ctrl+h move workspace to output left
 bindsym $mod+Ctrl+l move workspace to output right 
 
 # move focused container to workspace
-bindsym $mod+$alt+1 move workspace to output DP2-2
-bindsym $mod+$alt+2 move workspace to output DP2-3
+bindsym $mod+$alt+1 move workspace to output DP2-3
+bindsym $mod+$alt+2 move workspace to output DP2-2
 bindsym $mod+$alt+3 move workspace to output eDP1
 
 ###############
@@ -276,6 +276,7 @@ for_window [class="Spotify"] move to workspace number $ws4
 ### Autostart applications ###
 ##############################
 
+exec --no-startup-id "source $HOME/.xinitrc"
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pulseaudio
 exec --no-startup-id picom -b
