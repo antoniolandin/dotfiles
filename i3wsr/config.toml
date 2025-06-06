@@ -17,6 +17,7 @@
 
 [aliases.class]
 "Gimp*" = "Gimp"
+"[Mm]inecraft*" = "PolyMC"
 
 [aliases.instance]
 "web\\.whatsapp\\.com" = "Whatsapp"
