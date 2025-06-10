@@ -101,6 +101,7 @@ YAY_PACKAGES=(
     "librewolf-bin"
     "fancy-cat"
     "i3wsr-git"
+    "bibata-cursor-theme "
 )
 
 echo -e "${YELLOW}[*]${NC} Installing multiple AUR packages"
@@ -114,6 +115,8 @@ for PACKAGE_NAME in "${YAY_PACKAGES[@]}"; do
         echo -e "${GRAY}$PACKAGE_NAME already installed${NC}"
     fi
 done
+
+echo -e "${YELLOW}[*]${NC} Configuring browser"
 
 # create librewolf desktop file
 if ! [ -f $HOME/.local/share/applications/librewolf.desktop ]; then
@@ -140,6 +143,8 @@ else
     sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
 fi
 
+echo -e "${YELLOW}[*]${NC} Creating directories"
+
 # create directories and files
 mkdir -p $HOME/.local/share/virtualenvs
 mkdir -p $HOME/.local/state/zsh
@@ -156,41 +161,23 @@ else
     python -m venv neovim
 fi
 
-# install dotfiles
-function dotfiles() {
-	mkdir -p $HOME/Repos/dotfiles
-    git clone https://github.com/antoniolandin/dotfiles $HOME/Repos/dotfiles
-    stow --dir=$HOME/Repos --target=$HOME/.config --adopt dotfiles
-    git --reset hard
-}
-
 echo -e "${YELLOW}[*]${NC} Installing dotfiles"
 
-# update dotfiles
-if [ -d "$HOME/Repos/dotfiles/.git" ]; then
-	cd $HOME/Repos/dotfiles
-    
-    git fetch
-    
-    # get the branch name
-    CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-    BASE=$(git merge-base $CURRENT_BRANCH "origin/$CURRENT_BRANCH")
-    AREF=$(git rev-parse $CURRENT_BRANCH)
-    BREF=$(git rev-parse "origin/$CURRENT_BRANCH")
-    
-    if [[ $AREF = $BREF ]]; then
-        echo -e "${GREEN}[*]${NC} Dotfiles are up to date"
-    elif [[ $BREF == $BASE ]]; then
-        echo -e "${RED}[!] Dotfiles are ahead, please push local changes${NC}"
-    elif [[ $AREF == $BASE ]]; then
-        echo "${YELLOW}[*]${NC} Dotfiles are outdated, updating..."
-        dotfiles
-    else
-        echo -e "${RED}[!] Dotfiles are diverged${NC}"
+# install dotfiles
+mkdir -p $HOME/Repos/dotfiles
+git clone https://github.com/antoniolandin/dotfiles $HOME/Repos/dotfiles
+
+# delete conflicting config files
+for file in $HOME/Repos/dotfiles/*; do
+    file_name=$(basename $file)
+
+    if [-e "$HOME/.config/$file_name"]; then
+        rm -rf "$HOME/.config/$file_name"
     fi
-else
-	dotfiles
-fi
+done
+
+# symlink files
+stow --dir=$HOME/Repos --target=$HOME/.config
 
 echo -e "${YELLOW}[*]${NC} Making zsh the default shell"
 
