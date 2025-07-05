@@ -14,10 +14,12 @@
 "libreoffice-writer" = " "
 "libreoffice-impress" = " "
 "libreoffice-calc" = " "
+"Anki" = " "
+"Plug" = "󰋅 "
 
 [aliases.class]
 "Gimp*" = "Gimp"
-"[Mm]inecraft*" = "PolyMC"
+".[Mm]inecraft*" = "PolyMC"
 
 [aliases.instance]
 "web\\.whatsapp\\.com" = "Whatsapp"
