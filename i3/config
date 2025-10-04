@@ -71,6 +71,7 @@ bindsym XF86AudioMute exec --no-startup-id pulseaudio-control togmute
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec --no-startup-id "brightnessctl set +5%"
 bindsym XF86MonBrightnessDown exec --no-startup-id "brightnessctl set 5%-"
+bindsym $mod+b --release exec --no-startup-id "$HOME/.config/i3/scripts/toggle-brightness.sh"
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -111,7 +112,7 @@ bindsym $mod+Shift+Right move right
 
 # workspace back and forth (with/without active container)
 # workspace_auto_back_and_forth yes
-bindsym $mod+b workspace back_and_forth
+bindsym $mod+u workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
@@ -266,6 +267,7 @@ for_window [class="(?i)wireshark"] floating enable
 for_window [class="(?i)steam"] floating enable
 for_window [class="(?i)simple64-gui"] floating enable
 for_window [class="Plug"] floating enable
+for_window [class="fractal"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
