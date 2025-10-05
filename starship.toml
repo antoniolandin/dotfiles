@@ -2,24 +2,16 @@ format = '$all'
 palette = "flow" 
 
 [palettes.flow]
-cyan="#75F0E6"
-purple="#A875F0"
-light_blue="#75BDF0"
-blue="#7580F0"
-red="#F07580"
-teal="#75F0A8"
-green="#80F075"
-fluo="#FF007C"
-yellow="#F0E575"
-orange="#F0A875"
-
-grey_0="#141A1F"
-grey_1="#1B2228"
-grey_2="#3D4F5C"
-grey_3="#52697A"
-grey_4="#94A9B8"
-grey_5="#B2C1CC"
-grey_6="#D1DAE0"
+black = '#15161e'
+red = '#f7768e'
+green = '#9ece6a'
+yellow = '#e0af68'
+blue = '#7aa2f7'
+magenta = '#bb9af7'
+cyan = '#7dcfff'
+white = '#a9b1d6'
+background = '#1a1b26'
+foreground = '#c0caf5'
 
 [username]
 format = "[$user]($style)"
@@ -32,27 +24,27 @@ disabled = false
 [character]
 success_symbol = " [$shell❯](green)"
 error_symbol = " [$shell✖](red)"
-vimcmd_symbol = " [$shell❯](light_blue)"
-vimcmd_replace_one_symbol = " [$shell❯](purple)"
-vimcmd_replace_symbol = " [$shell❯](purple)"
-vimcmd_visual_symbol = " [$shell❯](purple)"
+vimcmd_symbol = " [$shell❯](cyan)"
+vimcmd_replace_one_symbol = " [$shell❯](magenta)"
+vimcmd_replace_symbol = " [$shell❯](magenta)"
+vimcmd_visual_symbol = " [$shell❯](magenta)"
 
 [directory]
 disabled = false
 read_only = ""
 truncation_length = 3
 truncate_to_repo = true
-format = "[$read_only$path ](teal)"
+format = "[$read_only$path ](cyan)"
 home_symbol = " "
 
 [cmd_duration]
 format = "[$duration]($style) "
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]](fluo) )'
+format = '([\[$all_status$ahead_behind\]](red) )'
 
 [git_branch]
-format = '[on ](grey_6)[$symbol$branch(:$remote_branch)](purple) '
+format = '[on ](foreground)[$symbol$branch(:$remote_branch)](magenta) '
 
 [package]
 symbol =" "
@@ -68,41 +60,41 @@ symbol = " "
 symbol = " "
 
 [nodejs]
-format = "[via ](grey_6)[$symbol($version) ](blue)"
+format = "[via ](foreground)[$symbol($version) ](blue)"
 
 [python]
 symbol = " "
-format = '[via ](grey_6)[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )](blue)'
+format = '[via ](foreground)[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )](blue)'
 
 [c]
-format = '[via ](grey_6)[$symbol($version) ](blue)'
+format = '[via ](foreground)[$symbol($version) ](blue)'
 detect_extensions = ["c"]
 
 [gradle]
 symbol = " "
-format = '[via ](grey_6)[$symbol($version) ](blue)'
+format = '[via ](foreground)[$symbol($version) ](blue)'
 
 [php]
 symbol = "󰌟 "
-format = '[via ](grey_6)[$symbol($version) ](blue)'
+format = '[via ](foreground)[$symbol($version) ](blue)'
 
 [perl]
 symbol = " "
-format = '[via ](grey_6)[$symbol($version) ](blue)'
+format = '[via ](foreground)[$symbol($version) ](blue)'
 
 [lua]
 symbol = " "
-format = '[via ](grey_6)[$symbol($version) ](blue)'
+format = '[via ](foreground)[$symbol($version) ](blue)'
 
 [custom.cpp]
 symbol = " "
-format = '[via ](grey_6)[$symbol ](blue)'
+format = '[via ](foreground)[$symbol ](blue)'
 detect_extensions = ["cpp", "hpp"]
 
 [custom.tex]
 detect_extensions = ["tex"]
 symbol = " "
-format = '[via ](grey_6)[$symbol($version) ](blue)'
+format = '[via ](foreground)[$symbol($version) ](blue)'
 
 [rust]
 symbol = " "
@@ -110,4 +102,4 @@ symbol = " "
 [custom.docker]
 files = ["Dockerfile", 'docker-compose.yml', "docker-compose.yaml"]
 symbol = " "
-format = '[via ](grey_6)[$symbol($version) ](blue)'
+format = '[via ](foreground)[$symbol($version) ](blue)'
