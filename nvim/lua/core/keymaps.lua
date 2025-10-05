@@ -6,9 +6,9 @@ vim.keymap.set("n", "<Tab>", "<Nop>", { noremap = true, silent = true })
 
 --- Unbind arrow keys ---
 for _, mode in pairs({ "n", "i", "v", "x" }) do
-	for _, key in pairs({ "<Up>", "<Down>", "<Left>", "<Right>" }) do
-		vim.keymap.set(mode, key, "<nop>")
-	end
+    for _, key in pairs({ "<Up>", "<Down>", "<Left>", "<Right>" }) do
+        vim.keymap.set(mode, key, "<nop>")
+    end
 end
 
 --- Go to file explorer ---
@@ -51,8 +51,6 @@ vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<C
 vim.keymap.set("n", "<leader>tc", "<cmd>TtCamel<CR>")
 vim.keymap.set("n", "<leader>ts", "<cmd>TtSnake<CR>")
 
---- Kitty ---
-
 -- resize window
 vim.keymap.set("n", "<A-h>", require("smart-splits").resize_left)
 vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down)
@@ -76,18 +74,27 @@ vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
 vim.keymap.set("n", "<C-->", "<cmd>split<CR>")
 vim.keymap.set("n", "<C-i>", "<cmd>vsplit<CR>")
 
---- Leetcode ---
-vim.keymap.set("n", "<C-'>", "<cmd>Leet test<CR>")
-vim.keymap.set("n", "<C-CR>", "<cmd>Leet submit<CR>")
-
 --- Telescope ---
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 -- vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
 vim.keymap.set("n", "<leader>ps", function()
-	builtin.grep_string({ search = vim.fn.input("Grep String > ") })
+    builtin.grep_string({ search = vim.fn.input("Grep String > ") })
 end, {})
 
 --- Toggle spell ---
 vim.api.nvim_set_keymap("n", "<leader>g", ":set spell!<CR>", { noremap = true, silent = true })
+
+-- Go to next error
+vim.keymap.set("n", "ge", function()
+    vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = 1, float = true })
+end)
+
+-- Go to previous error
+vim.keymap.set("n", "gE", function()
+    vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = -1, float = true })
+end)
+
+-- format
+vim.keymap.set("n", "<leader>ft", vim.lsp.buf.format)
