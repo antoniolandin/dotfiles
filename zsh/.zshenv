@@ -65,3 +65,4 @@ export NLTK_DATA=$XDG_DATA_HOME/nltk
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 export KERAS_HOME="$XDG_STATE_HOME/keras"
 export rvm_path="$XDG_DATA_HOME"/rvm
+export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
