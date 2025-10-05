@@ -13,10 +13,7 @@ vim.opt.updatetime = 50
 vim.opt.scrolloff = 8
 vim.o.conceallevel = 1
 
--- set python virtualenv
-vim.g.python3_host_prog = vim.fn.expand("~/.local/share/virtualenvs/neovim/bin/python3")
-
 --- set colorscheme ---
-vim.cmd("colorscheme flow")
+vim.cmd("colorscheme tokyonight")
 
 vim.opt.spelllang = "es"
