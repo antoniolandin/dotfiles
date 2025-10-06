@@ -44,6 +44,6 @@ return {
         end
 
         vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end,
-            { desc = "Open harpoon window" }) 
+            { desc = "Open harpoon window" })
     end,
 }
