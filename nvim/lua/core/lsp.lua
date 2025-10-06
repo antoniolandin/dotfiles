@@ -27,6 +27,9 @@ vim.lsp.config('pylsp', {
                 pycodestyle = {
                     ignore = { 'W391' },
                     maxLineLength = 150
+                },
+                mccabe = {
+                    enabled = false
                 }
             }
         }
