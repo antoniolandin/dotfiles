@@ -60,7 +60,7 @@ PACKAGES=(
     "blueman"
     "thunar"
     "hyperfine"
-    "firewalld"
+    "ufw"
     "rofi"
     "man"
     "bluez"
@@ -225,10 +225,10 @@ else
     volta install npm
 fi
 
-# enable firewalld
+# enable firewall
 echo -e "${YELLOW}[*]${NC} Starting firewall"
-sudo systemctl enable firewalld.service
-sudo systemctl start firewalld.service
+sudo systemctl enable ufw.service
+sudo systemctl start ufw.service
 
 echo -e "${GREEN}Dotfiles installation complete!${NC}"
 
