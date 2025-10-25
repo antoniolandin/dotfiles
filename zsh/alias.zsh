@@ -7,7 +7,6 @@ alias horario="tdf -f true $HOME/Drive/universidad/cursos/curso-2025-2026/horari
 alias calendario="tdf -f true $HOME/Drive/universidad/cursos/curso-2025-2026/horarios/calendario.pdf 2>/dev/null"
 alias examen="tdf -f true ~/Drive/universidad/cursos/curso-2024-2025/horarios/examenes-extraordinaria-primer-cuatrimestre.pdf 2>/dev/null"
 alias count='sum=0;for file in *.pdf; do sum=$((sum+$(pdfinfo $file | pcregrep -o1 "^Pages:\s*(\d*)"))); done; echo "$sum páginas"'
-alias memento='zathura ~/Repos/plan/build/main.pdf &>/dev/null & disown'
 
 # Easier commands names
 # alias pdf="$HOME/Repos/termpdf.py/termpdf.py 2>/dev/null"

@@ -151,16 +151,6 @@ mkdir -p $HOME/.local/state/zsh
 mkdir -p $HOME/Desktop $HOME/Videos $HOME/Downloads $HOME/Documents $HOME/Drive $HOME/Repos
 touch $HOME/.local/state/zsh/history
 
-echo -e "${YELLOW}[*]${NC} Creating nvim virtualenv"
-
-# create neovim virtualenv
-if [ -d "$HOME/.local/share/virtualenvs/neovim" ]; then
-    echo -e "${ORANGE}[*]${NC}${GRAY} Neovim virtualvenv already exists${NC}"
-else
-    cd $HOME/.local/share/virtualenvs
-    python -m venv neovim
-fi
-
 echo -e "${YELLOW}[*]${NC} Installing dotfiles"
 
 # install dotfiles
