@@ -11,6 +11,9 @@ for _, mode in pairs({ "n", "i", "v", "x" }) do
     end
 end
 
+--- Copy without updating register
+vim.keymap.set("x", "<leader>p", [["_dP]])
+
 --- Go to file explorer ---
 vim.keymap.set("n", "<leader>pv", "<cmd>Oil<CR>")
 
@@ -96,5 +99,7 @@ vim.keymap.set("n", "gE", function()
     vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = -1, float = true })
 end)
 
--- format
+--- LSP
 vim.keymap.set("n", "<leader>ft", vim.lsp.buf.format)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
