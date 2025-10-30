@@ -35,3 +35,13 @@ vim.lsp.config('pylsp', {
         }
     },
 })
+
+vim.lsp.config('rust_analyzer', {
+    settings = {
+        ['rust_analyzer'] = {
+            cargo = {
+                allFeatures = true,
+            },
+        },
+    }
+})
