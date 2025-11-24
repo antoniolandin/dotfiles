@@ -45,3 +45,25 @@ vim.lsp.config('rust_analyzer', {
         },
     }
 })
+
+vim.lsp.config('clangd', {
+    cmd = {
+        "clangd",
+        "--fallback-style=webkit"
+    }
+})
+
+vim.lsp.config('perlnavigator', {
+    cmd = { "perlnavigator" },
+    settings = {
+        perlnavigator = {
+            perlPath = 'perl',
+            enableWarnings = true,
+            perltidyProfile = "",
+            perltidyEnabled = true,
+            perlimportsTidyEnabled = false,
+            perlcriticProfile = '',
+            perlcriticEnabled = true,
+        }
+    }
+})
