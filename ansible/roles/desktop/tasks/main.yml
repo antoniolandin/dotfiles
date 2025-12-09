@@ -88,14 +88,8 @@
 - name: Copy wallpaper to correct position
   copy:
     src: wallpaper.png
-    dest: "{{ ansible_user_dir }}/Pictures/wallpapers/arch.png"
+    dest: "{{ ansible_user_dir }}/Pictures/wallpapers/argonaut.png"
     mode: "0644"
-
-- name: Copy feh .fehbg file to set wallpaper
-  copy:
-    src: fehbg
-    dest: "{{ ansible_user_dir }}/.fehbg"
-    mode: "0754"
 
 - name: Enable and start services
   service:
