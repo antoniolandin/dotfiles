@@ -17,6 +17,8 @@
     use: yay
     name: "{{ desktop_aur_packages }}"
     state: present
+  become: yes
+  become_user: aur_builder
 
 - name: Check that .config exists
   file:
