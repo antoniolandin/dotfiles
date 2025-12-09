@@ -91,6 +91,11 @@
     dest: "{{ ansible_user_dir }}/Pictures/wallpapers/arch.png"
     mode: "0644"
 
+- name: Set wallpaper using feh
+  command: "feh --bg-scale {{ ansible_facts.user_dir }}/Pictures/wallpapers/arch.png"
+  become: no
+  become_user: "{{ ansible_facts.user_id }}"
+
 - name: Enable and start services
   service:
     name: "{{ item }}"
