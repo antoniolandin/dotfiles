@@ -59,17 +59,12 @@
   loop_control:
     label: "{{ item.path | basename }}"
 
-- name: Enable and start services
-  service:
-    name: "{{ item }}"
-    enabled: yes
-    state: started
-  loop:
-    - bluetooth
-    - ufw
-    - lightdm
+- name: Set X11 keyboard layout to Spanish
+  copy:
+    src: 00-keyboard.conf
+    dest: /etc/X11/xorg.conf.d/00-keyboard.conf
+    mode: '0644'
   become: yes
-  ignore_errors: yes
 
 - name: Copy LibreWolf .desktop file
   copy:
@@ -89,3 +84,15 @@
     - x-scheme-handler/http
     - x-scheme-handler/https
   changed_when: false
+
+- name: Enable and start services
+  service:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  loop:
+    - bluetooth
+    - ufw
+    - lightdm
+  become: yes
+  ignore_errors: yes
