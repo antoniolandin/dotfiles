@@ -1,42 +1,44 @@
 ---
-# ---------------------------------------------------------
-# 1. PRE-REQUISITES
-# ---------------------------------------------------------
-- name: Install base-devel and git
+- name: Remove temporary directory if it exists
+  file:
+    path: /tmp/yay
+    state: absent
+  become: yes
+
+- name: Install dependencies for building yay
   package:
     name:
       - base-devel
       - git
+      - go
     state: present
   become: yes
 
-# ---------------------------------------------------------
-# 2. SECURE BOOTSTRAP BLOCK
-# ---------------------------------------------------------
-- block:
-    # A. Open the security hole temporarily
-    - name: TEMPORARY - Allow user to run pacman without password
-      lineinfile:
-        path: "/etc/sudoers.d/10-installer-{{ ansible_user_id }}"
-        line: "{{ ansible_user_id }} ALL=(ALL) NOPASSWD: /usr/bin/pacman"
-        create: yes
-        mode: '0440'
-        validate: 'visudo -cf %s'
-      become: yes
+- name: Clone yay repository
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: /tmp/yay
+    version: master
+  become: no
 
-    # B. Install yay using the module (bootstrapping itself)
-    - name: Install yay using makepkg backend
-      kewlfft.aur.aur:
-        name: yay
-        use: makepkg
-        state: present
-      become: true
-      become_user: "{{ ansible_user_id }}"
+- name: Build yay package (compile only)
+  command: makepkg --noconfirm
+  args:
+    chdir: /tmp/yay
+  become: no
 
-  # C. Close the security hole (ALWAYS runs, even on failure)
-  always:
-    - name: CLEANUP - Remove passwordless pacman configuration
-      file:
-        path: "/etc/sudoers.d/10-installer-{{ ansible_user_id }}"
-        state: absent
-      become: yes
+- name: Find the built package file
+  find:
+    paths: /tmp/yay
+    patterns: "yay-*.pkg.tar.zst"
+  register: yay_package_file
+
+- name: Install the compiled yay package
+  command: "pacman -U --noconfirm {{ yay_package_file.files[0].path }}"
+  become: yes
+
+- name: Clean up temporary directory
+  file:
+    path: /tmp/yay
+    state: absent
+  become: yes
