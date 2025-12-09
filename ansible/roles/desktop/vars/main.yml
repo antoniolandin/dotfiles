@@ -20,6 +20,7 @@ desktop_packages:
   - zathura-pdf-mupdf
   - thunar
   - firefox
+  - kitty
 
   # bluetooth
   - bluez
