@@ -71,7 +71,8 @@
     path: "{{ item.path }}"
     mode: '0755'
   loop: "{{ all_scripts.files }}"
-  label: "{{ item.path | basename }}"
+  loop_control:
+    label: "{{ item.path | basename }}"
 
 - name: Enable and start services
   service:
