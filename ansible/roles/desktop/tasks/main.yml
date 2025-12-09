@@ -17,8 +17,6 @@
     use: yay
     name: "{{ desktop_aur_packages }}"
     state: present
-  become: no
-  become_user: "{{ ansible_user_id }}"
 
 - name: Check that .config exists
   file:
