@@ -19,6 +19,8 @@
     repo: https://aur.archlinux.org/yay.git
     dest: /tmp/yay
     version: master
+  become: no
+  become_user: "{{ ansible_user_id }}"
   when: yay_check.rc != 0
 
 - name: Compile & install yay
