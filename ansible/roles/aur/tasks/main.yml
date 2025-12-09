@@ -8,7 +8,7 @@
   become: yes
 
 - name: Install yay
- kewlfft.aur.aur:
+  kewlfft.aur.aur:
     use: makepkg
     name: yay-bin
     state: present
