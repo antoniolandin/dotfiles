@@ -85,6 +85,12 @@
     - x-scheme-handler/https
   changed_when: false
 
+- name: Copy wallpaper to correct position
+  copy:
+    src: wallpaper.png
+    dest: "{{ ansible_user_dir }}/Pictures/wallpaper/arch.png"
+    mode: "0644"
+
 - name: Enable and start services
   service:
     name: "{{ item }}"

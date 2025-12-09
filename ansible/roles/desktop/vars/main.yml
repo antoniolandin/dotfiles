@@ -45,6 +45,9 @@ user_directories:
   - Music
   - Repos
   - Drive
+  - Pictures
+  - Pictures/wallpapers
+  - Pictures/screenshots
   - .local/share/applications
   - .local/share/virtualenvs
 
