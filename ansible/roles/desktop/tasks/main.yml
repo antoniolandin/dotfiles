@@ -12,6 +12,13 @@
     state: present
   become: yes
 
+- name: Install yay
+  include_tasks: aur.yml
+  args:
+    apply:
+      tags: ['aur']
+  tags: ['aur']
+
 - name: Install AUR packages
   kewlfft.aur.aur:
     use: yay
