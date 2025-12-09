@@ -12,6 +12,8 @@ desktop_packages:
   - maim
   - brightnessctl
   - ufw
+  - lightdm
+  - lightdm-gtk-greeter
 
   # GUI apps
   - zathura
