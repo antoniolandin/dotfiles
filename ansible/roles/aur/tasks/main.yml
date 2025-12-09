@@ -1,0 +1,42 @@
+---
+# ---------------------------------------------------------
+# 1. PRE-REQUISITES
+# ---------------------------------------------------------
+- name: Install base-devel and git
+  package:
+    name:
+      - base-devel
+      - git
+    state: present
+  become: yes
+
+# ---------------------------------------------------------
+# 2. SECURE BOOTSTRAP BLOCK
+# ---------------------------------------------------------
+- block:
+    # A. Open the security hole temporarily
+    - name: TEMPORARY - Allow user to run pacman without password
+      lineinfile:
+        path: "/etc/sudoers.d/10-installer-{{ ansible_user_id }}"
+        line: "{{ ansible_user_id }} ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+        create: yes
+        mode: '0440'
+        validate: 'visudo -cf %s'
+      become: yes
+
+    # B. Install yay using the module (bootstrapping itself)
+    - name: Install yay using makepkg backend
+      kewlfft.aur.aur:
+        name: yay
+        use: makepkg
+        state: present
+      become: true
+      become_user: "{{ ansible_user_id }}"
+
+  # C. Close the security hole (ALWAYS runs, even on failure)
+  always:
+    - name: CLEANUP - Remove passwordless pacman configuration
+      file:
+        path: "/etc/sudoers.d/10-installer-{{ ansible_user_id }}"
+        state: absent
+      become: yes
