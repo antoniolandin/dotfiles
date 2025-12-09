@@ -25,13 +25,12 @@
       become: yes
 
     # B. Install yay using the module (bootstrapping itself)
-    # This will use 'sudo pacman' internally to install dependencies like 'go'
     - name: Install yay using makepkg backend
       kewlfft.aur.aur:
         name: yay
         use: makepkg
         state: present
-      become: no
+      become: true
       become_user: "{{ ansible_user_id }}"
 
   # C. Close the security hole (ALWAYS runs, even on failure)
