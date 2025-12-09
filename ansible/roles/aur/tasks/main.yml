@@ -1,44 +1,16 @@
 ---
-- name: Remove temporary directory if it exists
-  file:
-    path: /tmp/yay
-    state: absent
-  become: yes
-
 - name: Install dependencies for building yay
   package:
     name:
       - base-devel
       - git
-      - go
     state: present
   become: yes
 
-- name: Clone yay repository
-  git:
-    repo: https://aur.archlinux.org/yay.git
-    dest: /tmp/yay
-    version: master
+- name: Install yay
+ kewlfft.aur.aur:
+    use: makepkg
+    name: yay-bin
+    state: present
   become: no
-
-- name: Build yay package (compile only)
-  command: makepkg --noconfirm
-  args:
-    chdir: /tmp/yay
-  become: no
-
-- name: Find the built package file
-  find:
-    paths: /tmp/yay
-    patterns: "yay-*.pkg.tar.zst"
-  register: yay_package_file
-
-- name: Install the compiled yay package
-  command: "pacman -U --noconfirm {{ yay_package_file.files[0].path }}"
-  become: yes
-
-- name: Clean up temporary directory
-  file:
-    path: /tmp/yay
-    state: absent
-  become: yes
+  become_user: "{{ ansible_user_id }}"
