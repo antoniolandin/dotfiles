@@ -1,0 +1,36 @@
+---
+- name: Check if yay is installed
+  command: which yay
+  register: yay_check
+  ignore_errors: yes
+  changed_when: false
+
+- name: Download dependencies
+  package:
+    name:
+      - base-devel
+      - git
+    state: present
+  become: yes
+  when: yay_check.rc != 0
+
+- name: Clone yay repository
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: /tmp/yay
+    version: master
+  when: yay_check.rc != 0
+
+- name: Compile & install yay
+  command: makepkg -si --noconfirm
+  args:
+    chdir: /tmp/yay
+  become: no # do not run as root
+  become_user: "{{ ansible_user_id }}"
+  when: yay_check.rc != 0
+
+- name: Clean temp directory
+  file:
+    path: /tmp/yay
+    state: absent
+  when: yay_check.rc != 0

@@ -1,0 +1,45 @@
+---
+desktop_packages:
+  - i3-wm
+  - polybar
+  - rofi
+  - picom
+  - dunst
+  - autorandr
+  - feh
+  - imagemagick
+  - xclip
+  - maim
+  - brightnessctl
+  - ufw
+
+  # GUI apps
+  - zathura
+  - zathura-pdf-mupdf
+  - thunar
+  - firefox
+
+  # bluetooth
+  - bluez
+  - bluez-utils
+  - blueman
+
+  - ttf-firacode-nerd 
+
+desktop_aur_packages:
+  - pulseaudio-control
+  - synology-drive
+  - librewolf-bin
+  - i3wsr-git
+  - bibata-cursor-theme
+
+user_directories:
+  - Desktop
+  - Downloads
+  - Documents
+  - Videos
+  - Music
+  - Repos
+  - Drive
+  - .local/share/applications
+  - .local/share/virtualenvs

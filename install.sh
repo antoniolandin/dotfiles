@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Stop script if error
+set -e
+
 # Define colors
 RED="\033[1;31m"
 GREEN="\033[1;32m"
@@ -12,6 +15,10 @@ TURQUOISE="\033[1;96m"
 ORANGE="\033[38;5;208m"
 NC="\e[0m"
 
+# Variables
+REPO_URL="https://github.com/antoniolandin/dotfiles.git"
+DOTFILES_DIR="$HOME/Repos/$REPO_NAME"
+
 echo -e "${RED}
        __      __  _____ __         
   ____/ /___  / /_/ __(_) /__  _____
@@ -20,207 +27,36 @@ echo -e "${RED}
 \__,_/\____/\__/_/ /_/_/\___/____/
 ${NC}"
 
-# update system
-echo -e "${YELLOW}[*]${NC} Updating system"
-sudo pacman -Syu
 
-PACKAGES=(
-    "kitty"
-    "stow"
-    "zsh"
-    "tree-sitter-cli"
-    "ripgrep"
-    "fzf"
-    "ttf-firacode-nerd"
-    "tldr"
-    "p7zip"
-    "unzip"
-    "go"
-    "neovim"
-    "python-neovim"
-    "zathura"
-    "zathura-pdf-mupdf"
-    "git"
-    "base-devel"
-    "eza"
-    "less"
-    "python-pipx"
-    "lazygit"
-    "maim"
-    "jq"
-    "imagemagick"
-    "brightnessctl"
-    "python-dbus"
-    "polybar"
-    "zoxide"
-    "xclip"
-    "github-cli"
-    "firefox"
-    "picom"
-    "blueman"
-    "thunar"
-    "hyperfine"
-    "ufw"
-    "rofi"
-    "man"
-    "bluez"
-    "bluez-utils"
-    "dunst"
-)
+echo -e "${BLUE}Installing dotfiles...${NC}"
 
-echo -e "${YELLOW}[*]${NC} Installing multiple packages"
+# Create dotfiles path directories
+mkdir -p $HOME/Repos
 
-# install packages 
-for PACKAGE_NAME in "${PACKAGES[@]}"; do
-    # check if package is installed
-    if ! pacman -Q "$PACKAGE_NAME" &> /dev/null; then
-        sudo pacman -S --noconfirm "$PACKAGE_NAME"
-    else
-        echo -e "${GRAY}$PACKAGE_NAME already installed${NC}"
-    fi
-done
+# Install dependencies
+echo -e "${GREEN}[+] Installing git and ansible...${NC}"
+if ! command -v ansible &> /dev/null; then
+    sudo pacman -Sy --noconfirm git ansible
+fi
 
-echo -e "${YELLOW}[*]${NC} Installing yay"
-
-# install yay
-if ! pacman -Q yay &>/dev/null; then
-    cd $HOME
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si
-    cd $HOME
-    rm -rf $HOME/yay
+# Clone repository
+if [ ! -d "$DOTFILES_DIR" ]; then
+    echo -e "${GREEN}[+] Cloning repository in $DOTFILES_DIR...${NC}"
+    git clone "$REPO_URL" "$DOTFILES_DIR"
 else
-    echo -e "${ORANGE}[*]${NC}${GRAY} yay already installed${NC}"
+    echo -e "${GREEN}[+] $DOTFILES_DIR already exists.${NC}"
 fi
 
-# yay packages
-YAY_PACKAGES=(
-    "pulseaudio-control"
-    "synology-drive"
-    "librewolf-bin"
-    "fancy-cat"
-    "i3wsr-git"
-    "bibata-cursor-theme "
-)
+# Install ansible galaxy dependencies
+echo -e "${GREEN}[+] Installing ansible galaxy extensiosn...${NC}"
+# AUR extension
+ansible-galaxy collection install kewlfft.aur
 
-echo -e "${YELLOW}[*]${NC} Installing multiple AUR packages"
+# Exec playbook
+echo -e "${BLUE}Executing Ansible Playbook...${NC}"
 
-# install yay packages 
-for PACKAGE_NAME in "${YAY_PACKAGES[@]}"; do
-    # check if package is installed
-    if ! yay -Q "$PACKAGE_NAME" &> /dev/null; then
-        yay -S --noconfirm "$PACKAGE_NAME"
-    else
-        echo -e "${GRAY}$PACKAGE_NAME already installed${NC}"
-    fi
-done
+cd "$DOTFILES_DIR/ansible"
+ansible-playbook setup.yml -K
 
-echo -e "${YELLOW}[*]${NC} Configuring browser"
-
-# create librewolf desktop file
-if ! [ -f $HOME/.local/share/applications/librewolf.desktop ]; then
-    echo "[Desktop Entry]
-    Type=Application
-    Name=LibreWolf
-    Exec=librewolf %u
-    Icon=librewolf
-    Comment=Private web browser
-    Terminal=false
-    Categories=Network;WebBrowser;
-    MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;x-scheme-handler/http;x-scheme-handler/https;" > $HOME/.local/share/applications/librewolf.desktop
-fi
-
-# make librewolf the default browser
-xdg-mime default librewolf.desktop x-scheme-handler/http
-xdg-mime default librewolf.desktop x-scheme-handler/https
-
-# install starship
-echo -e "${YELLOW}[*]${NC} Installing starship"
-if command -v starship &>/dev/null; then
-    echo -e "${ORANGE}[*]${NC}${GRAY} Starship already installed${NC}"
-else
-    sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
-fi
-
-echo -e "${YELLOW}[*]${NC} Creating directories"
-
-# create directories and files
-mkdir -p $HOME/.local/share/virtualenvs
-mkdir -p $HOME/.local/state/zsh
-mkdir -p $HOME/Desktop $HOME/Videos $HOME/Downloads $HOME/Documents $HOME/Drive $HOME/Repos
-touch $HOME/.local/state/zsh/history
-
-echo -e "${YELLOW}[*]${NC} Installing dotfiles"
-
-# install dotfiles
-mkdir -p $HOME/Repos/dotfiles
-git clone https://github.com/antoniolandin/dotfiles $HOME/Repos/dotfiles
-
-# delete conflicting config files
-for file in $HOME/Repos/dotfiles/*; do
-    file_name=$(basename $file)
-
-    if [-e "$HOME/.config/$file_name"]; then
-        rm -rf "$HOME/.config/$file_name"
-    fi
-done
-
-# symlink files
-stow --dir=$HOME/Repos --target=$HOME/.config
-
-echo -e "${YELLOW}[*]${NC} Making zsh the default shell"
-
-# make zsh default shell
-DEFAULT_SHELL=$(basename "$SHELL")
-
-if [ "$DEFAULT_SHELL" == "zsh" ]; then
-    echo -e "${ORANGE}[*]${NC}${GRAY} zsh already default shell${NC}"
-else
-    if command -v zsh &>/dev/null; then
-        chsh -s $(which zsh)
-    else
-        echo -e "${RED}[!] Could not make zsh default shell, zsh is not installed${NC}"
-    fi
-fi
-
-# set ZDOTDIR enviroment variable
-echo 'export ZDOTDIR="$HOME/.config/zsh"' > $HOME/.profile
-source $HOME/.profile
-
-echo -e "${YELLOW}[*]${NC} Installing volta"
-
-# install volta
-if command -v volta &>/dev/null; then
-    echo -e "${ORANGE}[*]${NC}${GRAY} Volta already installed${NC}"
-else
-    curl https://get.volta.sh | bash
-fi
-
-echo -e "${YELLOW}[*]${NC} Installing node"
-
-# install node
-if command -v node &>/dev/null; then
-    echo -e "${ORANGE}[*]${NC}${GRAY} Node already installed${GRAY}"
-else
-    volta install node
-fi
-
-echo -e "${YELLOW}[*]${NC} Installing npm"
-
-# install npm
-if command -v npm &>/dev/null; then
-    echo -e "${ORANGE}[*]${NC}${GRAY} npm already installed${NC}"
-else
-    volta install npm
-fi
-
-# enable firewall
-echo -e "${YELLOW}[*]${NC} Starting firewall"
-sudo systemctl enable ufw.service
-sudo systemctl start ufw.service
-
-echo -e "${GREEN}Dotfiles installation complete!${NC}"
-
-# go to home
-cd $HOME
+echo -e "${GREEN}✅ Dotfiles installation complete!${NC}"
+echo -e "${GREEN}Please, reboot system to apply all changes.${NC}"

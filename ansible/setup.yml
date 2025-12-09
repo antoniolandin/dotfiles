@@ -1,0 +1,12 @@
+---
+- hosts: local
+  connection: local
+  # obtain system info like the ansible_user_dir
+  gather_facts: yes
+  become: yes
+  vars:
+    dotfiles_dir: "{{ ansible_user_dir }}/Repos/dotfiles" 
+    config_dir: "{{ ansible_user_dir }}/.config"
+
+  roles:
+    - desktop

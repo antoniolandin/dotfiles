@@ -1,0 +1,104 @@
+---
+- name: Create user directories
+  file:
+    path: "{{ ansible_user_dir }}/{{ item }}"
+    state: directory
+    mode: '0755'
+  loop: "{{ user_directories }}"
+
+- name: Install desktop packages
+  package:
+    name: "{{ desktop_packages }}"
+    state: present
+  become: yes
+
+- name: Install yay
+  include_tasks: aur.yml
+  args:
+    apply:
+      tags: ['aur']
+  tags: ['aur']
+
+- name: Install AUR packages
+  kewlfft.aur.aur:
+    use: yay
+    name: "{{ desktop_aur_packages }}"
+    state: present
+  become: no
+  become_user: "{{ ansible_user_id }}"
+
+- name: Check that .config exists
+  file:
+    path: "{{ config_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Symlink configurations
+  file:
+    src: "{{ dotfiles_dir }}/{{ item }}"
+    dest: "{{ config_dir }}/{{ item }}"
+    state: link
+    force: yes
+  loop:
+    - i3
+    - polybar
+    - rofi
+    - dunts
+    - picom
+    - autorandr
+    - i3wsr
+    - zathura
+  
+- name: Symlink .Xresources
+  file:
+    src: "{{ dotfiles_dir }}/X11/Xresources"
+    dest: "{{ ansible_user_dir }}/.Xresources"
+    state: link
+    force: yes
+
+- name: Find all the scripts of the configuration
+  find:
+    paths: 
+      - "{{ dotfiles_dir }}/i3/scripts"
+      - "{{ dotfiles_dir }}/polybar/scripts"
+    patterns: ["*.sh", "*.py"]
+    recurse: yes
+    file_type: file
+  register: all_scripts
+
+- name: Make scripts executable
+  file:
+    path: "{{ item.path }}"
+    mode: '0755'
+  loop: "{{ all_scripts.files }}"
+  label: "{{ item.path | basename }}"
+
+- name: Enable and start services
+  service:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  loop:
+    - bluetooth
+    - ufw
+  become: yes
+  ignore_errors: yes
+
+- name: Copy LibreWolf .desktop file
+  copy:
+    src: librewolf.desktop       # Ansible looks for this in 'files/' automatically
+    dest: "{{ ansible_user_dir }}/.local/share/applications/librewolf.desktop"
+    mode: '0644'
+
+- name: Set LibreWolf as default browser
+  command: xdg-mime default librewolf.desktop {{ item }}
+  loop:
+    - x-scheme-handler/http
+    - x-scheme-handler/https
+  changed_when: false
+- name: Set librewolf as default browser
+  command: xdg-mime default librewolf.desktop {{ item }}
+  loop:
+    - x-scheme-handler/http
+    - x-scheme-handler/https
+  changed_when: false

@@ -1,0 +1,25 @@
+---
+- name: install git
+  package:
+    name: git
+    state: present
+  become: yes
+
+- name: Clone/update the dotfiles repo
+  git:
+    repo: "{{ dotfiles_repo_url }}"
+    dest: "{{ dotfiles_dir }}"
+    version: "{{ dotfiles_branch }}"
+    update: yes
+    force: no
+  register: git_clone
+
+- name: Change owner and group of the dotfiles files
+  file:
+    path: "{{ dotfiles_dir }}"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_gid }}"
+    recurse: yes
+    state: directory
+  become: yes
+  when: git_clone.changed # Only if there were changes

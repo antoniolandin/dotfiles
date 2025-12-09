@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=LibreWolf
+Exec=librewolf %u
+Icon=librewolf
+Comment=Private web browser
+Terminal=false
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;x-scheme-handler/http;x-scheme-handler/https;
