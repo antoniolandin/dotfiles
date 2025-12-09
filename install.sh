@@ -17,7 +17,7 @@ NC="\e[0m"
 
 # Variables
 REPO_URL="https://github.com/antoniolandin/dotfiles.git"
-DOTFILES_DIR="$HOME/Repos/$REPO_NAME"
+DOTFILES_DIR="$HOME/Repos/dotfiles"
 
 echo -e "${RED}
        __      __  _____ __         
