@@ -45,10 +45,23 @@ if [ ! -d "$DOTFILES_DIR" ]; then
     git clone "$REPO_URL" "$DOTFILES_DIR"
 else
     echo -e "${GREEN}[+] $DOTFILES_DIR already exists.${NC}"
+
+    cd "$DOTFILES_DIR"
+
+    # Try to pull updates
+    if git pull; then
+        echo -e "${GREEN}[+] Dotfiles repo updated!${NC}"
+    else
+        echo -e "${BLUE}[!] Couldn't update dotfiles.${NC}"
+        echo -e "${BLUE}[!] Installation will resume with current version.${NC}"
+    fi
+    
+    # Go back to previous directory
+    cd - > /dev/null
 fi
 
 # Install ansible galaxy dependencies
-echo -e "${GREEN}[+] Installing ansible galaxy extensiosn...${NC}"
+echo -e "${GREEN}[+] Installing ansible galaxy extension...${NC}"
 # AUR extension
 ansible-galaxy collection install kewlfft.aur
 
