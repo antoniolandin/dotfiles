@@ -56,7 +56,7 @@ ansible-galaxy collection install kewlfft.aur
 echo -e "${BLUE}Executing Ansible Playbook...${NC}"
 
 cd "$DOTFILES_DIR/ansible"
-ansible-playbook setup.yml -K
+ansible-playbook -i inventory.ini setup.yml -K
 
 echo -e "${GREEN}✅ Dotfiles installation complete!${NC}"
 echo -e "${GREEN}Please, reboot system to apply all changes.${NC}"
