@@ -88,7 +88,7 @@
 - name: Copy wallpaper to correct position
   copy:
     src: wallpaper.png
-    dest: "{{ ansible_user_dir }}/Pictures/wallpaper/arch.png"
+    dest: "{{ ansible_user_dir }}/Pictures/wallpapers/arch.png"
     mode: "0644"
 
 - name: Enable and start services
