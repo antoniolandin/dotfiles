@@ -32,15 +32,7 @@
     dest: "{{ config_dir }}/{{ item }}"
     state: link
     force: yes
-  loop:
-    - i3
-    - polybar
-    - rofi
-    - dunts
-    - picom
-    - autorandr
-    - i3wsr
-    - zathura
+  loop: "{{ desktop_symlinks }}"
   
 - name: Symlink .Xresources
   file:

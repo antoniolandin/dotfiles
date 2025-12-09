@@ -46,3 +46,14 @@ user_directories:
   - Drive
   - .local/share/applications
   - .local/share/virtualenvs
+
+desktop_symlinks:
+  - i3
+  - polybar
+  - rofi
+  - dunts
+  - picom
+  - autorandr
+  - i3wsr
+  - zathura
+  - kitty
