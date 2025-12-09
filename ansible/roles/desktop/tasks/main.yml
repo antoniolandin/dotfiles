@@ -75,7 +75,7 @@
   loop:
     - bluetooth
     - ufw
-    - ligthdm
+    - lightdm
   become: yes
   ignore_errors: yes
 
