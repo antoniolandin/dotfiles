@@ -68,3 +68,16 @@
     force: yes
   loop: "{{ editor_symlinks }}"
   ignore_errors: yes
+
+- name: Install pipx
+  package:
+    name: python-pipx
+    state: present
+  become: yes
+
+- name: Install jupytext via pipx
+  command: pipx install jupytext
+  args:
+    creates: "{{ ansible_facts.user_dir }}/.local/bin/jupytext"
+  become: no
+  become_user: "{{ ansible_facts.user_id }}"
