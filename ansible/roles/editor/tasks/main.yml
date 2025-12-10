@@ -18,10 +18,17 @@
     path: "{{ ansible_facts.user_dir }}/.local/share/volta/bin/volta"
   register: volta_bin
 
-- name: Download and install Volta
+- name: Get latest Volta version
+  uri:
+    url: "https://volta.sh/latest-version"
+    return_content: yes
+  register: volta_latest
+  become: no
+  become_user: "{{ ansible_facts.user_id }}"
+
+- name: Download and install Volta ({{ volta_latest.content | trim }})
   unarchive:
-    # We use the official Linux release tarball
-    src: "https://github.com/volta-cli/volta/releases/download/v{{ volta_version }}/volta-{{ volta_version }}-linux.tar.gz"
+    src: "https://github.com/volta-cli/volta/releases/download/v{{ volta_latest.content | trim }}/volta-{{ volta_latest.content | trim }}-linux.tar.gz"
     dest: "{{ ansible_facts.user_dir }}/.local/share/volta/bin"
     remote_src: yes
     mode: '0755'
