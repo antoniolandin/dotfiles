@@ -14,7 +14,8 @@ desktop_packages:
   - ufw
   - lightdm
   - lightdm-gtk-greeter
-  - zsh
+  - xorg-xset
+  - xorg-xrandr
 
   # GUI apps
   - zathura
