@@ -24,7 +24,6 @@
     path: "{{ ansible_facts.user_dir }}/.local/state/zsh/history"
     state: touch
     mode: '0600'
-    modification_time: preserve_access
   become: no
   become_user: "{{ ansible_facts.user_id }}"
 
@@ -36,10 +35,3 @@
     force: yes
   loop: "{{ shell_symlinks }}"
   ignore_errors: yes
-
-- name: Symlink Starship config
-  file:
-    src: "{{ dotfiles_dir }}/starship.toml"
-    dest: "{{ ansible_facts.user_dir }}/.config/starship.toml"
-    state: link
-    force: yes

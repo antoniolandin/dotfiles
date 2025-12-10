@@ -23,3 +23,4 @@ shell_symlinks:
   - eza
   - zsh
   - npm
+  - starship.toml
