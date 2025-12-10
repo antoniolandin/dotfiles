@@ -11,3 +11,4 @@
   roles:
     - desktop
     - shell
+    - editor
