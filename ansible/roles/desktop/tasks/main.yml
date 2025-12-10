@@ -1,7 +1,7 @@
 ---
 - name: Create user directories
   file:
-    path: "{{ ansible_user_dir }}/{{ item }}"
+    path: "{{ ansible_facts.user_dir }}/{{ item }}"
     state: directory
     mode: '0755'
   loop: "{{ user_directories }}"
@@ -37,7 +37,7 @@
 - name: Symlink .Xresources
   file:
     src: "{{ dotfiles_dir }}/X11/Xresources"
-    dest: "{{ ansible_user_dir }}/.Xresources"
+    dest: "{{ ansible_facts.user_dir }}/.Xresources"
     state: link
     force: yes
 
@@ -69,7 +69,7 @@
 - name: Copy LibreWolf .desktop file
   copy:
     src: librewolf.desktop       # Ansible looks for this in 'files/' automatically
-    dest: "{{ ansible_user_dir }}/.local/share/applications/librewolf.desktop"
+    dest: "{{ ansible_facts.user_dir }}/.local/share/applications/librewolf.desktop"
     mode: '0644'
 
 - name: Set LibreWolf as default browser
@@ -88,7 +88,7 @@
 - name: Copy wallpaper to correct position
   copy:
     src: wallpaper.png
-    dest: "{{ ansible_user_dir }}/Pictures/wallpapers/argonaut.png"
+    dest: "{{ ansible_facts.user_dir }}/Pictures/wallpapers/argonaut.png"
     mode: "0644"
 
 - name: Enable and start services
