@@ -1,7 +1,7 @@
 ---
 editor_packages:
   - neovim
-  - nodejs
+  - python-pip
   - npm
   - luarocks
   - tree-sitter-cli

@@ -16,6 +16,7 @@ desktop_packages:
   - lightdm-gtk-greeter
   - xorg-xset
   - xorg-xrandr
+  - python-dbus
 
   # GUI apps
   - zathura

@@ -19,6 +19,7 @@ shell_packages:
   - tree
   - wget
   - github-cli
+  - python-pip
 
 shell_symlinks:
   - eza
