@@ -17,8 +17,8 @@
 - name: Change owner and group of the dotfiles files
   file:
     path: "{{ dotfiles_dir }}"
-    owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_gid }}"
+    owner: "{{ ansible_facts.user_id }}"
+    group: "{{ ansible_facts.user_gid }}"
     recurse: yes
     state: directory
   become: yes
