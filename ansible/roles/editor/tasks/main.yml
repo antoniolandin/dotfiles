@@ -1,0 +1,63 @@
+---
+- name: Install Neovim and dependencies
+  package:
+    name: "{{ editor_packages }}"
+    state: present
+  become: yes
+
+- name: Ensure Volta directory structure exists
+  file:
+    path: "{{ ansible_facts.user_dir }}/.local/share/volta/bin"
+    state: directory
+    mode: '0755'
+  become: no
+  become_user: "{{ ansible_facts.user_id }}"
+
+- name: Check if Volta is installed
+  stat:
+    path: "{{ ansible_facts.user_dir }}/.local/share/volta/bin/volta"
+  register: volta_bin
+
+- name: Download and install Volta
+  unarchive:
+    # We use the official Linux release tarball
+    src: "https://github.com/volta-cli/volta/releases/download/v{{ volta_version }}/volta-{{ volta_version }}-linux.tar.gz"
+    dest: "{{ ansible_facts.user_dir }}/.local/share/volta/bin"
+    remote_src: yes
+    mode: '0755'
+  become: no
+  become_user: "{{ ansible_facts.user_id }}"
+  when: not volta_bin.stat.exists
+
+- name: Install Node.js
+  command: "{{ ansible_facts.user_dir }}/.local/share/volta/bin/volta install node"
+  become: no
+  become_user: "{{ ansible_facts.user_id }}"
+  changed_when: false # Volta handles "already installed" logic gracefully
+
+- name: Install NPM
+  command: "{{ ansible_facts.user_dir }}/.local/share/volta/bin/volta install npm"
+  become: no
+  become_user: "{{ ansible_facts.user_id }}"
+  changed_when: false
+
+- name: Install Yarn
+  command: "{{ ansible_facts.user_dir }}/.local/share/volta/bin/volta install yarn"
+  become: no
+  become_user: "{{ ansible_facts.user_id }}"
+  changed_when: false
+
+- name: Ensure .config directory exists
+  file:
+    path: "{{ ansible_facts.user_dir }}/.config"
+    state: directory
+    mode: '0755'
+
+- name: Symlink editor configuration directories
+  editor
+    src: "{{ dotfiles_dir }}/{{ item }}"
+    dest: "{{ ansible_facts.user_dir }}/.config/{{ item }}"
+    state: link
+    force: yes
+  loop: "{{ editor_symlinks }}"
+  ignore_errors: yes

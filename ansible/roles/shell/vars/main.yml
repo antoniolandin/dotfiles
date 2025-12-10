@@ -18,6 +18,7 @@ shell_packages:
   - fastfetch
   - tree
   - wget
+  - github-cli
 
 shell_symlinks:
   - eza

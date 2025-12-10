@@ -1,0 +1,17 @@
+---
+editor_packages:
+  - neovim
+  - nodejs
+  - npm
+  - luarocks
+  - tree-sitter-cli
+  - ripgrep
+  - fzf
+  - fd
+  - python-pynvim
+  - texlive
+
+editor_symlinks:
+  - latexmk
+  - npm
+  - nvim
