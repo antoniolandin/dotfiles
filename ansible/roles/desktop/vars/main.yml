@@ -55,7 +55,7 @@ desktop_symlinks:
   - i3
   - polybar
   - rofi
-  - dunts
+  - dunst
   - picom
   - autorandr
   - i3wsr
