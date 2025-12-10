@@ -11,8 +11,6 @@ BLUE="\033[1;34m"
 PURPLE="\033[1;35m"
 CYAN="\033[1;36m"
 GRAY='\033[90m'
-TURQUOISE="\033[1;96m"
-ORANGE="\033[38;5;208m"
 NC="\e[0m"
 
 # Variables
@@ -69,7 +67,7 @@ ansible-galaxy collection install kewlfft.aur
 echo -e "${BLUE}Executing Ansible Playbook...${NC}"
 
 cd "$DOTFILES_DIR/ansible"
-ansible-playbook -i inventory.ini setup.yml -K
+ansible-playbook -i inventory.ini setup.yml -K -v
 
 echo -e "${GREEN}✅ Dotfiles installation complete!${NC}"
 echo -e "${GREEN}Please, reboot system to apply all changes.${NC}"
