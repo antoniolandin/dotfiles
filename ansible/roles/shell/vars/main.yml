@@ -1,0 +1,25 @@
+---
+shell_packages:
+  - zsh
+
+  - starship
+  - fzf
+  - zoxide
+  
+  - eza
+  - bat
+  - ripgrep
+  - fd
+  - tealdeer
+
+  - jq
+  - p7zip
+  - unzip
+  - fastfetch
+  - tree
+  - wget
+
+shell_symlinks:
+  - eza
+  - zsh
+  - npm

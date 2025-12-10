@@ -1,0 +1,45 @@
+---
+- name: Install shell packages
+  package:
+    name: "{{ shell_packages }}"
+    state: present
+  become: yes
+
+- name: Ensure XDG and system directories exist
+  file:
+    path: "{{ ansible_facts.user_dir }}/{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - .config
+    - .local/bin
+    - .local/share
+    - .local/state/zsh  # For Zsh history file
+    - .cache
+  become: no
+  become_user: "{{ ansible_facts.user_id }}"
+
+- name: Ensure Zsh history file exists
+  file:
+    path: "{{ ansible_facts.user_dir }}/.local/state/zsh/history"
+    state: touch
+    mode: '0600'
+    modification_time: preserve_access
+  become: no
+  become_user: "{{ ansible_facts.user_id }}"
+
+- name: Symlink shell configuration directories
+  file:
+    src: "{{ dotfiles_dir }}/{{ item }}"
+    dest: "{{ ansible_facts.user_dir }}/.config/{{ item }}"
+    state: link
+    force: yes
+  loop: "{{ shell_symlinks }}"
+  ignore_errors: yes
+
+- name: Symlink Starship config
+  file:
+    src: "{{ dotfiles_dir }}/starship.toml"
+    dest: "{{ ansible_facts.user_dir }}/.config/starship.toml"
+    state: link
+    force: yes
