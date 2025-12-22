@@ -165,6 +165,7 @@ def get_battery_cells() -> list:
 timer_id = None
 right_status_length = -1
 
+
 def draw_tab(
     draw_data: DrawData,
     screen: Screen,
