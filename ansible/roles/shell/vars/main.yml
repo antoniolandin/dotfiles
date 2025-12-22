@@ -22,7 +22,7 @@ shell_packages:
   - python-pip
 
 shell_symlinks:
-  - eza
   - zsh
+  - eza
   - npm
   - starship.toml

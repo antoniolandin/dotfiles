@@ -68,6 +68,7 @@
     force: yes
   loop: "{{ editor_symlinks }}"
   ignore_errors: yes
+  tags: ['symlinks']
 
 - name: Install pipx
   package:
