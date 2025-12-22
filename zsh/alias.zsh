@@ -18,6 +18,7 @@ alias zbench="hyperfine 'zsh -cli exit'"
 alias la="ls -a"
 alias ll="ls -al"
 alias kssh="kitten ssh"
+alias dotlink="ansible-playbook -i $HOME/Repos/dotfiles/ansible/inventory.ini $HOME/Repos/dotfiles/ansible/setup.yml --tags symlinks"
 
 # Fix commands
 alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
