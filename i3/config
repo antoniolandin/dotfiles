@@ -151,11 +151,6 @@ bindsym $mod+Ctrl+minus scratchpad show
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym h resize shrink width 5 px or 5 ppt
         bindsym j resize grow height 5 px or 5 ppt
         bindsym k resize shrink height 5 px or 5 ppt
@@ -294,9 +289,6 @@ exec_always --no-startup-id i3wsr
 exec --no-startup-id nm-applet
 exec --no-startup-id synology-drive
 
-# fast keyboard
-exec_always --no-startup-id xset r rate 190 35
-
 # stop screensaver
 exec_always --no-startup-id xset s off -dpms
 
@@ -307,11 +299,6 @@ exec_always --no-startup-id xset s off -dpms
 # Set inner/outer gaps
 gaps inner 14
 gaps outer -2
-
-# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
-# gaps inner|outer current|all set|plus|minus <px>
-# gaps inner all set 10
-# gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on
