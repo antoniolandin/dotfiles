@@ -3,7 +3,7 @@ alias ls="eza --icons --grid --colour=auto --sort=type --group-directories-first
 alias cd="z"
 
 # University alias
-alias horario="tdf -f true $HOME/Drive/universidad/cursos/curso-2025-2026/horarios/horario-primer-cuatrimestre.pdf 2>/dev/null"
+alias horario="tdf -f true $HOME/Drive/universidad/cursos/curso-2025-2026/horarios/horario-segundo-cuatrimestre.pdf 2>/dev/null"
 alias calendario="tdf -f true $HOME/Drive/universidad/cursos/curso-2025-2026/horarios/calendario.pdf 2>/dev/null"
 alias examen="tdf -f true ~/Drive/universidad/cursos/curso-2024-2025/horarios/examenes-extraordinaria-primer-cuatrimestre.pdf 2>/dev/null"
 alias count='sum=0;for file in *.pdf; do sum=$((sum+$(pdfinfo $file | pcregrep -o1 "^Pages:\s*(\d*)"))); done; echo "$sum páginas"'
