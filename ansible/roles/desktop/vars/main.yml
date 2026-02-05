@@ -31,6 +31,7 @@ desktop_packages:
   - blueman
 
   - ttf-firacode-nerd 
+  - playerctl
 
 desktop_aur_packages:
   - pulseaudio-control
