@@ -68,10 +68,15 @@ vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
 vim.keymap.set("n", "<C-\\>", require("smart-splits").move_cursor_previous)
 
 -- swapping buffers between windows
-vim.keymap.set("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
-vim.keymap.set("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
-vim.keymap.set("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
-vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
+vim.keymap.set('n', '<C-S-h>', require('smart-splits').swap_buf_left)
+vim.keymap.set('n', '<C-S-j>', require('smart-splits').swap_buf_down)
+vim.keymap.set('n', '<C-S-k>', require('smart-splits').swap_buf_up)
+vim.keymap.set('n', '<C-S-l>', require('smart-splits').swap_buf_right)
+
+vim.keymap.set('n', '<C-M-h>', '<C-w>H')
+vim.keymap.set('n', '<C-M-j>', '<C-w>J')
+vim.keymap.set('n', '<C-M-k>', '<C-w>K')
+vim.keymap.set('n', '<C-M-l>', '<C-w>L')
 
 -- create new splits
 vim.keymap.set("n", "<C-->", "<cmd>split<CR>")
@@ -103,4 +108,42 @@ end)
 vim.keymap.set("n", "<leader>ft", vim.lsp.buf.format)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
-vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, {})
+vim.keymap.set('n', 'ga', vim.lsp.buf.code_action)
+vim.keymap.set('n', 'gr', vim.lsp.buf.rename)
+
+local function select_python_cell(around)
+    local start_line = vim.fn.search('^# %%', 'bnWc')
+
+    if start_line == 0 then
+        start_line = 1
+    elseif not around then
+        start_line = start_line + 1
+    end
+
+    local end_line = vim.fn.search('^# %%', 'nW')
+
+    if end_line == 0 then
+        end_line = vim.fn.line('$')
+    else
+        if not around then
+            end_line = end_line - 1
+        end
+    end
+
+    if start_line > end_line then return end
+
+    local keys = vim.api.nvim_replace_termcodes("<Esc>" .. start_line .. "GV" .. end_line .. "G", true, false, true)
+    vim.api.nvim_feedkeys(keys, 'nx', false)
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "python",
+    callback = function()
+        local opts = { buffer = true, silent = true }
+
+        vim.keymap.set('x', 'ic', function() select_python_cell(false) end, opts)
+        vim.keymap.set('x', 'ac', function() select_python_cell(true) end, opts)
+        vim.keymap.set('o', 'ic', function() select_python_cell(false) end, opts)
+        vim.keymap.set('o', 'ac', function() select_python_cell(true) end, opts)
+    end
+})
