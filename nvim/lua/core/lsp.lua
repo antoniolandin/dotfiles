@@ -24,13 +24,29 @@ vim.lsp.config('pylsp', {
     settings = {
         pylsp = {
             plugins = {
-                pycodestyle = {
-                    ignore = { 'W391', 'W503' },
-                    maxLineLength = 150
+                rope_autoimport = {
+                    enabled = false,
+                    memory = false,
                 },
-                mccabe = {
-                    enabled = false
-                }
+                rope_completion = {
+                    enabled = false,
+                },
+                jedi_completion = {
+                    enabled = true,
+                    include_params = true,
+                    fuzzy = false,
+                    include_class_objects = true,
+                    include_function_objects = true,
+                },
+                ruff = {
+                    enabled = true,
+                    lineLength = 150,
+                },
+                pycodestyle = { enabled = false },
+                mccabe = { enabled = false },
+                flake8 = { enabled = false },
+                pylint = { enabled = false },
+                pyflakes = { enabled = false },
             }
         }
     },
