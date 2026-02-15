@@ -37,12 +37,19 @@ return {
             "\tpantalla.fill(BLANCO)",
             ""
         }),
-        i(0),
+        i(2),
         t({
             "",
             "\tpygame.display.flip()",
             "",
             "\treloj.tick(FPS)"
-        })
+        }),
+        i(0)
+    }),
+    s("cl", {
+        t({ "# %%", "" }),
+        i(1),
+        t({ "", "# %%" }),
+        i(0)
     }),
 }

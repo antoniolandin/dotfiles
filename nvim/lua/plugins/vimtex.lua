@@ -1,85 +1,97 @@
 return {
-	"lervag/vimtex",
-	lazy = false, -- lazy-loading will disable inverse search
-	config = function()
-		vim.api.nvim_create_autocmd({ "FileType" }, {
-			group = vim.api.nvim_create_augroup("lazyvim_vimtex_conceal", { clear = true }),
-			pattern = { "bib", "tex" },
-			callback = function()
-				vim.wo.conceallevel = 0
-			end,
-		})
+    "lervag/vimtex",
+    lazy = false,
+    config = function()
+        -- 1. Ajustes visuales básicos
+        vim.api.nvim_create_autocmd({ "FileType" }, {
+            group = vim.api.nvim_create_augroup("lazyvim_vimtex_conceal", { clear = true }),
+            pattern = { "bib", "tex" },
+            callback = function() vim.wo.conceallevel = 0 end,
+        })
 
-		vim.g.vimtex_mappings_disable = { ["n"] = { "K" } } -- disable `K` as it conflicts with LSP hover
-		vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
-		vim.g.vimtex_syntax_enabled = 0
+        -- 2. Configuración Vimtex
+        vim.g.vimtex_mappings_disable = { ["n"] = { "K" } }
+        vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
+        vim.g.vimtex_syntax_enabled = 0
+        vim.g.vimtex_pdf_output_dir = "build"
 
-		-- Configure vimtex with tdf viewer
-		vim.g.vimtex_view_method = "general"
-		vim.g.vimtex_view_general_viewer = "tdf"
-		vim.g.vimtex_view_general_options = "@pdf"
-		vim.g.vimtex_view_automatic = 1 -- Auto-open on compilation
-		vim.g.vimtex_pdf_output_dir = "build" -- Relative to tex root (or use absolute path)
-		vim.g.vimtex_view_skim_sync = 1
-		vim.g.vimtex_view_skim_activate = 1
-		vim.g.vimtex_view_skim_reading_bar = 1
+        -- Configuración para engañar a Vimtex (usamos un "dummy" general)
+        vim.g.vimtex_view_method = "general"
+        vim.g.vimtex_view_general_viewer = "echo" -- No dejamos que vimtex lance nada, lo hacemos nosotros
+        vim.g.vimtex_view_automatic = 0 -- Desactivamos el auto de Vimtex para controlarlo manualmente
 
-		_G.tdf_viewer = function(status)
-			if not status or not vim.b.vimtex then
-				return
-			end
+        -- ============================================================
+        -- LÓGICA DE GESTIÓN DE TDF
+        -- ============================================================
+        local view_suffix = ".view.pdf"
 
-			-- Get output directory (falls back to tex root if not set)
-			local output_dir = vim.g.vimtex_pdf_output_dir or vim.b.vimtex.root
-			local pdf_path = vim.fn.fnamemodify(
-				output_dir .. "/" .. vim.b.vimtex.name .. ".pdf",
-				":p" -- Convert to absolute path
-			)
+        -- Función para preparar el PDF de forma SEGURA (Atómica)
+        local function prepare_view_pdf()
+            if not vim.b.vimtex then return nil end
 
-			-- Create directory if it doesn't exist
-			if vim.g.vimtex_pdf_output_dir then
-				vim.fn.mkdir(output_dir, "p")
-			end
+            local output_dir = vim.g.vimtex_pdf_output_dir or vim.b.vimtex.root
+            local real_pdf = output_dir .. "/" .. vim.b.vimtex.name .. ".pdf"
+            local view_pdf = output_dir .. "/" .. vim.b.vimtex.name .. view_suffix
+            
+            -- Solo procedemos si el PDF real existe y tiene contenido
+            if vim.fn.getfsize(real_pdf) > 1000 then
+                -- Usamos MV (mover). Esto es atómico.
+                -- El archivo viejo desaparece y aparece el nuevo instantáneamente.
+                -- tdf se cerrará solo al detectar esto, lo cual es lo que queremos controlar.
+                local cmd = string.format("cp '%s' '%s.tmp' && mv '%s.tmp' '%s'", 
+                    real_pdf, view_pdf, view_pdf, view_pdf)
+                vim.fn.system(cmd)
+                return vim.fn.fnamemodify(view_pdf, ":p")
+            end
+            return nil
+        end
 
-			vim.fn.system({
-				"kitty",
-				"@",
-				"kitten",
-				"tdf_handler.py",
-				pdf_path,
-			})
-		end
+        -- Función para matar y revivir tdf
+        local function restart_tdf()
+            local pdf_path = prepare_view_pdf()
+            if not pdf_path then return end
 
-		-- Close tdf when Vimtex stops
-		_G.tdf_close = function()
-			vim.fn.system({
-				"kitty",
-				"@",
-				"close-window",
-				"--match",
-				"title:tdf",
-			})
-		end
+            -- 1. Cerramos cualquier instancia previa de tdf
+            vim.fn.system({ "kitty", "@", "close-window", "--match", "title:tdf" })
 
-		-- Set up autocommands
-		vim.api.nvim_create_augroup("vimtex_tdf", { clear = true })
+            -- 2. Esperamos un instante minúsculo para que Kitty procese el cierre
+            vim.defer_fn(function()
+                vim.fn.system({
+                    "kitty", "@", "kitten", "tdf_handler.py", pdf_path
+                })
+            end, 100) -- 100ms de retraso para asegurar estabilidad
+        end
 
-		-- Open viewer on compilation start
-		vim.api.nvim_create_autocmd("User", {
-			group = "vimtex_tdf",
-			pattern = "VimtexEventCompileStarted",
-			callback = function()
-				if vim.g.vimtex_view_automatic == 1 then
-					_G.tdf_viewer(true)
-				end
-			end,
-		})
+        local au_group = vim.api.nvim_create_augroup("vimtex_tdf_restart", { clear = true })
 
-		-- Close viewer when compilation stops
-		vim.api.nvim_create_autocmd("User", {
-			group = "vimtex_tdf",
-			pattern = "VimtexEventCompileStopped",
-			callback = _G.tdf_close,
-		})
-	end,
+        -- EVENTO: COMPILACIÓN EXITOSA
+        vim.api.nvim_create_autocmd("User", {
+            group = au_group,
+            pattern = "VimtexEventCompileSuccess",
+            callback = restart_tdf,
+        })
+
+        -- EVENTO: AL ABRIR EL ARCHIVO (Primera vez)
+        vim.api.nvim_create_autocmd("User", {
+            group = au_group,
+            pattern = "VimtexEventInit", -- O VimtexEventCompileStarted
+            callback = function()
+                 -- Solo si ya existe un PDF compilado previamente
+                 local output_dir = vim.g.vimtex_pdf_output_dir or "build" -- Ajusta si usas otra ruta
+                 local name = vim.fn.expand("%:t:r") -- Nombre del archivo sin extensión
+                 local pdf = output_dir .. "/" .. name .. ".pdf"
+                 if vim.fn.filereadable(pdf) == 1 then
+                     restart_tdf()
+                 end
+            end,
+        })
+
+        -- EVENTO: CERRAR TODO AL SALIR
+        vim.api.nvim_create_autocmd("VimLeave", {
+            group = au_group,
+            callback = function()
+                vim.fn.system({ "kitty", "@", "close-window", "--match", "title:tdf" })
+            end,
+        })
+    end,
 }
