@@ -13,7 +13,8 @@ return {
                 repl_definition = {
                     python = {
                         command = { "ipython", "--no-autoindent", "--no-confirm-exit" },
-                        format = require("iron.fts.common").bracketed_paste_python
+                        format = require("iron.fts.common").bracketed_paste_python,
+                        block_dividers = { "# %%" },
                     }
                 }
             },
@@ -39,6 +40,8 @@ return {
             },
             ignore_blank_lines = true,
         })
+
+        vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
     end,
     keys = {
         { "<leader>is", "<cmd>IronRepl<cr>",    desc = "Iniciar REPL" },

@@ -86,12 +86,21 @@ vim.keymap.set("n", "<C-i>", "<cmd>vsplit<CR>")
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
--- vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
 vim.keymap.set("n", "<leader>ps", function()
     builtin.grep_string({ search = vim.fn.input("Grep String > ") })
 end, {})
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "See open buffers" })
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Search in vim help" })
+vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "Resume search" })
 
---- Toggle spell ---
+vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = "Buscar archivos en Git" })
+vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = "Git Status (Ver cambios)" })
+vim.keymap.set('n', '<leader>gc', builtin.git_commits, { desc = "Git Commits (Historial)" })
+vim.keymap.set('n', '<leader>gl', builtin.git_bcommits, { desc = "Git Log (Archivo actual)" })
+vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = "Git Branches (Check out)" })
+
+vim.keymap.set('n', 'grr', require('telescope.builtin').lsp_references, {})
+
 vim.api.nvim_set_keymap("n", "<leader>g", ":set spell!<CR>", { noremap = true, silent = true })
 
 -- Go to next error
@@ -106,27 +115,41 @@ end)
 
 --- LSP
 vim.keymap.set("n", "<leader>ft", vim.lsp.buf.format)
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+-- vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration)
-vim.keymap.set('n', 'ga', vim.lsp.buf.code_action)
-vim.keymap.set('n', 'gr', vim.lsp.buf.rename)
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = "Ver diagnóstico del LSP" })
 
 local function select_python_cell(around)
     local start_line = vim.fn.search('^# %%', 'bnWc')
 
+    -- Si estamos en un bloque de Markdown, NO seleccionamos
+    if start_line > 0 then
+        local line_content = vim.fn.getline(start_line)
+        if line_content:find("%[markdown%]") then
+            start_line = vim.fn.search('^# %%$')
+        end
+    end
+
+    -- Lógica de inicio
     if start_line == 0 then
         start_line = 1
     elseif not around then
         start_line = start_line + 1
     end
 
-    local end_line = vim.fn.search('^# %%', 'nW')
+    local next_marker = vim.fn.search('^# %%', 'nW', 0, 0, "line('.') == " .. start_line)
+    local end_line
 
-    if end_line == 0 then
+    if next_marker == 0 then
         end_line = vim.fn.line('$')
     else
-        if not around then
-            end_line = end_line - 1
+        -- entre nuestra posición actual y el siguiente marcador.
+        end_line = vim.fn.prevnonblank(next_marker - 1)
+
+        -- Si por algún motivo todas las líneas son blancas hasta el marcador,
+        -- simplemente nos quedamos en la línea anterior al marcador.
+        if end_line < start_line then
+            end_line = next_marker - 1
         end
     end
 

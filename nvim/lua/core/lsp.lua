@@ -21,6 +21,9 @@ vim.lsp.config('lua_ls', {
 })
 
 vim.lsp.config('pylsp', {
+    capabilities = {
+        offsetEncoding = { "utf-16" },
+    },
     settings = {
         pylsp = {
             plugins = {
@@ -80,6 +83,32 @@ vim.lsp.config('perlnavigator', {
             perlimportsTidyEnabled = false,
             perlcriticProfile = '',
             perlcriticEnabled = true,
+        }
+    }
+})
+
+local words = { "Dummy", "Ina" }
+local dummys_diccionario = {}
+for _, word in ipairs(words) do
+    for i = 0, 200 do
+        table.insert(dummys_diccionario, word .. i)
+    end
+end
+
+-- Solo para comprobar que funciona, imprimimos el último:
+print(dummys_diccionario[#dummys_diccionario]) -- Debería imprimir Ina200
+vim.lsp.config('ltex', {
+    settings = {
+        ltex = {
+            language = "es",
+            dictionary = {
+                ["es"] = dummys_diccionario
+            }
+        },
+        hiddenFalsePositives = {
+            ["es"] = {
+                "Dummy1"
+            }
         }
     }
 })

@@ -14,11 +14,21 @@ return {
         vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
         vim.g.vimtex_syntax_enabled = 0
         vim.g.vimtex_pdf_output_dir = "build"
+        vim.g.vimtex_compiler_method = 'latexmk'
+        vim.g.vimtex_compiler_latexmk = {
+            options = {
+                "-shell-escape",
+                "-verbose",
+                "-file-line-error",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+            },
+        }
 
         -- Configuración para engañar a Vimtex (usamos un "dummy" general)
         vim.g.vimtex_view_method = "general"
         vim.g.vimtex_view_general_viewer = "echo" -- No dejamos que vimtex lance nada, lo hacemos nosotros
-        vim.g.vimtex_view_automatic = 0 -- Desactivamos el auto de Vimtex para controlarlo manualmente
+        vim.g.vimtex_view_automatic = 0           -- Desactivamos el auto de Vimtex para controlarlo manualmente
 
         -- ============================================================
         -- LÓGICA DE GESTIÓN DE TDF
@@ -32,13 +42,13 @@ return {
             local output_dir = vim.g.vimtex_pdf_output_dir or vim.b.vimtex.root
             local real_pdf = output_dir .. "/" .. vim.b.vimtex.name .. ".pdf"
             local view_pdf = output_dir .. "/" .. vim.b.vimtex.name .. view_suffix
-            
+
             -- Solo procedemos si el PDF real existe y tiene contenido
             if vim.fn.getfsize(real_pdf) > 1000 then
                 -- Usamos MV (mover). Esto es atómico.
                 -- El archivo viejo desaparece y aparece el nuevo instantáneamente.
                 -- tdf se cerrará solo al detectar esto, lo cual es lo que queremos controlar.
-                local cmd = string.format("cp '%s' '%s.tmp' && mv '%s.tmp' '%s'", 
+                local cmd = string.format("cp '%s' '%s.tmp' && mv '%s.tmp' '%s'",
                     real_pdf, view_pdf, view_pdf, view_pdf)
                 vim.fn.system(cmd)
                 return vim.fn.fnamemodify(view_pdf, ":p")
@@ -76,13 +86,13 @@ return {
             group = au_group,
             pattern = "VimtexEventInit", -- O VimtexEventCompileStarted
             callback = function()
-                 -- Solo si ya existe un PDF compilado previamente
-                 local output_dir = vim.g.vimtex_pdf_output_dir or "build" -- Ajusta si usas otra ruta
-                 local name = vim.fn.expand("%:t:r") -- Nombre del archivo sin extensión
-                 local pdf = output_dir .. "/" .. name .. ".pdf"
-                 if vim.fn.filereadable(pdf) == 1 then
-                     restart_tdf()
-                 end
+                -- Solo si ya existe un PDF compilado previamente
+                local output_dir = vim.g.vimtex_pdf_output_dir or "build"  -- Ajusta si usas otra ruta
+                local name = vim.fn.expand("%:t:r")                        -- Nombre del archivo sin extensión
+                local pdf = output_dir .. "/" .. name .. ".pdf"
+                if vim.fn.filereadable(pdf) == 1 then
+                    restart_tdf()
+                end
             end,
         })
 
