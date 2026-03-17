@@ -96,10 +96,10 @@ for _, word in ipairs(words) do
 end
 
 -- Solo para comprobar que funciona, imprimimos el último:
-print(dummys_diccionario[#dummys_diccionario]) -- Debería imprimir Ina200
 vim.lsp.config('ltex', {
     settings = {
         ltex = {
+            enabled = { "latex", "markdown", "bibtex" },
             language = "es",
             dictionary = {
                 ["es"] = dummys_diccionario
