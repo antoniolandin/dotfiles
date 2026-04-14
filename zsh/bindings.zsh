@@ -17,3 +17,11 @@ bindkey -M vicmd '^S' sudo-command-line
 
 # Open yazi
 bindkey -s "^y" "yazi\n"
+
+add-xclip-pipe() {
+    BUFFER="$BUFFER | xclip -sel c"
+    CURSOR=$#BUFFER
+}
+zle -N add-xclip-pipe
+bindkey -M viins '^[x' add-xclip-pipe
+bindkey -M vicmd '^[x' add-xclip-pipe

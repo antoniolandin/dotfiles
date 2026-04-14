@@ -95,19 +95,20 @@ for _, word in ipairs(words) do
     end
 end
 
--- Solo para comprobar que funciona, imprimimos el último:
 vim.lsp.config('ltex', {
+    on_attach = function(client, bufnr)
+        require("ltex_extra").setup {
+            load_langs = { "es" },
+            init_check = true,
+            path = vim.fn.expand("~/.config/nvim/ltex"),
+        }
+    end,
     settings = {
         ltex = {
             enabled = { "latex", "markdown", "bibtex" },
             language = "es",
             dictionary = {
                 ["es"] = dummys_diccionario
-            }
-        },
-        hiddenFalsePositives = {
-            ["es"] = {
-                "Dummy1"
             }
         }
     }
