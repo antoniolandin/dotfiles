@@ -6,13 +6,23 @@ return {
         opts = {},
     },
     {
-        "folke/tokyonight.nvim",
+        "ellisonleao/gruvbox.nvim",
         lazy = false,
         priority = 1000,
         opts = {
-            transparent = true,
+            transparent_mode = true,
         },
+        config = function(_, opts)
+            require("gruvbox").setup(opts)
+        end,
+    }, {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+        transparent = true,
     },
+},
     {
         "0xstepit/flow.nvim",
         lazy = false,
@@ -44,5 +54,4 @@ return {
             vim.g.aurora_transparent = true
         end,
     },
-    { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... }
 }

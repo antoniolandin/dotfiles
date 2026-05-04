@@ -1,5 +1,17 @@
 format = '$all'
-palette = "flow" 
+palette = "gruvbox"
+
+[palettes.gruvbox]
+black = '#282828'     # bg
+red = '#cc241d'       # red normal
+green = '#98971a'     # green normal
+yellow = '#d79921'    # yellow normal
+blue = '#458588'      # blue normal
+magenta = '#b16286'   # purple normal
+cyan = '#689d6a'      # aqua normal
+white = '#a89984'     # gray normal
+background = '#282828'# bg0
+foreground = '#ebdbb2'# fg
 
 [palettes.flow]
 black = '#15161e'
