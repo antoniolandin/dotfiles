@@ -1,0 +1,250 @@
+#!/usr/bin/env python3
+"""
+Claude Code usage monitor for waybar/polybar.
+Outputs JSON compatible with waybar's custom module format.
+
+Shows your Claude Code 5-hour and 7-day usage limits with notifications
+when approaching thresholds.
+"""
+
+import json
+import subprocess
+from datetime import datetime, timezone
+from pathlib import Path
+
+CREDENTIALS_FILE = Path.home() / ".claude" / ".credentials.json"
+STATE_FILE = Path.home() / ".cache" / "claude-usage-state.json"
+API_BASE = "https://api.anthropic.com/api/oauth"
+
+# Notification thresholds (only notify once per threshold crossing)
+THRESHOLDS = [50, 80, 90, 95]
+
+
+def get_access_token():
+    """Read access token from Claude credentials file."""
+    if not CREDENTIALS_FILE.exists():
+        return None
+
+    with open(CREDENTIALS_FILE) as f:
+        creds = json.load(f)
+
+    oauth = creds.get("claudeAiOauth", {})
+    return oauth.get("accessToken")
+
+
+def api_call(endpoint: str, token: str) -> dict:
+    """Make an API call to Claude OAuth endpoint."""
+    result = subprocess.run(
+        [
+            "curl",
+            "-s",
+            f"{API_BASE}/{endpoint}",
+            "-H",
+            f"Authorization: Bearer {token}",
+            "-H",
+            "anthropic-beta: oauth-2025-04-20",
+        ],
+        capture_output=True,
+        text=True,
+    )
+    return json.loads(result.stdout) if result.stdout else {}
+
+
+def time_until(reset_str: str) -> str:
+    """Calculate human-readable time until reset."""
+    if not reset_str:
+        return "N/A"
+
+    try:
+        reset = datetime.fromisoformat(reset_str)
+        now = datetime.now(timezone.utc)
+        delta = reset - now
+        secs = delta.total_seconds()
+
+        if secs < 0:
+            return "now"
+        elif secs < 3600:
+            return f"{int(secs // 60)}m"
+        elif secs < 86400:
+            hours = int(secs // 3600)
+            mins = int((secs % 3600) // 60)
+            return f"{hours}h {mins}m"
+        else:
+            days = int(secs // 86400)
+            hours = int((secs % 86400) // 3600)
+            return f"{days}d {hours}h"
+    except Exception:
+        return "N/A"
+
+
+def format_reset_time(reset_str: str) -> str:
+    """Format reset time as local time."""
+    if not reset_str:
+        return "N/A"
+    try:
+        reset = datetime.fromisoformat(reset_str)
+        local = reset.astimezone()
+        return local.strftime("%a %H:%M")
+    except Exception:
+        return "N/A"
+
+
+def load_state() -> dict:
+    """Load previous notification state."""
+    try:
+        if STATE_FILE.exists():
+            with open(STATE_FILE) as f:
+                return json.load(f)
+    except Exception:
+        pass
+    return {"notified_thresholds": [], "last_reset": None}
+
+
+def save_state(state: dict):
+    """Save notification state."""
+    try:
+        STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(STATE_FILE, "w") as f:
+            json.dump(state, f)
+    except Exception:
+        pass
+
+
+def send_notification(title: str, body: str, urgency: str = "normal"):
+    """Send a desktop notification."""
+    subprocess.run(
+        ["notify-send", "-a", "Claude", "-u", urgency, title, body], capture_output=True
+    )
+
+
+def check_and_notify(five_pct: int, reset_at: str, state: dict) -> dict:
+    """Check thresholds and send notifications if needed."""
+    # Reset notifications if the window has reset
+    if state.get("last_reset") != reset_at:
+        state = {"notified_thresholds": [], "last_reset": reset_at}
+
+    notified = state.get("notified_thresholds", [])
+
+    for threshold in THRESHOLDS:
+        if five_pct >= threshold and threshold not in notified:
+            # Determine urgency
+            if threshold >= 90:
+                urgency = "critical"
+                icon = "🔴"
+            elif threshold >= 80:
+                urgency = "critical"
+                icon = "🟠"
+            else:
+                urgency = "normal"
+                icon = "🟡"
+
+            reset_in = time_until(reset_at)
+            send_notification(
+                f"{icon} Claude Usage {threshold}%",
+                f"5-hour limit at {five_pct}%\nResets in {reset_in}",
+                urgency,
+            )
+            notified.append(threshold)
+
+    state["notified_thresholds"] = notified
+    return state
+
+
+def main():
+    token = get_access_token()
+    if not token:
+        print(
+            json.dumps(
+                {
+                    "text": "󰧑 ?",
+                    "tooltip": "Claude credentials not found\n\nRun 'claude' to authenticate",
+                    "class": "error",
+                }
+            )
+        )
+        return
+
+    try:
+        usage = api_call("usage", token)
+        profile = api_call("profile", token)
+    except Exception as e:
+        print(
+            json.dumps({"text": "󰧑 !", "tooltip": f"API error: {e}", "class": "error"})
+        )
+        return
+
+    # Check for API errors
+    if "error" in usage:
+        print(
+            json.dumps(
+                {
+                    "text": "󰧑 !",
+                    "tooltip": f"API error: {usage.get('error', {}).get('message', 'Unknown')}",
+                    "class": "error",
+                }
+            )
+        )
+        return
+
+    five_hour = usage.get("five_hour", {})
+    seven_day = usage.get("seven_day", {})
+    account = profile.get("account", {})
+    org = profile.get("organization", {})
+
+    five_pct = int(five_hour.get("utilization", 0))
+    seven_pct = int(seven_day.get("utilization", 0))
+    reset_at = five_hour.get("resets_at")
+
+    # Check thresholds and notify
+    state = load_state()
+    state = check_and_notify(five_pct, reset_at, state)
+    save_state(state)
+
+    # Determine CSS class based on usage
+    if five_pct > 80:
+        css_class = "critical"
+    elif five_pct > 50:
+        css_class = "warning"
+    else:
+        css_class = "normal"
+
+    # Build tooltip
+    tooltip_lines = [
+        f"{account.get('full_name', 'Unknown')} @ {org.get('name', 'Unknown')}",
+        "",
+        f"5-hour:  {five_pct:>3}% used",
+        f"         resets in {time_until(five_hour.get('resets_at'))} ({
+            format_reset_time(five_hour.get('resets_at'))
+        })",
+        "",
+        f"7-day:   {seven_pct:>3}% used",
+        f"         resets in {time_until(seven_day.get('resets_at'))} ({
+            format_reset_time(seven_day.get('resets_at'))
+        })",
+        "",
+        f"Plan: {org.get('organization_type', 'N/A').replace('_', ' ').title()}",
+        f"Tier: {org.get('rate_limit_tier', 'N/A')}",
+    ]
+
+    # Add extra usage info if enabled
+    extra = usage.get("extra_usage", {})
+    if extra.get("is_enabled"):
+        used = extra.get("used_credits", 0)
+        limit = extra.get("monthly_limit")
+        if limit:
+            tooltip_lines.append(f"Extra: ${used:.2f} / ${limit:.2f}")
+        else:
+            tooltip_lines.append(f"Extra: ${used:.2f} (no limit)")
+
+    result = {
+        "text": f"󰧑 {five_pct}%",
+        "tooltip": "\n".join(tooltip_lines),
+        "class": css_class,
+        "percentage": five_pct,
+    }
+
+    print(json.dumps(result))
+
+
+if __name__ == "__main__":
+    main()
