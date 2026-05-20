@@ -16,9 +16,6 @@ CREDENTIALS_FILE = Path.home() / ".claude" / ".credentials.json"
 STATE_FILE = Path.home() / ".cache" / "claude-usage-state.json"
 API_BASE = "https://api.anthropic.com/api/oauth"
 
-# Notification thresholds (only notify once per threshold crossing)
-THRESHOLDS = [50, 80, 90, 95]
-
 
 def get_access_token():
     """Read access token from Claude credentials file."""
@@ -110,43 +107,12 @@ def save_state(state: dict):
         pass
 
 
-def send_notification(title: str, body: str, urgency: str = "normal"):
-    """Send a desktop notification."""
-    subprocess.run(
-        ["notify-send", "-a", "Claude", "-u", urgency, title, body], capture_output=True
-    )
-
-
-def check_and_notify(five_pct: int, reset_at: str, state: dict) -> dict:
+def check(five_pct: int, reset_at: str, state: dict) -> dict:
     """Check thresholds and send notifications if needed."""
     # Reset notifications if the window has reset
     if state.get("last_reset") != reset_at:
         state = {"notified_thresholds": [], "last_reset": reset_at}
 
-    notified = state.get("notified_thresholds", [])
-
-    for threshold in THRESHOLDS:
-        if five_pct >= threshold and threshold not in notified:
-            # Determine urgency
-            if threshold >= 90:
-                urgency = "critical"
-                icon = "🔴"
-            elif threshold >= 80:
-                urgency = "critical"
-                icon = "🟠"
-            else:
-                urgency = "normal"
-                icon = "🟡"
-
-            reset_in = time_until(reset_at)
-            send_notification(
-                f"{icon} Claude Usage {threshold}%",
-                f"5-hour limit at {five_pct}%\nResets in {reset_in}",
-                urgency,
-            )
-            notified.append(threshold)
-
-    state["notified_thresholds"] = notified
     return state
 
 
@@ -195,9 +161,8 @@ def main():
     seven_pct = int(seven_day.get("utilization", 0))
     reset_at = five_hour.get("resets_at")
 
-    # Check thresholds and notify
     state = load_state()
-    state = check_and_notify(five_pct, reset_at, state)
+    state = check(five_pct, reset_at, state)
     save_state(state)
 
     # Determine CSS class based on usage

@@ -59,3 +59,11 @@ SARIMA
 SARIMAX
 Statsmodels
 EDA
+redimensión
+hiperparámetros
+Numenta
+preprocesado
+ADF
+ticketing
+monodromía
+disjuntas
