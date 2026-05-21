@@ -1,5 +1,15 @@
--- Format on save
-vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+-- Format on save (solo en buffers con LSP attached)
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("LspFormatOnSave", { clear = true }),
+    callback = function(args)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = args.buf,
+            callback = function()
+                vim.lsp.buf.format({ bufnr = args.buf })
+            end,
+        })
+    end,
+})
 
 vim.lsp.config('lua_ls', {
     settings = {
@@ -112,4 +122,13 @@ vim.lsp.config('ltex', {
             }
         }
     }
+})
+
+vim.lsp.enable({
+    "lua_ls",
+    "pylsp",
+    "rust_analyzer",
+    "clangd",
+    "perlnavigator",
+    "ltex",
 })

@@ -26,8 +26,10 @@ return {
 
                 send_file = "<leader>ef",
                 send_line = "<leader>ee",
-                send_mark = "<leader>em",         -- Enviar marca
-                send_until_cursor = "<leader>eu", -- Desde el inicio hasta el cursor
+                send_mark = "<leader>em",                -- Enviar marca
+                send_until_cursor = "<leader>eu",        -- Desde el inicio hasta el cursor
+                send_code_block = "<leader>ej",          -- Enviar celda actual
+                send_code_block_and_move = "<leader>en", -- Enviar celda y saltar a la siguiente
 
                 cr = "<leader>i<cr>",             -- Enviar retorno de carro (Enter)
                 interrupt = "<leader>ii",         -- Interrumpir (Ctrl+C)

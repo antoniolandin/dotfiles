@@ -101,8 +101,6 @@ vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = "Git Branches (
 
 vim.keymap.set('n', 'grr', require('telescope.builtin').lsp_references, {})
 
-vim.api.nvim_set_keymap("n", "<leader>g", ":set spell!<CR>", { noremap = true, silent = true })
-
 -- Go to next error
 vim.keymap.set("n", "ge", function()
     vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = 1, float = true })
@@ -164,9 +162,9 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         local opts = { buffer = true, silent = true }
 
-        vim.keymap.set('x', 'ic', function() select_python_cell(false) end, opts)
-        vim.keymap.set('x', 'ac', function() select_python_cell(true) end, opts)
-        vim.keymap.set('o', 'ic', function() select_python_cell(false) end, opts)
-        vim.keymap.set('o', 'ac', function() select_python_cell(true) end, opts)
+        vim.keymap.set('x', 'ij', function() select_python_cell(false) end, opts)
+        vim.keymap.set('x', 'aj', function() select_python_cell(true) end, opts)
+        vim.keymap.set('o', 'ij', function() select_python_cell(false) end, opts)
+        vim.keymap.set('o', 'aj', function() select_python_cell(true) end, opts)
     end
 })
