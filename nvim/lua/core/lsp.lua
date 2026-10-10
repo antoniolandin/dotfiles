@@ -97,33 +97,6 @@ vim.lsp.config('perlnavigator', {
     }
 })
 
-local words = { "Dummy", "Ina" }
-local dummys_diccionario = {}
-for _, word in ipairs(words) do
-    for i = 0, 200 do
-        table.insert(dummys_diccionario, word .. i)
-    end
-end
-
-vim.lsp.config('ltex', {
-    on_attach = function(client, bufnr)
-        require("ltex_extra").setup {
-            load_langs = { "es" },
-            init_check = true,
-            path = vim.fn.expand("~/.config/nvim/ltex"),
-        }
-    end,
-    settings = {
-        ltex = {
-            enabled = { "latex", "markdown", "bibtex" },
-            language = "es",
-            dictionary = {
-                ["es"] = dummys_diccionario
-            }
-        }
-    }
-})
-
 vim.lsp.enable({
     "lua_ls",
     "pylsp",
