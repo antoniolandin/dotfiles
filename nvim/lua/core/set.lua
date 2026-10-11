@@ -17,6 +17,3 @@ vim.o.conceallevel = 1
 vim.cmd("colorscheme gruvbox")
 
 vim.opt.spelllang = "es"
-
---- for ltex-ls ---
-vim.env._JAVA_OPTIONS = (vim.env._JAVA_OPTIONS or "") .. " -Djdk.xml.totalEntitySizeLimit=0"

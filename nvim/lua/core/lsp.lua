@@ -36,14 +36,8 @@ vim.lsp.config('pylsp', {
     },
     settings = {
         pylsp = {
+            signature = { formatter = false },
             plugins = {
-                rope_autoimport = {
-                    enabled = false,
-                    memory = false,
-                },
-                rope_completion = {
-                    enabled = false,
-                },
                 jedi_completion = {
                     enabled = true,
                     include_params = true,
@@ -51,17 +45,26 @@ vim.lsp.config('pylsp', {
                     include_class_objects = true,
                     include_function_objects = true,
                 },
-                ruff = {
-                    enabled = true,
-                    lineLength = 150,
-                },
+                autopep8 = { enabled = false },
+                yapf = { enabled = false },
                 pycodestyle = { enabled = false },
+                pyflakes = { enabled = false },
                 mccabe = { enabled = false },
                 flake8 = { enabled = false },
                 pylint = { enabled = false },
-                pyflakes = { enabled = false },
+                pydocstyle = { enabled = false },
+                rope_autoimport = { enabled = false },
+                rope_completion = { enabled = false },
             }
         }
+    },
+})
+
+vim.lsp.config("ruff", {
+    init_options = {
+        settings = {
+            lineLength = 150,
+        },
     },
 })
 
@@ -103,5 +106,4 @@ vim.lsp.enable({
     "rust_analyzer",
     "clangd",
     "perlnavigator",
-    "ltex",
 })

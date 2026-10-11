@@ -34,11 +34,11 @@ vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader><leader>", "<C-^>")
 
 --- Obsidian ---
-vim.keymap.set("n", "<leader>os", [[<Cmd>ObsidianSearch<CR>]])
-vim.keymap.set("n", "<leader>oq", [[<Cmd>ObsidianQuickSwitch<CR>]])
-vim.keymap.set("n", "<leader>op", [[<Cmd>ObsidianPasteImg<CR>]])
-vim.keymap.set("n", "<leader>oo", [[<CMD>ObsidianOpen<CR>]])
-vim.keymap.set("n", "<leader>on", [[:ObsidianNew<CR>]])
+vim.keymap.set("n", "<leader>os", [[<Cmd>Obsidian search<CR>]])
+vim.keymap.set("n", "<leader>oq", [[<Cmd>Obsidian quick_switch<CR>]])
+vim.keymap.set("n", "<leader>op", [[<Cmd>Obsidian paste_img<CR>]])
+vim.keymap.set("n", "<leader>oo", [[<Cmd>Obsidian open<CR>]])
+vim.keymap.set("n", "<leader>on", [[<Cmd>Obsidian new<CR>]])
 
 --- Compiler/overseer ---
 vim.api.nvim_set_keymap("n", "<leader>co", "<cmd>CompilerOpen<cr>", { noremap = true, silent = true })
